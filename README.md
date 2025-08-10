@@ -5,6 +5,8 @@
 [![arXiv](https://img.shields.io/badge/arXiv-2508.02292-b31b1b.svg)](https://arxiv.org/abs/2508.02292)
 [![Website](https://img.shields.io/badge/Website-FinWorld-blue.svg)](https://dvampire.github.io/FinWorld/)
 
+> ⚠️ **Preview Version Notice**: This is currently a preview version of FinWorld. Some code components are still being updated and may not be fully available in this repository. We appreciate your patience and look forward to providing the complete implementation soon. Thank you for your understanding!
+
 **FinWorld** is a comprehensive, all-in-one open-source platform that provides end-to-end support for the entire financial AI workflow, from data acquisition to experimentation and deployment. Built on the foundation of unified AI paradigms, heterogeneous data integration, and advanced agent automation, FinWorld addresses the critical limitations of existing financial AI platforms.
 
 > **Paper**: [FinWorld: An All-in-One Open-Source Platform for End-to-End Financial AI Research and Deployment](https://arxiv.org/abs/2508.02292) (Arxiv)
