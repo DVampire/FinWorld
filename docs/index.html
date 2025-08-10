@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FinWorld: An All-in-One Open-Source Platform for End-to-End Financial AI Research and Deployment</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h2>FinWorld</h2>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#architecture">Architecture</a></li>
+                <li><a href="#results">Results</a></li>
+                <li><a href="#download">Download</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1>FinWorld</h1>
+                <h2>An All-in-One Open-Source Platform for End-to-End Financial AI Research and Deployment</h2>
+                <p>A comprehensive framework that seamlessly integrates diverse AI paradigms, heterogeneous data sources, and modern technologies to enable comprehensive financial AI development and evaluation.</p>
+                <div class="hero-buttons">
+                    <a href="https://github.com/DVampire/FinWorld" class="btn btn-primary">
+                        <i class="fab fa-github"></i> View on GitHub
+                    </a>
+                    <a href="https://arxiv.org/abs/2508.02292" class="btn btn-secondary">
+                        <i class="fas fa-file-alt"></i> Read Paper
+                    </a>
+                </div>
+                <div class="hero-badges">
+                    <span class="badge">KDD 2026</span>
+                    <span class="badge">arXiv:2508.02292</span>
+                    <span class="badge">MIT License</span>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="assets/finworld.png" alt="FinWorld Architecture">
+            </div>
+        </div>
+    </section>
+
+    <!-- Overview Section -->
+    <section id="overview" class="overview">
+        <div class="container">
+            <h2 class="section-title">Research Contributions</h2>
+            <div class="contributions">
+                <div class="contribution-card">
+                    <div class="contribution-icon">
+                        <i class="fas fa-universal-access"></i>
+                    </div>
+                    <h3>Unified Framework</h3>
+                    <p>We propose a unified, end-to-end framework for training and evaluation of ML, DL, RL, LLMs, and LLM agents, covering four critical financial AI task types including time series forecasting, algorithmic trading, portfolio management, and LLM applications.</p>
+                </div>
+                <div class="contribution-card">
+                    <div class="contribution-icon">
+                        <i class="fas fa-puzzle-piece"></i>
+                    </div>
+                    <h3>Modular Design</h3>
+                    <p>The framework features a modular architecture that enables flexible construction of custom models and tasks, including the development of personalized LLM agents. The system supports efficient distributed training and testing across multiple environments.</p>
+                </div>
+                <div class="contribution-card">
+                    <div class="contribution-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Comprehensive Benchmark</h3>
+                    <p>We provide support for multimodal heterogeneous data with over 800 million samples, establishing a comprehensive benchmark for the financial AI community. Extensive experiments across four task types demonstrate the framework's flexibility and effectiveness.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Key Features -->
+    <section class="features">
+        <div class="container">
+            <h2 class="section-title">Key Features</h2>
+            <div class="features-grid">
+                <div class="feature-item">
+                    <i class="fas fa-tasks"></i>
+                    <h3>Multi-task Support</h3>
+                    <p>Time series forecasting, algorithmic trading, portfolio management, and LLM applications</p>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-database"></i>
+                    <h3>Multimodal Data Integration</h3>
+                    <p>Structured market data, unstructured news, and multimodal information</p>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-brain"></i>
+                    <h3>Comprehensive AI Paradigms</h3>
+                    <p>ML, DL, RL, LLMs, and LLM agents with seamless integration</p>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-cogs"></i>
+                    <h3>Advanced Automation</h3>
+                    <p>Distributed training, auto presentation, and experiment tracking</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Architecture Section -->
+    <section id="architecture" class="architecture">
+        <div class="container">
+            <h2 class="section-title">Architecture Overview</h2>
+            <p class="section-subtitle">FinWorld employs a layered, object-oriented architecture with seven core layers</p>
+            
+            <div class="architecture-layers">
+                <div class="layer">
+                    <div class="layer-number">1</div>
+                    <div class="layer-content">
+                        <h3>Configuration Layer</h3>
+                        <p>Built on mmengine for unified experiment management with registry mechanism and configuration inheritance</p>
+                    </div>
+                </div>
+                <div class="layer">
+                    <div class="layer-number">2</div>
+                    <div class="layer-content">
+                        <h3>Dataset Layer</h3>
+                        <p>Multi-source data acquisition, feature engineering, task-specific organization, and RL environment encapsulation</p>
+                    </div>
+                </div>
+                <div class="layer">
+                    <div class="layer-number">3</div>
+                    <div class="layer-content">
+                        <h3>Model Layer</h3>
+                        <p>ML models, DL architectures, RL networks, and unified LLM interface with financial constraints</p>
+                    </div>
+                </div>
+                <div class="layer">
+                    <div class="layer-number">4</div>
+                    <div class="layer-content">
+                        <h3>Training Layer</h3>
+                        <p>Optimizers, loss functions, schedulers, metrics, and task-specific trainers with distributed support</p>
+                    </div>
+                </div>
+                <div class="layer">
+                    <div class="layer-number">5</div>
+                    <div class="layer-content">
+                        <h3>Evaluation Layer</h3>
+                        <p>Financial-specific metrics, visualization tools, and standardized evaluation protocols</p>
+                    </div>
+                </div>
+                <div class="layer">
+                    <div class="layer-number">6</div>
+                    <div class="layer-content">
+                        <h3>Task Layer</h3>
+                        <p>Time series forecasting, algorithmic trading, portfolio management, and LLM applications</p>
+                    </div>
+                </div>
+                <div class="layer">
+                    <div class="layer-number">7</div>
+                    <div class="layer-content">
+                        <h3>Presentation Layer</h3>
+                        <p>Auto-reporting, multi-channel publishing, and version control for systematic archiving</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Results Section -->
+    <section id="results" class="results">
+        <div class="container">
+            <h2 class="section-title">Empirical Results</h2>
+            
+            <div class="results-grid">
+                <div class="result-card">
+                    <h3>Time Series Forecasting</h3>
+                    <div class="result-content">
+                        <img src="assets/llm_score.png" alt="Forecasting Results">
+                        <ul>
+                            <li><strong>TimeXer</strong> achieves MAE of 0.0529 and MSE of 0.0062 on DJ30</li>
+                            <li><strong>TimeMixer</strong> shows superior performance on HS300 with MAE of 0.3804</li>
+                            <li>Deep learning models consistently achieve higher RankICIR scores</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="result-card">
+                    <h3>Algorithmic Trading</h3>
+                    <div class="result-content">
+                        <img src="assets/llm_trading.png" alt="Trading Results">
+                        <ul>
+                            <li><strong>SAC</strong> achieves 101.55% ARR on TSLA</li>
+                            <li><strong>PPO</strong> attains 2.10 SR on META</li>
+                            <li>RL methods consistently deliver higher returns and better risk metrics</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="result-card">
+                    <h3>Portfolio Management</h3>
+                    <div class="result-content">
+                        <img src="assets/trading_curve.png" alt="Portfolio Results">
+                        <ul>
+                            <li><strong>SAC</strong> achieves up to 31.2% annualized returns on SP500</li>
+                            <li>Sharpe ratios above 1.5 across major indices</li>
+                            <li>Superior risk-adjusted performance compared to baseline methods</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="result-card">
+                    <h3>LLM Applications</h3>
+                    <div class="result-content">
+                        <img src="assets/llm_dataset.png" alt="LLM Results">
+                        <ul>
+                            <li><strong>FinReasoner</strong> leads all four financial reasoning benchmarks</li>
+                            <li>Strong trading capabilities across all evaluated stocks</li>
+                            <li>Domain-specific training outperforms generic instruction-tuned models</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Download Section -->
+    <section id="download" class="download">
+        <div class="container">
+            <h2 class="section-title">Get Started</h2>
+            <div class="download-content">
+                <div class="download-card">
+                    <h3>Quick Installation</h3>
+                    <div class="code-block">
+                        <pre><code># Create environment
+conda create -n finworld python=3.11
+conda activate finworld
+
+# Install dependencies
+make install-base
+make install-browser
+make install-verl</code></pre>
+                    </div>
+                </div>
+                
+                <div class="download-card">
+                    <h3>Quick Start</h3>
+                    <div class="code-block">
+                        <pre><code># Download data
+python scripts/download/download.py --config configs/download/dj30/dj30_fmp_price_1day.py
+
+# Train model
+CUDA_VISIBLE_DEVICES=0 python scripts/rl_trading/train.py --config=configs/rl_trading/ppo/AAPL_ppo_trading.py</code></pre>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="cta-buttons">
+                <a href="https://github.com/DVampire/FinWorld" class="btn btn-primary">
+                    <i class="fab fa-github"></i> View on GitHub
+                </a>
+                <a href="https://arxiv.org/abs/2508.02292" class="btn btn-secondary">
+                    <i class="fas fa-file-alt"></i> Read Paper
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>FinWorld</h3>
+                    <p>Empowering Financial AI Research and Applications</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Links</h4>
+                    <ul>
+                        <li><a href="https://github.com/DVampire/FinWorld">GitHub</a></li>
+                        <li><a href="https://arxiv.org/abs/2508.02292">Paper</a></li>
+                        <li><a href="#home">Home</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Authors</h4>
+                    <p>Wentao Zhang, Yilei Zhao, Chuqiao Zong, Xinrun Wang, Bo An</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 FinWorld Team. Built with ❤️ for the financial AI community.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

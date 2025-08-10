@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>YouTube Player</title>
+  </head>
+  <body>
+    <div id="player"></div>
+
+    <script>
+      const videoId = new URLSearchParams(window.location.search).get("v") || "sftTHmINZ4Y";
+      window.playerReady = false;
+      window.player = null;
+
+      function onYouTubeIframeAPIReady() {
+        window.player = new YT.Player("player", {
+          height: "590",
+          width: "960",
+          videoId: videoId,
+          events: {
+            onReady: () => {
+              window.playerReady = true;
+              console.log("✅ Player ready");
+            }
+          }
+        });
+      }
+
+      window.ytCtl = {
+        play()  { if (playerReady) player.playVideo(); },
+        pause() { if (playerReady) player.pauseVideo(); },
+        seek(s) { if (playerReady) player.seekTo(s, true); },
+        now()   { return playerReady ? player.getCurrentTime() : -1; }
+      };
+
+      // 加载 iframe API
+      const tag = document.createElement("script");
+      tag.src = "https://www.youtube.com/iframe_api";
+      document.body.appendChild(tag);
+    </script>
+  </body>
+</html>

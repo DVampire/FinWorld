@@ -1,0 +1,3 @@
+[submodule "libs/verl"]
+	path = libs/verl
+	url = git@github.com:DVampire/verl.git

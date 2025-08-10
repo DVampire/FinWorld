@@ -1,0 +1,1 @@
+from .factor_vae_predictor import FactorVAEPredictor
