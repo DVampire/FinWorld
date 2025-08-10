@@ -1,0 +1,36 @@
+name: Deploy to GitHub Pages (Simple)
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+      
+    - name: Deploy
+      run: |
+        git config --global user.name "github-actions[bot]"
+        git config --global user.email "github-actions[bot]@users.noreply.github.com"
+        
+        # Create gh-pages branch
+        git checkout --orphan gh-pages
+        
+        # Remove all files except docs
+        git rm -rf .
+        git checkout main -- docs/
+        
+        # Move docs content to root
+        mv docs/* .
+        rm -rf docs/
+        
+        # Add all files
+        git add .
+        git commit -m "Deploy to GitHub Pages"
+        
+        # Push to gh-pages branch
+        git push origin gh-pages --force
