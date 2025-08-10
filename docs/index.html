@@ -87,6 +87,17 @@
         </div>
     </section>
 
+    <!-- Platform Comparison -->
+    <section class="comparison">
+        <div class="container">
+            <h2 class="section-title">Platform Comparison</h2>
+            <p class="section-subtitle">FinWorld offers comprehensive support across all key features compared to existing platforms</p>
+            <div class="comparison-image">
+                <img src="assets/table_platforms.png" alt="Platform Comparison Table">
+            </div>
+        </div>
+    </section>
+
     <!-- Key Features -->
     <section class="features">
         <div class="container">
@@ -185,11 +196,11 @@
                 <div class="result-card">
                     <h3>Time Series Forecasting</h3>
                     <div class="result-content">
-                        <img src="assets/llm_score.png" alt="Forecasting Results">
+                        <img src="assets/table_forecasting.png" alt="Time Series Forecasting Results">
                         <ul>
-                            <li><strong>TimeXer</strong> achieves MAE of 0.0529 and MSE of 0.0062 on DJ30</li>
-                            <li><strong>TimeMixer</strong> shows superior performance on HS300 with MAE of 0.3804</li>
-                            <li>Deep learning models consistently achieve higher RankICIR scores</li>
+                            <li><strong>TimeXer</strong> achieves MAE of 0.0529 and MSE of 0.0062 on DJ30, significantly outperforming LightGBM (MAE: 0.1392, MSE: 0.0235)</li>
+                            <li><strong>TimeMixer</strong> and <strong>TimeXer</strong> show superior performance on HS300 with MAEs of 0.3804 and 0.3727 respectively</li>
+                            <li>Deep learning models consistently achieve higher RankICIR scores compared to traditional ML methods</li>
                         </ul>
                     </div>
                 </div>
@@ -197,11 +208,11 @@
                 <div class="result-card">
                     <h3>Algorithmic Trading</h3>
                     <div class="result-content">
-                        <img src="assets/llm_trading.png" alt="Trading Results">
+                        <img src="assets/table_trading.png" alt="Algorithmic Trading Results">
                         <ul>
-                            <li><strong>SAC</strong> achieves 101.55% ARR on TSLA</li>
-                            <li><strong>PPO</strong> attains 2.10 SR on META</li>
-                            <li>RL methods consistently deliver higher returns and better risk metrics</li>
+                            <li><strong>SAC</strong> achieves 101.55% ARR on TSLA with superior risk-adjusted returns</li>
+                            <li><strong>PPO</strong> attains 2.10 SR on META, outperforming all baseline methods</li>
+                            <li>RL methods consistently deliver higher returns and better risk metrics across all evaluated stocks</li>
                         </ul>
                     </div>
                 </div>
@@ -209,23 +220,35 @@
                 <div class="result-card">
                     <h3>Portfolio Management</h3>
                     <div class="result-content">
-                        <img src="assets/trading_curve.png" alt="Portfolio Results">
+                        <img src="assets/table_portfolio.png" alt="Portfolio Management Results">
                         <ul>
-                            <li><strong>SAC</strong> achieves up to 31.2% annualized returns on SP500</li>
-                            <li>Sharpe ratios above 1.5 across major indices</li>
-                            <li>Superior risk-adjusted performance compared to baseline methods</li>
+                            <li><strong>SAC</strong> achieves up to 31.2% annualized returns on SP500 with Sharpe ratios above 1.5</li>
+                            <li>RL methods consistently outperform rule-based and ML-based approaches</li>
+                            <li>Superior risk-adjusted performance across all major indices (DJ30, SP500, SSE50, HS300)</li>
                         </ul>
                     </div>
                 </div>
                 
                 <div class="result-card">
-                    <h3>LLM Applications</h3>
+                    <h3>LLM Financial Reasoning</h3>
                     <div class="result-content">
-                        <img src="assets/llm_dataset.png" alt="LLM Results">
+                        <img src="assets/llm_score.png" alt="LLM Financial Reasoning Results">
                         <ul>
-                            <li><strong>FinReasoner</strong> leads all four financial reasoning benchmarks</li>
-                            <li>Strong trading capabilities across all evaluated stocks</li>
+                            <li><strong>FinReasoner</strong> leads all four financial reasoning benchmarks (FinQA, FinEval, ConvFinQA, CFLUE)</li>
                             <li>Domain-specific training outperforms generic instruction-tuned models</li>
+                            <li>Comprehensive evaluation across multiple reasoning tasks</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="result-card">
+                    <h3>LLM Trading Performance</h3>
+                    <div class="result-content">
+                        <img src="assets/llm_trading.png" alt="LLM Trading Performance Results">
+                        <ul>
+                            <li><strong>FinReasoner</strong> demonstrates strong trading capabilities across all evaluated stocks</li>
+                            <li>Comprehensive risk management and performance metrics</li>
+                            <li>Superior performance compared to other LLM models in trading tasks</li>
                         </ul>
                     </div>
                 </div>

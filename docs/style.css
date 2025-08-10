@@ -242,6 +242,24 @@ body {
     line-height: 1.7;
 }
 
+/* Platform Comparison Section */
+.comparison {
+    padding: 80px 0;
+    background: #f8fafc;
+}
+
+.comparison-image {
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.comparison-image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
 /* Features Section */
 .features {
     padding: 80px 0;
@@ -336,7 +354,7 @@ body {
 
 .results-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
     gap: 2rem;
 }
 
