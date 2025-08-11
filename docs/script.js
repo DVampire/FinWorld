@@ -208,3 +208,23 @@ document.addEventListener('DOMContentLoaded', () => {
         observer.observe(el);
     });
 });
+
+// 表格展开/收起功能
+function toggleTable(tableId) {
+    const table = document.getElementById(tableId);
+    const button = event.target.closest('.expand-button');
+    
+    if (table.classList.contains('expanded')) {
+        // 收起表格
+        table.classList.remove('expanded');
+        button.classList.remove('expanded');
+        button.querySelector('.expand-text').textContent = '展开完整表格';
+        button.querySelector('.expand-icon').textContent = '▼';
+    } else {
+        // 展开表格
+        table.classList.add('expanded');
+        button.classList.add('expanded');
+        button.querySelector('.expand-text').textContent = '收起表格';
+        button.querySelector('.expand-icon').textContent = '▲';
+    }
+}

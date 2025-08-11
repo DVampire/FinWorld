@@ -1,6 +1,6 @@
 <div class="results-table-container">
     <div class="table-wrapper">
-        <table class="results-table">
+        <table class="results-table collapsible-table" id="forecasting-table-content">
             <thead>
                 <tr>
                     <th rowspan="3">Model</th>
@@ -22,7 +22,7 @@
                 <tr class="category-header">
                     <td colspan="9"><strong>ML-based</strong></td>
                 </tr>
-                <tr>
+                <tr class="visible-row">
                     <td>LightGBM</td>
                     <td>0.1392</td>
                     <td>0.0235</td>
@@ -33,7 +33,7 @@
                     <td>0.0216</td>
                     <td>0.2242</td>
                 </tr>
-                <tr>
+                <tr class="visible-row">
                     <td>XGBoost</td>
                     <td>0.1476</td>
                     <td>0.0251</td>
@@ -47,7 +47,7 @@
                 <tr class="category-header">
                     <td colspan="9"><strong>DL-based</strong></td>
                 </tr>
-                <tr>
+                <tr class="visible-row">
                     <td>Autoformer</td>
                     <td>0.1044</td>
                     <td>0.0182</td>
@@ -58,7 +58,7 @@
                     <td>0.0312</td>
                     <td class="best">0.3379</td>
                 </tr>
-                <tr>
+                <tr class="hidden-row">
                     <td>Crossformer</td>
                     <td>0.1624</td>
                     <td>0.0173</td>
@@ -69,7 +69,7 @@
                     <td>0.0219</td>
                     <td>0.2984</td>
                 </tr>
-                <tr>
+                <tr class="hidden-row">
                     <td>ETSformer</td>
                     <td>0.0640</td>
                     <td>0.0115</td>
@@ -80,7 +80,7 @@
                     <td>0.0295</td>
                     <td>0.3125</td>
                 </tr>
-                <tr>
+                <tr class="hidden-row">
                     <td>DLinear</td>
                     <td>0.0867</td>
                     <td>0.0122</td>
@@ -91,7 +91,7 @@
                     <td>0.0177</td>
                     <td>0.2783</td>
                 </tr>
-                <tr>
+                <tr class="hidden-row">
                     <td>TimesNet</td>
                     <td>0.1242</td>
                     <td>0.0142</td>
@@ -102,7 +102,7 @@
                     <td class="best">0.0483</td>
                     <td>0.3512</td>
                 </tr>
-                <tr>
+                <tr class="hidden-row">
                     <td>PatchTST</td>
                     <td>0.0830</td>
                     <td>0.0112</td>
@@ -113,7 +113,7 @@
                     <td>0.0157</td>
                     <td>0.1922</td>
                 </tr>
-                <tr>
+                <tr class="hidden-row">
                     <td>TimeMixer</td>
                     <td>0.0620</td>
                     <td>0.0081</td>
@@ -124,7 +124,7 @@
                     <td>0.0349</td>
                     <td>0.1193</td>
                 </tr>
-                <tr>
+                <tr class="hidden-row">
                     <td>TimeXer</td>
                     <td class="best">0.0529</td>
                     <td class="best">0.0062</td>
@@ -138,7 +138,7 @@
             </tbody>
         </table>
         
-        <table class="results-table">
+        <table class="results-table collapsible-table" id="forecasting-table-content-2">
             <thead>
                 <tr>
                     <th rowspan="3">Model</th>
@@ -160,7 +160,7 @@
                 <tr class="category-header">
                     <td colspan="9"><strong>ML-based</strong></td>
                 </tr>
-                <tr>
+                <tr class="visible-row">
                     <td>LightGBM</td>
                     <td>0.1540</td>
                     <td>0.0267</td>
@@ -171,7 +171,7 @@
                     <td>0.0219</td>
                     <td>0.1961</td>
                 </tr>
-                <tr>
+                <tr class="visible-row">
                     <td>XGBoost</td>
                     <td>0.1632</td>
                     <td>0.0293</td>
@@ -185,7 +185,7 @@
                 <tr class="category-header">
                     <td colspan="9"><strong>DL-based</strong></td>
                 </tr>
-                <tr>
+                <tr class="visible-row">
                     <td>Autoformer</td>
                     <td>0.1163</td>
                     <td>0.0212</td>
@@ -196,7 +196,7 @@
                     <td class="best">0.0364</td>
                     <td class="best">0.2493</td>
                 </tr>
-                <tr>
+                <tr class="hidden-row">
                     <td>Crossformer</td>
                     <td>0.1756</td>
                     <td>0.0197</td>
@@ -207,7 +207,7 @@
                     <td>0.0187</td>
                     <td>0.1525</td>
                 </tr>
-                <tr>
+                <tr class="hidden-row">
                     <td>ETSformer</td>
                     <td>0.0737</td>
                     <td>0.0125</td>
@@ -218,7 +218,7 @@
                     <td>0.0332</td>
                     <td>0.2406</td>
                 </tr>
-                <tr>
+                <tr class="hidden-row">
                     <td>DLinear</td>
                     <td>0.0932</td>
                     <td>0.0154</td>
@@ -229,7 +229,7 @@
                     <td>0.0285</td>
                     <td>0.2078</td>
                 </tr>
-                <tr>
+                <tr class="hidden-row">
                     <td>TimesNet</td>
                     <td>0.1329</td>
                     <td>0.0168</td>
@@ -240,7 +240,7 @@
                     <td>0.0241</td>
                     <td>0.1894</td>
                 </tr>
-                <tr>
+                <tr class="hidden-row">
                     <td>PatchTST</td>
                     <td>0.0907</td>
                     <td>0.0135</td>
@@ -251,7 +251,7 @@
                     <td>0.0276</td>
                     <td>0.1971</td>
                 </tr>
-                <tr>
+                <tr class="hidden-row">
                     <td>TimeMixer</td>
                     <td>0.0724</td>
                     <td>0.0119</td>
@@ -262,7 +262,7 @@
                     <td>0.0348</td>
                     <td>0.2417</td>
                 </tr>
-                <tr>
+                <tr class="hidden-row">
                     <td>TimeXer</td>
                     <td class="best">0.0625</td>
                     <td class="best">0.0093</td>
@@ -275,5 +275,14 @@
                 </tr>
             </tbody>
         </table>
+        
+        <div class="expand-button" onclick="toggleTable('forecasting-table-content')">
+            <span class="expand-text">展开完整表格</span>
+            <span class="expand-icon">▼</span>
+        </div>
+        <div class="expand-button" onclick="toggleTable('forecasting-table-content-2')">
+            <span class="expand-text">展开完整表格</span>
+            <span class="expand-icon">▼</span>
+        </div>
     </div>
 </div>

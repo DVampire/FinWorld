@@ -1,6 +1,6 @@
 <div class="results-table-container">
     <div class="table-wrapper">
-        <table class="results-table">
+        <table class="results-table collapsible-table" id="portfolio-table-content">
             <thead>
                 <tr>
                     <th rowspan="2">Model</th>
@@ -465,5 +465,10 @@
                 </tr>
             </tbody>
         </table>
+        
+        <div class="expand-button" onclick="toggleTable('portfolio-table-content')">
+            <span class="expand-text">展开完整表格</span>
+            <span class="expand-icon">▼</span>
+        </div>
     </div>
 </div>

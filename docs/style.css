@@ -582,6 +582,58 @@ html {
 .results-table-container {
     margin: 2rem 0;
     overflow-x: auto;
+    position: relative;
+}
+
+/* 可折叠表格样式 */
+.collapsible-table .hidden-row {
+    display: none;
+}
+
+.collapsible-table.expanded .hidden-row {
+    display: table-row;
+}
+
+/* 展开按钮样式 */
+.expand-button {
+    position: absolute;
+    bottom: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(37, 99, 235, 0.1);
+    border: 2px solid rgba(37, 99, 235, 0.3);
+    border-radius: 25px;
+    padding: 8px 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    color: #2563eb;
+    font-weight: 500;
+    z-index: 10;
+}
+
+.expand-button:hover {
+    background: rgba(37, 99, 235, 0.2);
+    border-color: rgba(37, 99, 235, 0.5);
+    transform: translateX(-50%) translateY(-2px);
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+}
+
+.expand-button .expand-icon {
+    transition: transform 0.3s ease;
+    font-size: 12px;
+}
+
+.expand-button.expanded .expand-icon {
+    transform: rotate(180deg);
+}
+
+.expand-button.expanded .expand-text {
+    content: "收起表格";
 }
 
 
