@@ -1,0 +1,65 @@
+\begin{table}[htbp]
+  \caption{Comparison of models for time series forecasting.}
+  \label{tab:forecasting}
+  \centering
+  \footnotesize
+  \setlength{\tabcolsep}{2pt}
+  \renewcommand{\arraystretch}{0.8}
+  \resizebox{0.98\linewidth}{!}{
+  \begin{tabular}{lcccccccccccccccc}
+  \toprule
+  \multirow{3}{*}{\parbox{1.2cm}{\centering\textbf{Model}}} &
+  \multicolumn{4}{c}{DJ30} &
+  \multicolumn{4}{c}{SP500} \\
+  \cmidrule(lr){2-5} \cmidrule(lr){6-9}
+  & MAE~$\downarrow$ & MSE~$\downarrow$ & RankIC~$\uparrow$ & RankICIR~$\uparrow$ 
+  & MAE~$\downarrow$ & MSE~$\downarrow$ & RankIC~$\uparrow$ & RankICIR~$\uparrow$ \\
+  % \cmidrule(r){1-1} \cmidrule(lr){2-5} \cmidrule(lr){6-9}
+  \midrule
+  
+  \rowcolor{gray!15}
+  \multicolumn{9}{c}{\textit{\textbf{ML-based}}} \\
+  LightGBM  & 0.1392 & 0.0235 & 0.0157 & 0.2017 & 0.6741 & 0.0788 & 0.0216 & 0.2242 \\
+  XGBoost   & 0.1476 & 0.0251 & 0.0138 & 0.1684 & 0.7025 & 0.0814 & 0.0199 & 0.1925 \\
+  \rowcolor{gray!15}
+  \multicolumn{9}{c}{\textit{\textbf{DL-based}}} \\
+  Autoformer   & 0.1044 & 0.0182 & 0.0193 & 0.3265 & 0.4568 & 0.0671 & 0.0312 & \underline{0.3379} \\
+  Crossformer  & 0.1624 & 0.0173 & 0.0150 & 0.3561 & 0.6448 & 0.0774 & 0.0219 & 0.2984 \\
+  ETSformer    & 0.0640 & 0.0115 & 0.0209 & 0.2411 & 0.2560 & 0.0448 & 0.0295 & 0.3125 \\
+  DLinear      & 0.0867 & 0.0122 & 0.0144 & 0.2247 & 0.3537 & 0.0416 & 0.0177 & 0.2783 \\
+  TimesNet     & 0.1242 & 0.0142 & 0.0211 & 0.2642 & 0.4013 & 0.0660 & \underline{0.0483} & 0.3512 \\
+  PatchTST     & 0.0830 & 0.0112 & 0.0140 & 0.2134 & 0.3682 & 0.0498 & 0.0157 & 0.1922 \\
+  TimeMixer    & 0.0620 & 0.0081 & 0.0294 & 0.4741 & 0.2278 & 0.0279 & 0.0349 & 0.1193 \\
+  TimeXer      & \underline{0.0529} & \underline{0.0062} & \underline{0.0302} & \underline{0.4889} & \underline{0.1871} & \underline{0.0240} & 0.0425 & 0.3255 \\
+  \bottomrule
+  \toprule
+  % 第二组
+  \multirow{3}{*}{\parbox{1.2cm}{\centering\textbf{Model}}} &
+  \multicolumn{4}{c}{SSE50} &
+  \multicolumn{4}{c}{HS300} \\
+  \cmidrule(lr){2-5} \cmidrule(lr){6-9}
+  & MAE~$\downarrow$ & MSE~$\downarrow$ & RankIC~$\uparrow$ & RankICIR~$\uparrow$ 
+  & MAE~$\downarrow$ & MSE~$\downarrow$ & RankIC~$\uparrow$ & RankICIR~$\uparrow$ \\
+  % \cmidrule(r){1-1} \cmidrule(lr){2-5} \cmidrule(lr){6-9}
+  \midrule
+  
+  \rowcolor{gray!15}
+  \multicolumn{9}{c}{\textit{\textbf{ML-based}}} \\
+  LightGBM  & 0.1540 & 0.0267 & 0.0211 & 0.1688 & 0.7836 & 0.1097 & 0.0219 & 0.1961 \\
+  XGBoost   & 0.1632 & 0.0293 & 0.0184 & 0.1497 & 0.8140 & 0.1123 & 0.0193 & 0.1724 \\
+  \rowcolor{gray!15}
+  \multicolumn{9}{c}{\textit{\textbf{DL-based}}} \\
+  Autoformer   & 0.1163 & 0.0212 & 0.0336 & 0.1848 & 0.5696 & 0.1213 & \underline{0.0364} & \underline{0.2493} \\
+  Crossformer  & 0.1756 & 0.0197 & 0.0225 & 0.1318 & 0.9829 & 0.1082 & 0.0187 & 0.1525 \\
+  ETSformer    & 0.0737 & 0.0125 & \underline{0.0452} & 0.2107 & 0.4413 & 0.0546 & 0.0332 & 0.2406 \\
+  DLinear      & 0.0932 & 0.0154 & 0.0343 & 0.1722 & 0.4315 & 0.0717 & 0.0285 & 0.2078 \\
+  TimesNet     & 0.1329 & 0.0168 & 0.0251 & 0.1465 & 0.7118 & 0.0997 & 0.0241 & 0.1894 \\
+  PatchTST     & 0.0907 & 0.0135 & 0.0377 & 0.1934 & \underline{0.3253} & 0.0595 & 0.0276 & 0.1971 \\
+  TimeMixer    & 0.0724 & 0.0119 & 0.0402 & 0.2086 & 0.3804 & 0.0442 & 0.0348 & 0.2417 \\
+  TimeXer      & \underline{0.0625} & \underline{0.0093} & 0.0425 & \underline{0.2173} & 0.3727 & \underline{0.0529} & 0.0352 & 0.2478 \\
+  
+  
+  \bottomrule
+  \end{tabular}
+  }
+  \end{table}

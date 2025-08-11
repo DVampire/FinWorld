@@ -217,8 +217,8 @@ function showTableModal(tableId, title) {
     modalOverlay.id = 'table-modal';
     
     // 获取原始表格内容
-    const originalTable = document.getElementById(tableId);
-    const tableContent = originalTable.outerHTML;
+    const originalElement = document.getElementById(tableId);
+    const elementContent = originalElement.outerHTML;
     
     // 创建模态框内容
     modalOverlay.innerHTML = `
@@ -228,7 +228,7 @@ function showTableModal(tableId, title) {
                 <button class="modal-close" onclick="closeTableModal()">&times;</button>
             </div>
             <div class="modal-table-container">
-                ${tableContent}
+                ${elementContent}
             </div>
         </div>
     `;
@@ -241,16 +241,19 @@ function showTableModal(tableId, title) {
         modalOverlay.classList.add('active');
     }, 10);
     
-    // 移除缩略图类，显示完整表格
-    const modalTable = modalOverlay.querySelector('table');
-    modalTable.classList.remove('thumbnail-table');
-    modalTable.classList.add('modal-table');
-    
-    // 显示所有行
-    const hiddenRows = modalTable.querySelectorAll('.hidden-row');
-    hiddenRows.forEach(row => {
-        row.style.display = 'table-row';
-    });
+    // 处理表格显示
+    const completeGrid = modalOverlay.querySelector('.complete-table-grid');
+    if (completeGrid) {
+        completeGrid.style.display = 'flex';
+        
+        // 处理所有表格
+        const tables = completeGrid.querySelectorAll('table');
+        tables.forEach(table => {
+            table.classList.remove('thumbnail-table', 'complete-table');
+            table.classList.add('modal-table');
+            table.style.display = 'table';
+        });
+    }
 }
 
 function closeTableModal() {

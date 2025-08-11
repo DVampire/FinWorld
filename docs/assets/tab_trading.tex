@@ -1,0 +1,118 @@
+\begin{table}[htb]
+\caption{Comparison of models for algorithmic trading.}
+\vspace{-1em}
+\label{tab:trading}
+\centering
+\footnotesize
+\setlength{\tabcolsep}{1pt}
+\renewcommand{\arraystretch}{0.85}
+\resizebox{0.97\linewidth}{!}{
+\begin{tabular}{lcccccccccccc}
+\toprule
+\multirow{2}{*}{\parbox{1.2cm}{\centering\textbf{Model}}}
+    & \multicolumn{6}{c}{AAPL}
+    & \multicolumn{6}{c}{AMZN} \\
+
+\cmidrule(lr){2-7} \cmidrule(lr){8-13}
+& ARR~$\uparrow$ & SR~$\uparrow$ & MDD~$\downarrow$ & CR~$\uparrow$ & SoR~$\uparrow$ & VOL~$\downarrow$
+& ARR~$\uparrow$ & SR~$\uparrow$ & MDD~$\downarrow$ & CR~$\uparrow$ & SoR~$\uparrow$ & VOL~$\downarrow$ \\
+% \cmidrule(r){1-1}\cmidrule(lr){2-2}\cmidrule(lr){3-3}\cmidrule(lr){4-4}\cmidrule(lr){5-5}\cmidrule(lr){6-6}\cmidrule(lr){7-7}\cmidrule(lr){8-8}\cmidrule(lr){9-9}\cmidrule(lr){10-10}\cmidrule(lr){11-11}\cmidrule(lr){12-12}\cmidrule(lr){13-13}
+\midrule
+
+\rowcolor{gray!15}
+\multicolumn{13}{c}{\textit{\textbf{Rule-based}}} \\
+BUY\&HOLD & 13.0620 & 0.6654 & 17.6828 & 0.7387 & 0.9606 & 0.2210 & 43.9823 & 1.4190 & 19.6246 & 2.2412 & 2.1558 & 0.2854 \\
+MACD & 9.7042 & 0.6964 & \underline{11.5621} & 0.8393 & 1.0251 & 0.1487 & -1.4856 & 0.0028 & \underline{19.4850} & -0.0762 & 0.0041 & 0.1761 \\
+
+\rowcolor{gray!15}
+\multicolumn{13}{c}{\textit{\textbf{ML-based}}} \\
+LightGBM  & 7.4450 & 0.5112 & 16.7097 & 0.4456 & 0.7363 & 0.1679 & -2.6266 & -0.1886 & 38.1339 & -0.0689 & -0.2575 & \underline{0.1093} \\
+XGBoost  & 15.7943 & 1.0359 & 17.6320 & 2.0695 & \underline{2.0720} & \underline{0.1185} & 20.8648 & 0.7175 & 26.5675 & 0.3134 & 0.8854 & 0.3823 \\
+
+\rowcolor{gray!15}
+\multicolumn{13}{c}{\textit{\textbf{DL-based}}} \\
+Transformer   & 23.3469 & 0.8788 & 18.7073 & 1.2480 & 1.6204 & 0.2809 & 5.8822 & 0.3716 & 25.5574 & 0.0884 & 0.4436 & 0.3520 \\
+LSTM   & 11.2387 & 0.5262 & 35.9190 & 0.2448 & 0.9589 & 0.2647 & 15.5243 & 0.8552 & 40.3636 & 0.3846 & 1.2941 & 0.1897 \\
+DLinear   & 9.5539 & 0.4686 & 34.7311 & 0.2136 & 0.8594 & 0.2644 & 9.9999 & 0.7221 & 30.5673 & 0.3272 & 1.1297 & 0.1468 \\
+
+\rowcolor{gray!15}
+\multicolumn{13}{c}{\textit{\textbf{RL-based}}} \\
+PPO & \underline{31.5838} & \underline{1.0483} & 18.7102 & \underline{1.6222} & 1.9040 & 0.2956 & 37.3429 & 1.2514 & 22.2379 & \underline{1.6793} & 1.7909 & 0.2864 \\
+SAC & 28.2963 & 0.8758 & 37.7384 & 0.6467 & 1.5797 & 0.2970 & \underline{44.4502} & \underline{1.6389} & 23.4218 & 1.4709 & \underline{2.6872} & 0.1918 \\
+
+\bottomrule
+\toprule
+
+
+% 第二组
+\multirow{2}{*}{\parbox{1.2cm}{\centering\textbf{Model}}}
+    & \multicolumn{6}{c}{GOOGL}
+    & \multicolumn{6}{c}{META} \\
+    
+\cmidrule(lr){2-7} \cmidrule(lr){8-13}
+& ARR~$\uparrow$ & SR~$\uparrow$ & MDD~$\downarrow$ & CR~$\uparrow$ & SoR~$\uparrow$ & VOL~$\downarrow$
+& ARR~$\uparrow$ & SR~$\uparrow$ & MDD~$\downarrow$ & CR~$\uparrow$ & SoR~$\uparrow$ & VOL~$\downarrow$ \\
+% \cmidrule(r){1-1}\cmidrule(lr){2-2}\cmidrule(lr){3-3}\cmidrule(lr){4-4}\cmidrule(lr){5-5}\cmidrule(lr){6-6}\cmidrule(lr){7-7}\cmidrule(lr){8-8}\cmidrule(lr){9-9}\cmidrule(lr){10-10}\cmidrule(lr){11-11}\cmidrule(lr){12-12}\cmidrule(lr){13-13}
+\midrule
+
+\rowcolor{gray!15}
+\multicolumn{13}{c}{\textit{\textbf{Rule-based}}} \\
+BUY\&HOLD & 28.1837 & 1.0236 & 22.2309 & 1.1678 & 1.4589 & 0.2811 & 67.2719 & 1.7264 & 18.8226 & 1.5740 & 2.8285 & 0.3286 \\
+MACD & 10.0432 & 0.6068 & \underline{12.6638} & 0.7931 & 0.8620 & 0.1862 & 40.3374 & 1.5468 & \underline{12.7635} & 1.1604 & 2.0533 & 0.2362 \\
+
+\rowcolor{gray!15}
+\multicolumn{13}{c}{\textit{\textbf{ML-based}}} \\
+LightGBM  & 16.4245 & 1.0908 & 21.0885 & 0.7788 & 1.6732 & 0.1468 & 39.6612 & 1.1212 & 23.4416 & 0.7655 & 1.5979 & 0.3676 \\
+XGBoost  & 7.5362 & 0.6783 & 20.6611 & 0.3648 & 1.2239 & \underline{0.1171} & 32.0035 & 1.6461 & 24.2472 & 1.3199 & 2.8858 & \underline{0.1778} \\
+
+\rowcolor{gray!15}
+\multicolumn{13}{c}{\textit{\textbf{DL-based}}} \\
+Transformer   & 10.3923 & 0.6683 & 36.7980 & 0.2824 & 0.9652 & 0.1468 & 48.2834 & 1.6819 & 29.0003 & \underline{1.6649} & \underline{2.9686} & 0.2528 \\
+LSTM   & 18.7416 & 0.8849 & 36.8169 & 0.5091 & 1.2871 & 0.2221 & 44.6391 & 1.1864 & 30.0527 & 0.8918 & 1.7019 & 0.3702 \\
+DLinear   & 21.4708 & 1.0461 & 36.8203 & 0.5831 & 1.5575 & 0.2063 & 35.3426 & 1.445 & 34.0928 & 1.0366 & 2.6560 & 0.2267 \\
+
+\rowcolor{gray!15}
+\multicolumn{13}{c}{\textit{\textbf{RL-based}}} \\
+PPO & 20.5532 & 1.0145 & 16.7733 & 1.2254 & 1.5855 & 0.2048 & \underline{72.0104} & \underline{2.1031} & 18.6421 & 1.5360 & 1.4293 & 0.2591 \\
+SAC & \underline{30.6081} & \underline{1.2203} & 35.4036 & \underline{1.7233} & \underline{1.8833} & 0.2038 & 56.8891 & 1.5085 & 34.6565 & 1.6415 & 2.4020 & 0.3355 \\
+
+\bottomrule
+\toprule
+
+% 第三组
+\multirow{2}{*}{\parbox{1.2cm}{\centering\textbf{Model}}}
+    & \multicolumn{6}{c}{MSFT}
+    & \multicolumn{6}{c}{TSLA} \\
+
+\cmidrule(lr){2-7} \cmidrule(lr){8-13}
+& ARR~$\uparrow$ & SR~$\uparrow$ & MDD~$\downarrow$ & CR~$\uparrow$ & SoR~$\uparrow$ & VOL~$\downarrow$
+& ARR~$\uparrow$ & SR~$\uparrow$ & MDD~$\downarrow$ & CR~$\uparrow$ & SoR~$\uparrow$ & VOL~$\downarrow$ \\
+% \cmidrule(r){1-1}\cmidrule(lr){2-2}\cmidrule(lr){3-3}\cmidrule(lr){4-4}\cmidrule(lr){5-5}\cmidrule(lr){6-6}\cmidrule(lr){7-7}\cmidrule(lr){8-8}\cmidrule(lr){9-9}\cmidrule(lr){10-10}\cmidrule(lr){11-11}\cmidrule(lr){12-12}\cmidrule(lr){13-13}
+\midrule
+
+\rowcolor{gray!15}
+\multicolumn{13}{c}{\textit{\textbf{Rule-based}}} \\
+BUY\&HOLD & 13.3812 & 0.6991 & 18.6840 & 0.7162 & 0.9635 & 0.2116 & 30.8051 & 0.7469 & 53.6797 & 0.5739 & 1.1537 & 0.5892 \\
+MACD & 6.4616 & 0.4703 & \underline{13.7325} & 0.4705 & 0.6337 & \underline{0.1606} & 68.8393 & 1.5085 & \underline{21.7414} & \underline{2.1663} & 2.5809 & 0.3989 \\
+
+\rowcolor{gray!15}
+\multicolumn{13}{c}{\textit{\textbf{ML-based}}} \\
+LightGBM  & 20.7821 & 0.9031 & 37.8864 & 0.5485 & 1.4983 & 0.2400 & 49.2144 & 1.3086 & 56.0589 & 0.8779 & 2.2514 & \underline{0.3529} \\
+XGBoost  & 14.4887 & 0.6633 & 49.8944 & 0.2904 & 1.0676 & 0.2497 &  39.7010 & 0.9788 & 58.5673 & 0.5053 & 1.5409 & 0.4401 \\
+
+\rowcolor{gray!15}
+\multicolumn{13}{c}{\textit{\textbf{DL-based}}} \\
+Transformer   & 23.2662 & 1.0207 & 32.8318 & 0.6037 & 1.4478 & 0.2180 & 73.1291 & 1.2581 & 48.5669 & 0.9308 & 1.8457 & 0.5683 \\
+LSTM   & 16.5063 & 0.6185 & 31.8587 & 0.3910 & 1.0206 & 0.2162 & 44.7985 & 1.0768 & 53.6992 & 1.0904 & 1.5650 & 0.6473 \\
+DLinear   & 9.4778 & 0.5599 & 31.7271 & 0.2987 & 0.7792 & 0.1962 & 41.1897 & 1.0612 & 62.3380 & 0.6608 & 1.7030 & 0.3998 \\
+
+\rowcolor{gray!15}
+\multicolumn{13}{c}{\textit{\textbf{RL-based}}} \\
+PPO       & \underline{29.5326} & \underline{1.1044} & 18.6900 & \underline{1.5801} & \underline{1.7624} & 0.2654 & 58.5511 & 1.0402 & 48.5536 & 0.5703 & 1.6841 & 0.4298 \\
+SAC       & 22.2784 & 0.9515 & 27.7286 & 0.8035 & 1.5859 & 0.2405 & \underline{70.548} & \underline{1.6474} & 57.4088 & 1.5065 & \underline{2.7099} & 0.5016 \\
+
+\bottomrule
+\end{tabular}
+}
+\vspace{-2em}
+\end{table}

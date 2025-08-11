@@ -581,13 +581,131 @@ html {
 /* Results Table Styles */
 .results-table-container {
     margin: 2rem 0;
-    overflow-x: auto;
     position: relative;
 }
 
-/* 缩略表格样式 - 只显示少量行 */
-.thumbnail-table .hidden-row {
-    display: none;
+.table-wrapper {
+    position: relative;
+    min-height: 200px;
+}
+
+/* 缩略表格样式 - 完整表格的缩小版 */
+.thumbnail-container {
+    position: relative;
+    margin-bottom: 20px;
+    overflow: hidden;
+    max-width: 100%;
+    min-height: 400px;
+}
+
+.thumbnail-blur {
+    transform: scale(0.9);
+    transform-origin: top center;
+}
+
+.thumbnail-section {
+    background: #f8fafc;
+    border-radius: 8px;
+    padding: 15px;
+    border: 1px solid #e2e8f0;
+    margin-bottom: 15px;
+}
+
+.thumbnail-section h4 {
+    margin: 0 0 10px 0;
+    color: #374151;
+    font-size: 14px;
+    font-weight: 600;
+    text-align: center;
+}
+
+.thumbnail-table {
+    width: 100%;
+    font-size: 10px;
+    table-layout: fixed;
+}
+
+.thumbnail-table th,
+.thumbnail-table td {
+    padding: 6px 4px !important;
+    text-align: center !important;
+    border-bottom: 1px solid #e5e7eb;
+    width: auto !important;
+    min-width: 50px !important;
+    max-width: 70px !important;
+}
+
+.thumbnail-table th:first-child,
+.thumbnail-table td:first-child {
+    min-width: 70px !important;
+    max-width: 90px !important;
+    text-align: left !important;
+    white-space: nowrap !important;
+}
+
+.thumbnail-table th {
+    background: #f1f5f9;
+    font-weight: 600;
+    color: #475569;
+    font-size: 11px;
+}
+
+.thumbnail-table .category-header {
+    background: #e2e8f0 !important;
+    font-weight: 600;
+    color: #374151;
+    font-size: 11px;
+    text-align: center !important;
+}
+
+.thumbnail-table .category-header td {
+    text-align: center !important;
+    padding: 6px 8px !important;
+}
+
+.thumbnail-table .best {
+    background: #dcfce7;
+    color: #166534;
+    font-weight: 600;
+}
+
+/* 居中展开按钮 */
+.expand-button-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.9), rgba(99, 102, 241, 0.9));
+    border: none;
+    border-radius: 30px;
+    padding: 12px 24px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    backdrop-filter: blur(12px);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    color: white;
+    font-weight: 600;
+    z-index: 10;
+    box-shadow: 0 8px 32px rgba(59, 130, 246, 0.3);
+    letter-spacing: 0.5px;
+    pointer-events: auto;
+}
+
+.expand-button-center:hover {
+    background: linear-gradient(135deg, rgba(59, 130, 246, 1), rgba(99, 102, 241, 1));
+    transform: translate(-50%, -50%) scale(1.05);
+    box-shadow: 0 12px 40px rgba(59, 130, 246, 0.4);
+}
+
+.expand-button-center:active {
+    transform: translate(-50%, -50%) scale(0.98);
+}
+
+.expand-button-center .expand-icon {
+    font-size: 16px;
 }
 
 /* 展开按钮样式 */
@@ -710,9 +828,12 @@ html {
 
 .modal-table th,
 .modal-table td {
-    padding: 12px 15px;
-    text-align: center;
+    padding: 12px 15px !important;
+    text-align: center !important;
     border-bottom: 1px solid #e5e7eb;
+    width: auto !important;
+    min-width: 80px !important;
+    max-width: 120px !important;
 }
 
 .modal-table th {
@@ -725,15 +846,50 @@ html {
 }
 
 .modal-table .category-header {
-    background: #f1f5f9;
+    background: #f1f5f9 !important;
     font-weight: 600;
     color: #475569;
+    text-align: center !important;
+}
+
+.modal-table .category-header td {
+    text-align: center !important;
+    padding: 12px 15px !important;
 }
 
 .modal-table .best {
     background: #dcfce7;
     color: #166534;
     font-weight: 600;
+}
+
+/* 确保模态框中的隐藏行显示 */
+.modal-table .hidden-row {
+    display: table-row !important;
+}
+
+/* 完整表格的2x2布局 */
+.complete-table-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.complete-section {
+    background: #f8fafc;
+    border-radius: 12px;
+    padding: 20px;
+    border: 1px solid #e2e8f0;
+}
+
+.complete-section h3 {
+    margin: 0 0 15px 0;
+    color: #1f2937;
+    font-size: 18px;
+    font-weight: 600;
+    text-align: center;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #e5e7eb;
 }
 
 
@@ -766,7 +922,7 @@ html {
 
 .results-table th:first-child {
     text-align: left;
-    min-width: 120px;
+    min-width: 140px;
 }
 
 .results-table td {
@@ -783,6 +939,8 @@ html {
     position: sticky;
     left: 0;
     z-index: 5;
+    min-width: 140px;
+    white-space: nowrap;
 }
 
 .results-table .category-header {
