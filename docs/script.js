@@ -209,22 +209,63 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-// 表格展开/收起功能
-function toggleTable(tableId) {
-    const table = document.getElementById(tableId);
-    const button = event.target.closest('.expand-button');
+// 表格模态框功能
+function showTableModal(tableId, title) {
+    // 创建模态框
+    const modalOverlay = document.createElement('div');
+    modalOverlay.className = 'modal-overlay';
+    modalOverlay.id = 'table-modal';
     
-    if (table.classList.contains('expanded')) {
-        // 收起表格
-        table.classList.remove('expanded');
-        button.classList.remove('expanded');
-        button.querySelector('.expand-text').textContent = '展开完整表格';
-        button.querySelector('.expand-icon').textContent = '▼';
-    } else {
-        // 展开表格
-        table.classList.add('expanded');
-        button.classList.add('expanded');
-        button.querySelector('.expand-text').textContent = '收起表格';
-        button.querySelector('.expand-icon').textContent = '▲';
+    // 获取原始表格内容
+    const originalTable = document.getElementById(tableId);
+    const tableContent = originalTable.outerHTML;
+    
+    // 创建模态框内容
+    modalOverlay.innerHTML = `
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">${title}</h2>
+                <button class="modal-close" onclick="closeTableModal()">&times;</button>
+            </div>
+            <div class="modal-table-container">
+                ${tableContent}
+            </div>
+        </div>
+    `;
+    
+    // 添加到页面
+    document.body.appendChild(modalOverlay);
+    
+    // 显示模态框
+    setTimeout(() => {
+        modalOverlay.classList.add('active');
+    }, 10);
+    
+    // 移除缩略图类，显示完整表格
+    const modalTable = modalOverlay.querySelector('table');
+    modalTable.classList.remove('thumbnail-table');
+    modalTable.classList.add('modal-table');
+    
+    // 显示所有行
+    const hiddenRows = modalTable.querySelectorAll('.hidden-row');
+    hiddenRows.forEach(row => {
+        row.style.display = 'table-row';
+    });
+}
+
+function closeTableModal() {
+    const modal = document.getElementById('table-modal');
+    if (modal) {
+        modal.classList.remove('active');
+        setTimeout(() => {
+            modal.remove();
+        }, 300);
     }
 }
+
+// 点击模态框外部关闭
+document.addEventListener('click', (e) => {
+    if (e.target.classList.contains('modal-overlay')) {
+        closeTableModal();
+    }
+});

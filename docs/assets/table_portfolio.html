@@ -1,6 +1,6 @@
 <div class="results-table-container">
     <div class="table-wrapper">
-        <table class="results-table collapsible-table" id="portfolio-table-content">
+        <table class="results-table thumbnail-table" id="portfolio-table-content">
             <thead>
                 <tr>
                     <th rowspan="2">Model</th>
@@ -44,7 +44,7 @@
                 <tr class="category-header">
                     <td colspan="13"><strong>ML-based</strong></td>
                 </tr>
-                <tr>
+                <tr class="visible-row">
                     <td>LightGBM</td>
                     <td>16.3302</td>
                     <td>0.5758</td>
@@ -59,7 +59,7 @@
                     <td>0.9005</td>
                     <td>0.4149</td>
                 </tr>
-                <tr>
+                <tr class="hidden-row">
                     <td>XGBoost</td>
                     <td>10.6903</td>
                     <td>0.3776</td>
@@ -77,7 +77,7 @@
                 <tr class="category-header">
                     <td colspan="13"><strong>DL-based</strong></td>
                 </tr>
-                <tr>
+                <tr class="visible-row">
                     <td>Autoformer</td>
                     <td>-4.1781</td>
                     <td>0.3611</td>
@@ -92,7 +92,7 @@
                     <td>0.5913</td>
                     <td>0.1563</td>
                 </tr>
-                <tr>
+                <tr class="hidden-row">
                     <td>Crossformer</td>
                     <td>9.6460</td>
                     <td>0.4474</td>
@@ -466,9 +466,9 @@
             </tbody>
         </table>
         
-        <div class="expand-button" onclick="toggleTable('portfolio-table-content')">
-            <span class="expand-text">展开完整表格</span>
-            <span class="expand-icon">▼</span>
+        <div class="expand-button" onclick="showTableModal('portfolio-table-content', 'Portfolio Management Results')">
+            <span class="expand-text">查看完整表格</span>
+            <span class="expand-icon">🔍</span>
         </div>
     </div>
 </div>

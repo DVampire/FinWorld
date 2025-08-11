@@ -1,6 +1,6 @@
 <div class="results-table-container">
     <div class="table-wrapper">
-        <table class="results-table collapsible-table" id="forecasting-table-content">
+        <table class="results-table thumbnail-table" id="forecasting-table-content">
             <thead>
                 <tr>
                     <th rowspan="3">Model</th>
@@ -276,13 +276,13 @@
             </tbody>
         </table>
         
-        <div class="expand-button" onclick="toggleTable('forecasting-table-content')">
-            <span class="expand-text">展开完整表格</span>
-            <span class="expand-icon">▼</span>
+        <div class="expand-button" onclick="showTableModal('forecasting-table-content', 'Time Series Forecasting Results')">
+            <span class="expand-text">查看完整表格</span>
+            <span class="expand-icon">🔍</span>
         </div>
-        <div class="expand-button" onclick="toggleTable('forecasting-table-content-2')">
-            <span class="expand-text">展开完整表格</span>
-            <span class="expand-icon">▼</span>
+        <div class="expand-button" onclick="showTableModal('forecasting-table-content-2', 'Time Series Forecasting Results (SSE50 & HS300)')">
+            <span class="expand-text">查看完整表格</span>
+            <span class="expand-icon">🔍</span>
         </div>
     </div>
 </div>

@@ -1,6 +1,6 @@
 <div class="results-table-container">
     <div class="table-wrapper">
-        <table class="results-table collapsible-table" id="trading-table-content">
+        <table class="results-table thumbnail-table" id="trading-table-content">
             <thead>
                 <tr>
                     <th rowspan="2">Model</th>
@@ -74,7 +74,7 @@
                     <td>-0.2575</td>
                     <td class="best">0.1093</td>
                 </tr>
-                <tr class="visible-row">
+                <tr class="hidden-row">
                     <td>XGBoost</td>
                     <td>15.7943</td>
                     <td>1.0359</td>
@@ -92,7 +92,7 @@
                 <tr class="category-header">
                     <td colspan="13"><strong>DL-based</strong></td>
                 </tr>
-                <tr class="visible-row">
+                <tr class="hidden-row">
                     <td>Transformer</td>
                     <td>23.3469</td>
                     <td>0.8788</td>
@@ -519,9 +519,9 @@
             </tbody>
         </table>
         
-        <div class="expand-button" onclick="toggleTable('trading-table-content')">
-            <span class="expand-text">展开完整表格</span>
-            <span class="expand-icon">▼</span>
+        <div class="expand-button" onclick="showTableModal('trading-table-content', 'Algorithmic Trading Results')">
+            <span class="expand-text">查看完整表格</span>
+            <span class="expand-icon">🔍</span>
         </div>
     </div>
 </div>
