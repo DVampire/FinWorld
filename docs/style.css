@@ -661,10 +661,179 @@ html {
 /* Platform comparison table specific styles */
 .platform-table {
     min-width: 600px;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
 }
 
 .platform-table th:first-child {
     min-width: 150px;
+}
+
+/* Platform header gradients */
+.platform-table .finworld-header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    font-weight: 700;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.platform-table .trademaster-header {
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    color: white;
+    font-weight: 700;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.platform-table .qlib-header {
+    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    color: white;
+    font-weight: 700;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.platform-table .finrl-header {
+    background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+    color: white;
+    font-weight: 700;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* Enhanced symbol styles with gradients */
+.platform-table .supported {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    font-weight: 700;
+    font-size: 1.3rem;
+    position: relative;
+    text-align: center;
+    border-radius: 6px;
+    margin: 2px;
+    box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+}
+
+.platform-table .supported::before {
+    content: "✓";
+    color: white;
+    font-weight: bold;
+    font-size: 1.2em;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.platform-table .partial {
+    background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+    color: #8b4513;
+    font-weight: 600;
+    position: relative;
+    text-align: center;
+    border-radius: 6px;
+    margin: 2px;
+    box-shadow: 0 2px 8px rgba(252, 182, 159, 0.3);
+    font-size: 0.9rem;
+}
+
+.platform-table .partial::before {
+    content: "○";
+    color: #8b4513;
+    font-weight: bold;
+    font-size: 1.1em;
+    margin-right: 4px;
+}
+
+.platform-table .not-supported {
+    background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+    color: #dc2626;
+    font-weight: 700;
+    font-size: 1.3rem;
+    position: relative;
+    text-align: center;
+    border-radius: 6px;
+    margin: 2px;
+    box-shadow: 0 2px 8px rgba(255, 154, 158, 0.3);
+}
+
+.platform-table .not-supported::before {
+    content: "✗";
+    color: #dc2626;
+    font-weight: bold;
+    font-size: 1.1em;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* Enhanced table styling */
+.platform-table th {
+    padding: 16px 12px;
+    font-size: 1rem;
+    letter-spacing: 0.5px;
+    border: none;
+}
+
+.platform-table td {
+    padding: 12px 8px;
+    border: none;
+    position: relative;
+}
+
+.platform-table td:first-child {
+    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+    font-weight: 600;
+    color: #1e293b;
+    border-right: 2px solid #e2e8f0;
+}
+
+/* Hover effects */
+.platform-table tbody tr:hover {
+    background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+    transform: translateY(-1px);
+    transition: all 0.3s ease;
+}
+
+.platform-table tbody tr:hover td:first-child {
+    background: linear-gradient(135deg, #e2e8f0 0%, #cbd5e1 100%);
+}
+
+/* Animation for symbols */
+.platform-table .supported,
+.platform-table .partial,
+.platform-table .not-supported {
+    transition: all 0.3s ease;
+}
+
+.platform-table .supported:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 16px rgba(102, 126, 234, 0.4);
+}
+
+.platform-table .partial:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 16px rgba(252, 182, 159, 0.4);
+}
+
+.platform-table .not-supported:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 16px rgba(255, 154, 158, 0.4);
+}
+
+/* Responsive design for platform table */
+@media (max-width: 768px) {
+    .platform-table {
+        min-width: 400px;
+        font-size: 0.8rem;
+    }
+    
+    .platform-table th,
+    .platform-table td {
+        padding: 8px 6px;
+    }
+    
+    .platform-table .supported,
+    .platform-table .not-supported {
+        font-size: 1.1rem;
+    }
+    
+    .platform-table .partial {
+        font-size: 0.8rem;
+    }
 }
 
 /* Arrow styling */
@@ -684,48 +853,7 @@ html {
     margin-left: 4px;
 }
 
-/* Platform comparison symbols */
-.platform-table .supported {
-    color: #059669;
-    font-weight: 600;
-    font-size: 1.2rem;
-    position: relative;
-}
 
-.platform-table .supported::before {
-    content: "✓";
-    color: #059669;
-    font-weight: bold;
-    font-size: 1.1em;
-}
-
-.platform-table .partial {
-    color: #6b7280;
-    font-weight: 600;
-    position: relative;
-}
-
-.platform-table .partial::before {
-    content: "○";
-    color: #6b7280;
-    font-weight: bold;
-    font-size: 1.1em;
-    margin-right: 4px;
-}
-
-.platform-table .not-supported {
-    color: #dc2626;
-    font-weight: 600;
-    font-size: 1.2rem;
-    position: relative;
-}
-
-.platform-table .not-supported::before {
-    content: "✗";
-    color: #dc2626;
-    font-weight: bold;
-    font-size: 1.1em;
-}
 
 /* Responsive adjustments for tables */
 @media (max-width: 768px) {
