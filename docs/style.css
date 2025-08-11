@@ -584,12 +584,7 @@ html {
     overflow-x: auto;
 }
 
-.results-table-container h3 {
-    color: #2563eb;
-    margin-bottom: 1rem;
-    font-size: 1.5rem;
-    font-weight: 600;
-}
+
 
 .table-wrapper {
     overflow-x: auto;
