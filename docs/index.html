@@ -20,6 +20,7 @@
                 <li><a href="#overview">Overview</a></li>
                 <li><a href="#architecture">Architecture</a></li>
                 <li><a href="#results">Results</a></li>
+                <li><a href="#datasets">Datasets</a></li>
                 <li><a href="#download">Download</a></li>
             </ul>
             <div class="hamburger">
@@ -91,8 +92,8 @@
         <div class="container">
             <h2 class="section-title">Platform Comparison</h2>
             <p class="section-subtitle">FinWorld offers comprehensive support across all key features compared to existing platforms</p>
-            <div class="comparison-image">
-                <img src="assets/table_platforms.png" alt="Platform Comparison Table">
+            <div id="platform-table">
+                <!-- Table will be loaded here -->
             </div>
         </div>
     </section>
@@ -194,38 +195,38 @@
             <div class="results-grid">
                 <div class="result-card">
                     <h3>Time Series Forecasting</h3>
-                    <div class="result-content">
-                        <img src="assets/table_forecasting.png" alt="Time Series Forecasting Results">
-                        <ul>
-                            <li><strong>TimeXer</strong> achieves MAE of 0.0529 and MSE of 0.0062 on DJ30, significantly outperforming LightGBM (MAE: 0.1392, MSE: 0.0235)</li>
-                            <li><strong>TimeMixer</strong> and <strong>TimeXer</strong> show superior performance on HS300 with MAEs of 0.3804 and 0.3727 respectively</li>
-                            <li>Deep learning models consistently achieve higher RankICIR scores compared to traditional ML methods</li>
-                        </ul>
+                    <div class="result-content" id="forecasting-table">
+                        <!-- Table will be loaded here -->
                     </div>
+                    <ul>
+                        <li><strong>TimeXer</strong> achieves MAE of 0.0529 and MSE of 0.0062 on DJ30, significantly outperforming LightGBM (MAE: 0.1392, MSE: 0.0235)</li>
+                        <li><strong>TimeMixer</strong> and <strong>TimeXer</strong> show superior performance on HS300 with MAEs of 0.3804 and 0.3727 respectively</li>
+                        <li>Deep learning models consistently achieve higher RankICIR scores compared to traditional ML methods</li>
+                    </ul>
                 </div>
                 
                 <div class="result-card">
                     <h3>Algorithmic Trading</h3>
-                    <div class="result-content">
-                        <img src="assets/table_trading.png" alt="Algorithmic Trading Results">
-                        <ul>
-                            <li><strong>SAC</strong> achieves 101.55% ARR on TSLA with superior risk-adjusted returns</li>
-                            <li><strong>PPO</strong> attains 2.10 SR on META, outperforming all baseline methods</li>
-                            <li>RL methods consistently deliver higher returns and better risk metrics across all evaluated stocks</li>
-                        </ul>
+                    <div class="result-content" id="trading-table">
+                        <!-- Table will be loaded here -->
                     </div>
+                    <ul>
+                        <li><strong>SAC</strong> achieves 101.55% ARR on TSLA with superior risk-adjusted returns</li>
+                        <li><strong>PPO</strong> attains 2.10 SR on META, outperforming all baseline methods</li>
+                        <li>RL methods consistently deliver higher returns and better risk metrics across all evaluated stocks</li>
+                    </ul>
                 </div>
                 
                 <div class="result-card">
                     <h3>Portfolio Management</h3>
-                    <div class="result-content">
-                        <img src="assets/table_portfolio.png" alt="Portfolio Management Results">
-                        <ul>
-                            <li><strong>SAC</strong> achieves up to 31.2% annualized returns on SP500 with Sharpe ratios above 1.5</li>
-                            <li>RL methods consistently outperform rule-based and ML-based approaches</li>
-                            <li>Superior risk-adjusted performance across all major indices (DJ30, SP500, SSE50, HS300)</li>
-                        </ul>
+                    <div class="result-content" id="portfolio-table">
+                        <!-- Table will be loaded here -->
                     </div>
+                    <ul>
+                        <li><strong>SAC</strong> achieves up to 31.2% annualized returns on SP500 with Sharpe ratios above 1.5</li>
+                        <li>RL methods consistently outperform rule-based and ML-based approaches</li>
+                        <li>Superior risk-adjusted performance across all major indices (DJ30, SP500, SSE50, HS300)</li>
+                    </ul>
                 </div>
                 
                 <div class="result-card">
@@ -249,6 +250,50 @@
                             <li>Comprehensive risk management and performance metrics</li>
                             <li>Superior performance compared to other LLM models in trading tasks</li>
                         </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Datasets Section -->
+    <section id="datasets" class="datasets">
+        <div class="container">
+            <h2 class="section-title">Comprehensive Datasets</h2>
+            <p class="section-subtitle">FinWorld provides extensive multimodal datasets with over 800 million samples across multiple markets and data types</p>
+            
+            <div class="datasets-grid">
+                <div class="dataset-card">
+                    <h3>Stock Market Data</h3>
+                    <div class="dataset-content">
+                        <img src="assets/stock_dataset.png" alt="Stock Market Dataset Overview">
+                        <div class="dataset-info">
+                            <h4>Market Coverage</h4>
+                            <ul>
+                                <li><strong>US Markets:</strong> DJ30 (Dow Jones 30), SP500 (S&P 500)</li>
+                                <li><strong>Chinese Markets:</strong> SSE50 (Shanghai Stock Exchange 50), HS300 (CSI 300)</li>
+                                <li><strong>Data Sources:</strong> FMP, Alpaca, AKShare, TuShare APIs</li>
+                                <li><strong>Data Types:</strong> OHLCV price data, technical indicators, financial factors</li>
+                                <li><strong>Frequencies:</strong> Daily and minute-level data</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="dataset-card">
+                    <h3>LLM Financial Reasoning Data</h3>
+                    <div class="dataset-content">
+                        <img src="assets/llm_dataset.png" alt="LLM Financial Reasoning Dataset">
+                        <div class="dataset-info">
+                            <h4>Reasoning Benchmarks</h4>
+                            <ul>
+                                <li><strong>FinQA:</strong> Financial question answering with numerical reasoning</li>
+                                <li><strong>FinEval:</strong> Financial evaluation and analysis tasks</li>
+                                <li><strong>ConvFinQA:</strong> Conversational financial question answering</li>
+                                <li><strong>CFLUE:</strong> Chinese financial language understanding evaluation</li>
+                                <li><strong>Domain-specific:</strong> Tailored for financial reasoning and analysis</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>

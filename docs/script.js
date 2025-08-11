@@ -56,18 +56,6 @@ const observer = new IntersectionObserver((entries) => {
     });
 }, observerOptions);
 
-// Observe elements for animation
-document.addEventListener('DOMContentLoaded', () => {
-    const animatedElements = document.querySelectorAll('.contribution-card, .feature-item, .layer, .result-card');
-    
-    animatedElements.forEach(el => {
-        el.style.opacity = '0';
-        el.style.transform = 'translateY(30px)';
-        el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-        observer.observe(el);
-    });
-});
-
 // Typing effect for hero title
 function typeWriter(element, text, speed = 100) {
     let i = 0;
@@ -186,4 +174,37 @@ window.addEventListener('scroll', () => {
     }
     
     progressBar.style.width = scrollPercent + '%';
+});
+
+// Load HTML tables
+async function loadTable(tableId, tablePath) {
+    try {
+        const response = await fetch(tablePath);
+        const html = await response.text();
+        const container = document.getElementById(tableId);
+        if (container) {
+            container.innerHTML = html;
+        }
+    } catch (error) {
+        console.error(`Error loading table ${tableId}:`, error);
+    }
+}
+
+// Load all tables and initialize animations when page loads
+document.addEventListener('DOMContentLoaded', () => {
+    // Load tables
+    loadTable('forecasting-table', 'assets/table_forecasting.html');
+    loadTable('trading-table', 'assets/table_trading.html');
+    loadTable('portfolio-table', 'assets/table_portfolio.html');
+    loadTable('platform-table', 'assets/table_platform.html');
+    
+    // Initialize animations for all elements
+    const animatedElements = document.querySelectorAll('.contribution-card, .feature-item, .layer, .result-card, .dataset-card');
+    
+    animatedElements.forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(30px)';
+        el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        observer.observe(el);
+    });
 });

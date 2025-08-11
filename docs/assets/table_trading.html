@@ -1,0 +1,523 @@
+<div class="results-table-container">
+    <h3>Algorithmic Trading Results</h3>
+    <div class="table-wrapper">
+        <table class="results-table">
+            <thead>
+                <tr>
+                    <th rowspan="2">Model</th>
+                    <th colspan="6">AAPL</th>
+                    <th colspan="6">AMZN</th>
+                </tr>
+                <tr>
+                    <th class="arrow-up">ARR</th>
+                    <th class="arrow-up">SR</th>
+                    <th class="arrow-down">MDD</th>
+                    <th class="arrow-up">CR</th>
+                    <th class="arrow-up">SoR</th>
+                    <th class="arrow-down">VOL</th>
+                    <th class="arrow-up">ARR</th>
+                    <th class="arrow-up">SR</th>
+                    <th class="arrow-down">MDD</th>
+                    <th class="arrow-up">CR</th>
+                    <th class="arrow-up">SoR</th>
+                    <th class="arrow-down">VOL</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="category-header">
+                    <td colspan="13"><strong>Rule-based</strong></td>
+                </tr>
+                <tr>
+                    <td>BUY&HOLD</td>
+                    <td>13.0620</td>
+                    <td>0.6654</td>
+                    <td>17.6828</td>
+                    <td>0.7387</td>
+                    <td>0.9606</td>
+                    <td>0.2210</td>
+                    <td>43.9823</td>
+                    <td>1.4190</td>
+                    <td>19.6246</td>
+                    <td>2.2412</td>
+                    <td>2.1558</td>
+                    <td>0.2854</td>
+                </tr>
+                <tr>
+                    <td>MACD</td>
+                    <td>9.7042</td>
+                    <td>0.6964</td>
+                    <td class="best">11.5621</td>
+                    <td>0.8393</td>
+                    <td>1.0251</td>
+                    <td>0.1487</td>
+                    <td>-1.4856</td>
+                    <td>0.0028</td>
+                    <td class="best">19.4850</td>
+                    <td>-0.0762</td>
+                    <td>0.0041</td>
+                    <td>0.1761</td>
+                </tr>
+                <tr class="category-header">
+                    <td colspan="13"><strong>ML-based</strong></td>
+                </tr>
+                <tr>
+                    <td>LightGBM</td>
+                    <td>7.4450</td>
+                    <td>0.5112</td>
+                    <td>16.7097</td>
+                    <td>0.4456</td>
+                    <td>0.7363</td>
+                    <td>0.1679</td>
+                    <td>-2.6266</td>
+                    <td>-0.1886</td>
+                    <td>38.1339</td>
+                    <td>-0.0689</td>
+                    <td>-0.2575</td>
+                    <td class="best">0.1093</td>
+                </tr>
+                <tr>
+                    <td>XGBoost</td>
+                    <td>15.7943</td>
+                    <td>1.0359</td>
+                    <td>17.6320</td>
+                    <td>2.0695</td>
+                    <td class="best">2.0720</td>
+                    <td class="best">0.1185</td>
+                    <td>20.8648</td>
+                    <td>0.7175</td>
+                    <td>26.5675</td>
+                    <td>0.3134</td>
+                    <td>0.8854</td>
+                    <td>0.3823</td>
+                </tr>
+                <tr class="category-header">
+                    <td colspan="13"><strong>DL-based</strong></td>
+                </tr>
+                <tr>
+                    <td>Transformer</td>
+                    <td>23.3469</td>
+                    <td>0.8788</td>
+                    <td>18.7073</td>
+                    <td>1.2480</td>
+                    <td>1.6204</td>
+                    <td>0.2809</td>
+                    <td>5.8822</td>
+                    <td>0.3716</td>
+                    <td>25.5574</td>
+                    <td>0.0884</td>
+                    <td>0.4436</td>
+                    <td>0.3520</td>
+                </tr>
+                <tr>
+                    <td>LSTM</td>
+                    <td>11.2387</td>
+                    <td>0.5262</td>
+                    <td>35.9190</td>
+                    <td>0.2448</td>
+                    <td>0.9589</td>
+                    <td>0.2647</td>
+                    <td>15.5243</td>
+                    <td>0.8552</td>
+                    <td>40.3636</td>
+                    <td>0.3846</td>
+                    <td>1.2941</td>
+                    <td>0.1897</td>
+                </tr>
+                <tr>
+                    <td>DLinear</td>
+                    <td>9.5539</td>
+                    <td>0.4686</td>
+                    <td>34.7311</td>
+                    <td>0.2136</td>
+                    <td>0.8594</td>
+                    <td>0.2644</td>
+                    <td>9.9999</td>
+                    <td>0.7221</td>
+                    <td>30.5673</td>
+                    <td>0.3272</td>
+                    <td>1.1297</td>
+                    <td>0.1468</td>
+                </tr>
+                <tr class="category-header">
+                    <td colspan="13"><strong>RL-based</strong></td>
+                </tr>
+                <tr>
+                    <td>PPO</td>
+                    <td class="best">31.5838</td>
+                    <td class="best">1.0483</td>
+                    <td>18.7102</td>
+                    <td class="best">1.6222</td>
+                    <td>1.9040</td>
+                    <td>0.2956</td>
+                    <td>37.3429</td>
+                    <td>1.2514</td>
+                    <td>22.2379</td>
+                    <td class="best">1.6793</td>
+                    <td>1.7909</td>
+                    <td>0.2864</td>
+                </tr>
+                <tr>
+                    <td>SAC</td>
+                    <td>28.2963</td>
+                    <td>0.8758</td>
+                    <td>37.7384</td>
+                    <td>0.6467</td>
+                    <td>1.5797</td>
+                    <td>0.2970</td>
+                    <td class="best">44.4502</td>
+                    <td class="best">1.6389</td>
+                    <td>23.4218</td>
+                    <td>1.4709</td>
+                    <td class="best">2.6872</td>
+                    <td>0.1918</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <table class="results-table">
+            <thead>
+                <tr>
+                    <th rowspan="2">Model</th>
+                    <th colspan="6">GOOGL</th>
+                    <th colspan="6">META</th>
+                </tr>
+                <tr>
+                    <th class="arrow-up">ARR</th>
+                    <th class="arrow-up">SR</th>
+                    <th class="arrow-down">MDD</th>
+                    <th class="arrow-up">CR</th>
+                    <th class="arrow-up">SoR</th>
+                    <th class="arrow-down">VOL</th>
+                    <th class="arrow-up">ARR</th>
+                    <th class="arrow-up">SR</th>
+                    <th class="arrow-down">MDD</th>
+                    <th class="arrow-up">CR</th>
+                    <th class="arrow-up">SoR</th>
+                    <th class="arrow-down">VOL</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="category-header">
+                    <td colspan="13"><strong>Rule-based</strong></td>
+                </tr>
+                <tr>
+                    <td>BUY&HOLD</td>
+                    <td>28.1837</td>
+                    <td>1.0236</td>
+                    <td>22.2309</td>
+                    <td>1.1678</td>
+                    <td>1.4589</td>
+                    <td>0.2811</td>
+                    <td>67.2719</td>
+                    <td>1.7264</td>
+                    <td>18.8226</td>
+                    <td>1.5740</td>
+                    <td>2.8285</td>
+                    <td>0.3286</td>
+                </tr>
+                <tr>
+                    <td>MACD</td>
+                    <td>10.0432</td>
+                    <td>0.6068</td>
+                    <td class="best">12.6638</td>
+                    <td>0.7931</td>
+                    <td>0.8620</td>
+                    <td>0.1862</td>
+                    <td>40.3374</td>
+                    <td>1.5468</td>
+                    <td class="best">12.7635</td>
+                    <td>1.1604</td>
+                    <td>2.0533</td>
+                    <td>0.2362</td>
+                </tr>
+                <tr class="category-header">
+                    <td colspan="13"><strong>ML-based</strong></td>
+                </tr>
+                <tr>
+                    <td>LightGBM</td>
+                    <td>16.4245</td>
+                    <td>1.0908</td>
+                    <td>21.0885</td>
+                    <td>0.7788</td>
+                    <td>1.6732</td>
+                    <td>0.1468</td>
+                    <td>39.6612</td>
+                    <td>1.1212</td>
+                    <td>23.4416</td>
+                    <td>0.7655</td>
+                    <td>1.5979</td>
+                    <td>0.3676</td>
+                </tr>
+                <tr>
+                    <td>XGBoost</td>
+                    <td>7.5362</td>
+                    <td>0.6783</td>
+                    <td>20.6611</td>
+                    <td>0.3648</td>
+                    <td>1.2239</td>
+                    <td class="best">0.1171</td>
+                    <td>32.0035</td>
+                    <td>1.6461</td>
+                    <td>24.2472</td>
+                    <td>1.3199</td>
+                    <td>2.8858</td>
+                    <td class="best">0.1778</td>
+                </tr>
+                <tr class="category-header">
+                    <td colspan="13"><strong>DL-based</strong></td>
+                </tr>
+                <tr>
+                    <td>Transformer</td>
+                    <td>10.3923</td>
+                    <td>0.6683</td>
+                    <td>36.7980</td>
+                    <td>0.2824</td>
+                    <td>0.9652</td>
+                    <td>0.1468</td>
+                    <td>48.2834</td>
+                    <td>1.6819</td>
+                    <td>29.0003</td>
+                    <td class="best">1.6649</td>
+                    <td class="best">2.9686</td>
+                    <td>0.2528</td>
+                </tr>
+                <tr>
+                    <td>LSTM</td>
+                    <td>18.7416</td>
+                    <td>0.8849</td>
+                    <td>36.8169</td>
+                    <td>0.5091</td>
+                    <td>1.2871</td>
+                    <td>0.2221</td>
+                    <td>44.6391</td>
+                    <td>1.1864</td>
+                    <td>30.0527</td>
+                    <td>0.8918</td>
+                    <td>1.7019</td>
+                    <td>0.3702</td>
+                </tr>
+                <tr>
+                    <td>DLinear</td>
+                    <td>21.4708</td>
+                    <td>1.0461</td>
+                    <td>36.8203</td>
+                    <td>0.5831</td>
+                    <td>1.5575</td>
+                    <td>0.2063</td>
+                    <td>35.3426</td>
+                    <td>1.445</td>
+                    <td>34.0928</td>
+                    <td>1.0366</td>
+                    <td>2.6560</td>
+                    <td>0.2267</td>
+                </tr>
+                <tr class="category-header">
+                    <td colspan="13"><strong>RL-based</strong></td>
+                </tr>
+                <tr>
+                    <td>PPO</td>
+                    <td>20.5532</td>
+                    <td>1.0145</td>
+                    <td>16.7733</td>
+                    <td>1.2254</td>
+                    <td>1.5855</td>
+                    <td>0.2048</td>
+                    <td class="best">72.0104</td>
+                    <td class="best">2.1031</td>
+                    <td>18.6421</td>
+                    <td>1.5360</td>
+                    <td>1.4293</td>
+                    <td>0.2591</td>
+                </tr>
+                <tr>
+                    <td>SAC</td>
+                    <td class="best">30.6081</td>
+                    <td class="best">1.2203</td>
+                    <td>35.4036</td>
+                    <td class="best">1.7233</td>
+                    <td class="best">1.8833</td>
+                    <td>0.2038</td>
+                    <td>56.8891</td>
+                    <td>1.5085</td>
+                    <td>34.6565</td>
+                    <td>1.6415</td>
+                    <td>2.4020</td>
+                    <td>0.3355</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <table class="results-table">
+            <thead>
+                <tr>
+                    <th rowspan="2">Model</th>
+                    <th colspan="6">MSFT</th>
+                    <th colspan="6">TSLA</th>
+                </tr>
+                <tr>
+                    <th class="arrow-up">ARR</th>
+                    <th class="arrow-up">SR</th>
+                    <th class="arrow-down">MDD</th>
+                    <th class="arrow-up">CR</th>
+                    <th class="arrow-up">SoR</th>
+                    <th class="arrow-down">VOL</th>
+                    <th class="arrow-up">ARR</th>
+                    <th class="arrow-up">SR</th>
+                    <th class="arrow-down">MDD</th>
+                    <th class="arrow-up">CR</th>
+                    <th class="arrow-up">SoR</th>
+                    <th class="arrow-down">VOL</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="category-header">
+                    <td colspan="13"><strong>Rule-based</strong></td>
+                </tr>
+                <tr>
+                    <td>BUY&HOLD</td>
+                    <td>13.3812</td>
+                    <td>0.6991</td>
+                    <td>18.6840</td>
+                    <td>0.7162</td>
+                    <td>0.9635</td>
+                    <td>0.2116</td>
+                    <td>30.8051</td>
+                    <td>0.7469</td>
+                    <td>53.6797</td>
+                    <td>0.5739</td>
+                    <td>1.1537</td>
+                    <td>0.5892</td>
+                </tr>
+                <tr>
+                    <td>MACD</td>
+                    <td>6.4616</td>
+                    <td>0.4703</td>
+                    <td class="best">13.7325</td>
+                    <td>0.4705</td>
+                    <td>0.6337</td>
+                    <td class="best">0.1606</td>
+                    <td>68.8393</td>
+                    <td>1.5085</td>
+                    <td class="best">21.7414</td>
+                    <td class="best">2.1663</td>
+                    <td>2.5809</td>
+                    <td>0.3989</td>
+                </tr>
+                <tr class="category-header">
+                    <td colspan="13"><strong>ML-based</strong></td>
+                </tr>
+                <tr>
+                    <td>LightGBM</td>
+                    <td>20.7821</td>
+                    <td>0.9031</td>
+                    <td>37.8864</td>
+                    <td>0.5485</td>
+                    <td>1.4983</td>
+                    <td>0.2400</td>
+                    <td>49.2144</td>
+                    <td>1.3086</td>
+                    <td>56.0589</td>
+                    <td>0.8779</td>
+                    <td>2.2514</td>
+                    <td class="best">0.3529</td>
+                </tr>
+                <tr>
+                    <td>XGBoost</td>
+                    <td>14.4887</td>
+                    <td>0.6633</td>
+                    <td>49.8944</td>
+                    <td>0.2904</td>
+                    <td>1.0676</td>
+                    <td>0.2497</td>
+                    <td>39.7010</td>
+                    <td>0.9788</td>
+                    <td>58.5673</td>
+                    <td>0.5053</td>
+                    <td>1.5409</td>
+                    <td>0.4401</td>
+                </tr>
+                <tr class="category-header">
+                    <td colspan="13"><strong>DL-based</strong></td>
+                </tr>
+                <tr>
+                    <td>Transformer</td>
+                    <td>23.2662</td>
+                    <td>1.0207</td>
+                    <td>32.8318</td>
+                    <td>0.6037</td>
+                    <td>1.4478</td>
+                    <td>0.2180</td>
+                    <td>73.1291</td>
+                    <td>1.2581</td>
+                    <td>48.5669</td>
+                    <td>0.9308</td>
+                    <td>1.8457</td>
+                    <td>0.5683</td>
+                </tr>
+                <tr>
+                    <td>LSTM</td>
+                    <td>16.5063</td>
+                    <td>0.6185</td>
+                    <td>31.8587</td>
+                    <td>0.3910</td>
+                    <td>1.0206</td>
+                    <td>0.2162</td>
+                    <td>44.7985</td>
+                    <td>1.0768</td>
+                    <td>53.6992</td>
+                    <td>1.0904</td>
+                    <td>1.5650</td>
+                    <td>0.6473</td>
+                </tr>
+                <tr>
+                    <td>DLinear</td>
+                    <td>9.4778</td>
+                    <td>0.5599</td>
+                    <td>31.7271</td>
+                    <td>0.2987</td>
+                    <td>0.7792</td>
+                    <td>0.1962</td>
+                    <td>41.1897</td>
+                    <td>1.0612</td>
+                    <td>62.3380</td>
+                    <td>0.6608</td>
+                    <td>1.7030</td>
+                    <td>0.3998</td>
+                </tr>
+                <tr class="category-header">
+                    <td colspan="13"><strong>RL-based</strong></td>
+                </tr>
+                <tr>
+                    <td>PPO</td>
+                    <td class="best">29.5326</td>
+                    <td class="best">1.1044</td>
+                    <td>18.6900</td>
+                    <td class="best">1.5801</td>
+                    <td class="best">1.7624</td>
+                    <td>0.2654</td>
+                    <td>58.5511</td>
+                    <td>1.0402</td>
+                    <td>48.5536</td>
+                    <td>0.5703</td>
+                    <td>1.6841</td>
+                    <td>0.4298</td>
+                </tr>
+                <tr>
+                    <td>SAC</td>
+                    <td>22.2784</td>
+                    <td>0.9515</td>
+                    <td>27.7286</td>
+                    <td>0.8035</td>
+                    <td>1.5859</td>
+                    <td>0.2405</td>
+                    <td class="best">70.548</td>
+                    <td class="best">1.6474</td>
+                    <td>57.4088</td>
+                    <td>1.5065</td>
+                    <td class="best">2.7099</td>
+                    <td>0.5016</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
