@@ -663,8 +663,9 @@ html {
     min-width: 600px;
     border-radius: 8px;
     overflow: hidden;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-    border: 1px solid #e2e8f0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    border: 1px solid #f1f5f9;
+    background: white;
 }
 
 .platform-table th:first-child {
@@ -674,99 +675,97 @@ html {
 /* Clean header styles */
 .platform-table .feature-header {
     background: #f8fafc;
-    color: #1e293b;
-    font-weight: 600;
-    border-bottom: 2px solid #e2e8f0;
+    color: #475569;
+    font-weight: 500;
+    border-bottom: 1px solid #e2e8f0;
 }
 
 .platform-table .finworld-header {
-    background: #2563eb;
-    color: white;
-    font-weight: 600;
+    background: #f1f5f9;
+    color: #475569;
+    font-weight: 500;
+    border-bottom: 1px solid #e2e8f0;
 }
 
 .platform-table .trademaster-header {
-    background: #7c3aed;
-    color: white;
-    font-weight: 600;
+    background: #f1f5f9;
+    color: #475569;
+    font-weight: 500;
+    border-bottom: 1px solid #e2e8f0;
 }
 
 .platform-table .qlib-header {
-    background: #059669;
-    color: white;
-    font-weight: 600;
+    background: #f1f5f9;
+    color: #475569;
+    font-weight: 500;
+    border-bottom: 1px solid #e2e8f0;
 }
 
 .platform-table .finrl-header {
-    background: #dc2626;
-    color: white;
-    font-weight: 600;
+    background: #f1f5f9;
+    color: #475569;
+    font-weight: 500;
+    border-bottom: 1px solid #e2e8f0;
 }
 
 /* Clean symbol styles */
 .platform-table .supported {
-    background: #10b981;
-    color: white;
+    color: #059669;
     font-weight: 600;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     position: relative;
     text-align: center;
-    border-radius: 4px;
-    margin: 2px;
-    box-shadow: 0 1px 3px rgba(16, 185, 129, 0.2);
+    background: transparent;
+    box-shadow: none;
 }
 
 .platform-table .supported::before {
     content: "✓";
-    color: white;
+    color: #059669;
     font-weight: bold;
-    font-size: 1.1em;
+    font-size: 1.2em;
 }
 
 .platform-table .partial {
-    background: #f59e0b;
-    color: white;
-    font-weight: 600;
+    color: #d97706;
+    font-weight: 500;
     position: relative;
     text-align: center;
-    border-radius: 4px;
-    margin: 2px;
-    box-shadow: 0 1px 3px rgba(245, 158, 11, 0.2);
-    font-size: 0.85rem;
+    background: transparent;
+    box-shadow: none;
+    font-size: 0.9rem;
 }
 
 .platform-table .partial::before {
     content: "○";
-    color: white;
+    color: #d97706;
     font-weight: bold;
-    font-size: 1em;
+    font-size: 1.1em;
     margin-right: 4px;
 }
 
 .platform-table .not-supported {
-    background: #ef4444;
-    color: white;
+    color: #dc2626;
     font-weight: 600;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     position: relative;
     text-align: center;
-    border-radius: 4px;
-    margin: 2px;
-    box-shadow: 0 1px 3px rgba(239, 68, 68, 0.2);
+    background: transparent;
+    box-shadow: none;
 }
 
 .platform-table .not-supported::before {
     content: "✗";
-    color: white;
+    color: #dc2626;
     font-weight: bold;
-    font-size: 1.1em;
+    font-size: 1.2em;
 }
 
 /* Clean table styling */
 .platform-table th {
-    padding: 14px 12px;
-    font-size: 0.95rem;
-    letter-spacing: 0.3px;
+    padding: 12px 10px;
+    font-size: 0.9rem;
+    letter-spacing: 0.2px;
     border: none;
     text-align: center;
 }
@@ -779,21 +778,21 @@ html {
 }
 
 .platform-table .feature-name {
-    background: #f8fafc;
+    background: transparent;
     font-weight: 500;
     color: #374151;
     text-align: left;
-    border-right: 1px solid #e5e7eb;
+    border-right: 1px solid #f1f5f9;
 }
 
 /* Subtle hover effects */
 .platform-table tbody tr:hover {
-    background: #f9fafb;
+    background: #fafafa;
     transition: background 0.2s ease;
 }
 
 .platform-table tbody tr:hover .feature-name {
-    background: #f3f4f6;
+    background: #f8fafc;
 }
 
 /* Subtle symbol hover effects */
@@ -804,18 +803,15 @@ html {
 }
 
 .platform-table .supported:hover {
-    transform: scale(1.05);
-    box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3);
+    transform: scale(1.1);
 }
 
 .platform-table .partial:hover {
     transform: scale(1.05);
-    box-shadow: 0 2px 8px rgba(245, 158, 11, 0.3);
 }
 
 .platform-table .not-supported:hover {
-    transform: scale(1.05);
-    box-shadow: 0 2px 8px rgba(239, 68, 68, 0.3);
+    transform: scale(1.1);
 }
 
 /* Responsive design for platform table */
@@ -836,7 +832,7 @@ html {
     }
     
     .platform-table .partial {
-        font-size: 0.75rem;
+        font-size: 0.8rem;
     }
 }
 
