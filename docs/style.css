@@ -129,6 +129,10 @@ body {
     display: inline-flex;
     align-items: center;
     gap: 8px;
+    cursor: pointer;
+    pointer-events: auto;
+    position: relative;
+    z-index: 10;
 }
 
 .btn-primary {
@@ -150,6 +154,17 @@ body {
 .btn-secondary:hover {
     background: rgba(255, 255, 255, 0.2);
     transform: translateY(-2px);
+}
+
+/* 确保按钮始终可点击 */
+.btn:active,
+.btn:focus {
+    outline: none;
+    pointer-events: auto;
+}
+
+.btn[href]:hover {
+    cursor: pointer;
 }
 
 .hero-badges {
@@ -207,10 +222,11 @@ body {
     border-radius: 12px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transform: none;
 }
 
 .contribution-card:hover {
-    transform: translateY(-5px);
+    transform: scale(1.05);
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
 }
 
@@ -275,6 +291,12 @@ body {
 .feature-item {
     text-align: center;
     padding: 2rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transform: none;
+}
+
+.feature-item:hover {
+    transform: scale(1.05);
 }
 
 .feature-item i {
@@ -314,11 +336,13 @@ body {
     padding: 2rem;
     border-radius: 12px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transform: none;
 }
 
 .layer:hover {
-    transform: translateX(10px);
+    transform: scale(1.02);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
 }
 
 .layer-number {
@@ -585,8 +609,9 @@ html {
 }
 
 .table-wrapper {
-    position: relative;
-    min-height: 200px;
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 /* 缩略表格样式 - 完整表格的缩小版 */
@@ -609,6 +634,7 @@ html {
     padding: 15px;
     border: 1px solid #e2e8f0;
     margin-bottom: 15px;
+    overflow: hidden;
 }
 
 .thumbnail-section h4 {
@@ -622,25 +648,24 @@ html {
 .thumbnail-table {
     width: 100%;
     font-size: 10px;
-    table-layout: fixed;
+    table-layout: auto;
+    border-collapse: collapse;
 }
 
 .thumbnail-table th,
 .thumbnail-table td {
-    padding: 6px 4px !important;
+    padding: 6px 8px !important;
     text-align: center !important;
     border-bottom: 1px solid #e5e7eb;
-    width: auto !important;
-    min-width: 50px !important;
-    max-width: 70px !important;
+    white-space: nowrap;
+    min-width: 60px;
 }
 
 .thumbnail-table th:first-child,
 .thumbnail-table td:first-child {
-    min-width: 70px !important;
-    max-width: 90px !important;
     text-align: left !important;
     white-space: nowrap !important;
+    min-width: 80px;
 }
 
 .thumbnail-table th {
@@ -824,16 +849,16 @@ html {
     width: 100%;
     border-collapse: collapse;
     margin-top: 10px;
+    table-layout: auto;
 }
 
 .modal-table th,
 .modal-table td {
-    padding: 12px 15px !important;
+    padding: 12px 12px !important;
     text-align: center !important;
     border-bottom: 1px solid #e5e7eb;
-    width: auto !important;
-    min-width: 80px !important;
-    max-width: 120px !important;
+    white-space: nowrap;
+    min-width: 80px;
 }
 
 .modal-table th {
@@ -854,7 +879,7 @@ html {
 
 .modal-table .category-header td {
     text-align: center !important;
-    padding: 12px 15px !important;
+    padding: 12px 12px !important;
 }
 
 .modal-table .best {
@@ -880,6 +905,7 @@ html {
     border-radius: 12px;
     padding: 20px;
     border: 1px solid #e2e8f0;
+    overflow: hidden;
 }
 
 .complete-section h3 {
@@ -905,31 +931,35 @@ html {
     border-collapse: collapse;
     background: white;
     font-size: 0.875rem;
-    min-width: 800px;
+    table-layout: auto;
 }
 
 .results-table th {
     background: #f8fafc;
     color: #1e293b;
     font-weight: 600;
-    padding: 12px 8px;
+    padding: 12px 12px;
     text-align: center;
     border: 1px solid #e2e8f0;
     position: sticky;
     top: 0;
     z-index: 10;
+    white-space: nowrap;
+    min-width: 80px;
 }
 
 .results-table th:first-child {
     text-align: left;
-    min-width: 140px;
+    min-width: 100px;
 }
 
 .results-table td {
-    padding: 8px 6px;
+    padding: 8px 12px;
     text-align: center;
     border: 1px solid #e2e8f0;
     vertical-align: middle;
+    white-space: nowrap;
+    min-width: 80px;
 }
 
 .results-table td:first-child {
@@ -939,8 +969,8 @@ html {
     position: sticky;
     left: 0;
     z-index: 5;
-    min-width: 140px;
     white-space: nowrap;
+    min-width: 100px;
 }
 
 .results-table .category-header {
@@ -965,16 +995,16 @@ html {
 
 /* Platform comparison table specific styles */
 .platform-table {
-    min-width: 600px;
     border-radius: 8px;
     overflow: hidden;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
     border: 1px solid #f1f5f9;
     background: white;
+    table-layout: auto;
 }
 
 .platform-table th:first-child {
-    min-width: 150px;
+    text-align: left;
 }
 
 /* Clean header styles */
@@ -1122,7 +1152,6 @@ html {
 /* Responsive design for platform table */
 @media (max-width: 768px) {
     .platform-table {
-        min-width: 400px;
         font-size: 0.8rem;
     }
     
@@ -1169,11 +1198,6 @@ html {
     .results-table th,
     .results-table td {
         padding: 6px 4px;
-    }
-    
-    .results-table th:first-child,
-    .results-table td:first-child {
-        min-width: 80px;
     }
     
     .results-table-container h3 {
@@ -1223,10 +1247,11 @@ html {
     padding: 2rem;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transform: none;
 }
 
 .dataset-card:hover {
-    transform: translateY(-5px);
+    transform: scale(1.05);
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
 }
 
@@ -1296,4 +1321,236 @@ html {
     .dataset-card h3 {
         font-size: 1.25rem;
     }
+}
+
+/* 表格显示修复 */
+.results-table-container {
+    width: 100%;
+    overflow: hidden;
+    margin: 20px 0;
+}
+
+.table-wrapper {
+    width: 100%;
+    max-width: 100%;
+}
+
+.results-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    table-layout: auto;
+}
+
+.results-table th,
+.results-table td {
+    padding: 12px 12px;
+    text-align: center;
+    border-bottom: 1px solid #e5e7eb;
+    white-space: nowrap;
+    min-width: 80px;
+}
+
+.results-table th {
+    background: #f8fafc;
+    font-weight: 600;
+    color: #374151;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.results-table tr:hover {
+    background: #f9fafb;
+}
+
+.results-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* 确保表格内容可见 */
+#platform-table,
+#forecasting-table,
+#trading-table,
+#portfolio-table {
+    min-height: 200px;
+    position: relative;
+}
+
+/* 加载动画 */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* 表格动画 */
+.table-row {
+    opacity: 0;
+    transform: translateX(-20px);
+    transition: all 0.5s ease;
+}
+
+.table-row.animate {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* 响应式表格 */
+@media (max-width: 768px) {
+    .results-table th,
+    .results-table td {
+        padding: 8px 6px;
+        font-size: 12px;
+        min-width: 60px;
+    }
+    
+    .feature-name {
+        font-size: 11px;
+    }
+    
+    .supported::before,
+    .not-supported::before {
+        font-size: 1em;
+    }
+}
+
+/* 确保表格容器有正确的样式 */
+.result-content {
+    width: 100%;
+    margin: 20px 0;
+}
+
+/* 表格错误状态 */
+.table-error {
+    text-align: center;
+    padding: 40px;
+    color: #666;
+    border: 2px dashed #ddd;
+    border-radius: 8px;
+    background: #f9fafb;
+}
+
+.table-error i {
+    font-size: 2rem;
+    color: #f59e0b;
+    margin-bottom: 10px;
+}
+
+.table-error h3 {
+    margin: 10px 0;
+    color: #374151;
+}
+
+.table-error p {
+    margin: 5px 0;
+    color: #6b7280;
+}
+
+.table-error button {
+    margin-top: 10px;
+    padding: 8px 16px;
+    background: #667eea;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.table-error button:hover {
+    background: #5a67d8;
+}
+
+/* 表格状态图标样式 */
+.supported {
+    color: #10b981;
+    font-weight: bold;
+    text-align: center;
+
+    font-size: 1.2em;
+    position: relative;
+}
+
+.supported::before {
+    content: "●";
+    color: #10b981;
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+.supported::after {
+    content: none;
+}
+
+.partial {
+    color: #f59e0b;
+    font-weight: bold;
+    text-align: center;
+}
+
+.not-supported {
+    color: #ef4444;
+    font-weight: bold;
+    text-align: center;
+    font-size: 1.2em;
+    position: relative;
+}
+
+.not-supported::before {
+    content: "○";
+    color: #ef4444;
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+.not-supported::after {
+    content: none;
+}
+
+.feature-name {
+    font-weight: 500;
+    color: #374151;
+}
+
+.feature-header,
+.finworld-header,
+.trademaster-header,
+.qlib-header,
+.finrl-header {
+    font-weight: 600;
+    color: #1f2937;
+    background: #f8fafc;
+    text-align: center;
+}
+
+/* 表格行动画 */
+.table-row {
+    opacity: 0;
+    transform: translateX(-20px);
+    transition: all 0.5s ease;
+}
+
+.table-row.animate {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.table-row:hover {
+    background: #f9fafb;
+    transform: scale(1.01);
+}
+
+/* 表格单元格悬停效果 */
+.results-table td,
+.results-table th {
+    transition: all 0.2s ease;
+}
+
+.results-table td:hover,
+.results-table th:hover {
+    background: #f3f4f6;
+    transform: scale(1.02);
 }

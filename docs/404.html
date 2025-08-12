@@ -1,11 +1,356 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="utf-8">
     <title>FinWorld - Page Not Found</title>
-    <meta http-equiv="refresh" content="0; url=./index.html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            overflow: hidden;
+        }
+        
+        .error-container {
+            text-align: center;
+            z-index: 10;
+            position: relative;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s ease 0.5s forwards;
+        }
+        
+        .error-code {
+            font-size: 8rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            animation: bounce 2s ease-in-out infinite;
+            text-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            background: linear-gradient(-45deg, #fff, #f0f0f0, #fff, #f0f0f0);
+            background-size: 400% 400%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: bounce 2s ease-in-out infinite, gradient 3s ease infinite;
+        }
+        
+        .error-message {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            opacity: 0;
+            animation: fadeInUp 1s ease 1s forwards;
+        }
+        
+        .redirect-info {
+            font-size: 1rem;
+            margin-bottom: 2rem;
+            opacity: 0;
+            animation: fadeInUp 1s ease 1.5s forwards;
+        }
+        
+        .countdown {
+            font-size: 2rem;
+            font-weight: 600;
+            color: #ffd700;
+            margin-bottom: 2rem;
+            opacity: 0;
+            animation: fadeInUp 1s ease 2s forwards;
+        }
+        
+        .home-link {
+            display: inline-block;
+            padding: 12px 30px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            opacity: 0;
+            animation: fadeInUp 1s ease 2.5s forwards;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .home-link:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .home-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s;
+        }
+        
+        .home-link:hover::before {
+            left: 100%;
+        }
+        
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+        
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 50%;
+            animation: particle-float 6s linear infinite;
+        }
+        
+        .mouse-follower {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0.2) 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9998;
+            transition: transform 0.1s ease, width 0.3s ease, height 0.3s ease;
+            mix-blend-mode: screen;
+        }
+        
+        .mouse-follower.hover {
+            width: 40px;
+            height: 40px;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.3) 70%);
+        }
+        
+        .search-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            animation: search 2s ease-in-out infinite;
+            opacity: 0;
+            animation: search 2s ease-in-out infinite, fadeInUp 1s ease 0.2s forwards;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-30px);
+            }
+            60% {
+                transform: translateY(-15px);
+            }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes particle-float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        @keyframes search {
+            0%, 100% {
+                transform: scale(1) rotate(0deg);
+            }
+            50% {
+                transform: scale(1.1) rotate(10deg);
+            }
+        }
+        
+        @keyframes gradient {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+        
+        @keyframes ripple {
+            to { transform: scale(4); opacity: 0; }
+        }
+        
+        @media (max-width: 768px) {
+            .error-code {
+                font-size: 4rem;
+            }
+            
+            .error-message {
+                font-size: 1.2rem;
+            }
+            
+            .redirect-info {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
 </head>
 <body>
-    <p>Redirecting to <a href="./index.html">FinWorld Homepage</a>...</p>
+    <div class="particles" id="particles"></div>
+    <div class="mouse-follower" id="mouseFollower"></div>
+    
+    <div class="error-container">
+        <div class="search-icon">
+            <i class="fas fa-search"></i>
+        </div>
+        <div class="error-code">404</div>
+        <div class="error-message">Oops! Page Not Found</div>
+        <div class="redirect-info">The page you're looking for doesn't exist.</div>
+        <div class="countdown" id="countdown">Redirecting in <span id="timer">5</span> seconds...</div>
+        <a href="./index.html" class="home-link">
+            <i class="fas fa-home"></i> Go to Homepage
+        </a>
+    </div>
+
+    <script>
+        // 创建粒子
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 30;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 6 + 's';
+                particle.style.animationDuration = (3 + Math.random() * 4) + 's';
+                particlesContainer.appendChild(particle);
+            }
+        }
+        
+        // 鼠标跟随效果
+        function createMouseFollower() {
+            const follower = document.getElementById('mouseFollower');
+            
+            document.addEventListener('mousemove', (e) => {
+                follower.style.transform = `translate(${e.clientX - 10}px, ${e.clientY - 10}px)`;
+            });
+            
+            // 悬停效果
+            const hoverElements = document.querySelectorAll('a, button, .home-link');
+            hoverElements.forEach(element => {
+                element.addEventListener('mouseenter', () => {
+                    follower.classList.add('hover');
+                });
+                element.addEventListener('mouseleave', () => {
+                    follower.classList.remove('hover');
+                });
+            });
+        }
+        
+        // 倒计时定时器
+        function startCountdown() {
+            let timeLeft = 5;
+            const timerElement = document.getElementById('timer');
+            const countdownElement = document.getElementById('countdown');
+            
+            const countdown = setInterval(() => {
+                timeLeft--;
+                timerElement.textContent = timeLeft;
+                
+                if (timeLeft <= 0) {
+                    clearInterval(countdown);
+                    countdownElement.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Redirecting...';
+                    setTimeout(() => {
+                        window.location.href = './index.html';
+                    }, 1000);
+                }
+            }, 1000);
+        }
+        
+        // 波纹效果
+        function addRippleEffect() {
+            document.querySelector('.home-link').addEventListener('click', function(e) {
+                const ripple = document.createElement('span');
+                const rect = this.getBoundingClientRect();
+                const size = Math.max(rect.width, rect.height);
+                const x = e.clientX - rect.left - size / 2;
+                const y = e.clientY - rect.top - size / 2;
+                
+                ripple.style.cssText = `
+                    position: absolute;
+                    width: ${size}px;
+                    height: ${size}px;
+                    left: ${x}px;
+                    top: ${y}px;
+                    background: rgba(255, 255, 255, 0.3);
+                    border-radius: 50%;
+                    transform: scale(0);
+                    animation: ripple 0.6s linear;
+                    pointer-events: none;
+                `;
+                
+                this.appendChild(ripple);
+                setTimeout(() => ripple.remove(), 600);
+            });
+        }
+        
+        // 键盘导航
+        function addKeyboardNavigation() {
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    window.location.href = './index.html';
+                }
+            });
+        }
+        
+        // 页面加载动画
+        window.addEventListener('load', () => {
+            createParticles();
+            createMouseFollower();
+            startCountdown();
+            addRippleEffect();
+            addKeyboardNavigation();
+        });
+        
+        // 如果页面已经加载完成，立即初始化
+        if (document.readyState === 'complete') {
+            createParticles();
+            createMouseFollower();
+            startCountdown();
+            addRippleEffect();
+            addKeyboardNavigation();
+        }
+    </script>
 </body>
 </html>
