@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FinWorld API Reference</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .docs-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            gap: 30px;
+        }
+        
+        .docs-sidebar {
+            background: #f8fafc;
+            border-radius: 8px;
+            padding: 20px;
+            height: fit-content;
+            position: sticky;
+            top: 20px;
+        }
+        
+        .docs-content {
+            background: white;
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        
+        .back-to-home {
+            display: inline-flex;
+            align-items: center;
+            color: #2563eb;
+            text-decoration: none;
+            font-weight: 500;
+            margin-bottom: 20px;
+            transition: color 0.2s;
+        }
+        
+        .back-to-home:hover {
+            color: #1d4ed8;
+        }
+        
+        .back-to-home i {
+            margin-right: 8px;
+        }
+        
+        .docs-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px 0;
+            margin-bottom: 30px;
+            border-radius: 8px;
+        }
+        
+        .docs-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .docs-header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        
+        .api-section {
+            background: #f8fafc;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 20px 0;
+        }
+        
+        .api-section h3 {
+            color: #1e293b;
+            margin-top: 0;
+            margin-bottom: 15px;
+        }
+        
+        .api-section p {
+            color: #64748b;
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+        
+        .code-block {
+            background: #1e293b;
+            color: #e2e8f0;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 15px 0;
+            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+        }
+        
+        .code-block pre {
+            margin: 0;
+            white-space: pre-wrap;
+        }
+        
+        .api-method {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 15px 0;
+        }
+        
+        .api-method h4 {
+            color: #1e293b;
+            margin-top: 0;
+            margin-bottom: 10px;
+            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+        }
+        
+        .api-method p {
+            color: #64748b;
+            margin-bottom: 15px;
+        }
+        
+        .api-method .parameters {
+            background: #f8fafc;
+            padding: 15px;
+            border-radius: 6px;
+            margin: 10px 0;
+        }
+        
+        .api-method .parameters h5 {
+            color: #1e293b;
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+        
+        .api-method .parameters ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+        
+        .api-method .parameters li {
+            color: #64748b;
+            margin-bottom: 5px;
+        }
+        
+        .api-method .returns {
+            background: #d1fae5;
+            border-left: 4px solid #10b981;
+            padding: 15px;
+            border-radius: 0 6px 6px 0;
+            margin: 10px 0;
+        }
+        
+        .api-method .returns h5 {
+            color: #059669;
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+        
+        .info-box {
+            background: #dbeafe;
+            border-left: 4px solid #2563eb;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .warning-box {
+            background: #fef3c7;
+            border-left: 4px solid #f59e0b;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .success-box {
+            background: #d1fae5;
+            border-left: 4px solid #10b981;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        @media (max-width: 768px) {
+            .docs-container {
+                grid-template-columns: 1fr;
+                padding: 10px;
+            }
+            
+            .docs-sidebar {
+                position: static;
+                margin-bottom: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h2>FinWorld</h2>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#overview">Overview</a></li>
+                <li><a href="index.html#architecture">Architecture</a></li>
+                <li><a href="index.html#datasets">Datasets</a></li>
+                <li><a href="index.html#results">Results</a></li>
+                <li><a href="index.html#download">Download</a></li>
+                <li><a href="documentation.html">Documentation</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <div class="docs-container">
+        <!-- Sidebar -->
+        <div class="docs-sidebar">
+            <div class="sidebar-section">
+                <h3>API Reference</h3>
+                <ul>
+                    <li><a href="#overview">Overview</a></li>
+                    <li><a href="#data-api">Data API</a></li>
+                    <li><a href="#model-api">Model API</a></li>
+                    <li><a href="#training-api">Training API</a></li>
+                    <li><a href="#evaluation-api">Evaluation API</a></li>
+                    <li><a href="#agent-api">Agent API</a></li>
+                </ul>
+            </div>
+            
+            <div class="sidebar-section">
+                <h3>Core Modules</h3>
+                <ul>
+                    <li><a href="#downloaders">Downloaders</a></li>
+                    <li><a href="#processors">Processors</a></li>
+                    <li><a href="#datasets">Datasets</a></li>
+                    <li><a href="#environments">Environments</a></li>
+                    <li><a href="#models">Models</a></li>
+                    <li><a href="#trainers">Trainers</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="docs-content">
+            <a href="documentation.html" class="back-to-home">
+                <i class="fas fa-arrow-left"></i> Back to Documentation
+            </a>
+            
+            <div class="docs-header">
+                <h1>API Reference</h1>
+                <p>Comprehensive API documentation for all FinWorld modules and functions</p>
+            </div>
+
+            <!-- Overview -->
+            <section id="overview">
+                <h2>API Overview</h2>
+                <p>FinWorld provides a comprehensive API for financial AI development. The API is organized into several core modules:</p>
+                
+                <div class="info-box">
+                    <strong>API Organization:</strong> The API is organized into logical modules that correspond to the seven-layer architecture.
+                </div>
+            </section>
+
+            <!-- Data API -->
+            <section id="data-api">
+                <h2>Data API</h2>
+                <p>The Data API provides interfaces for data acquisition, processing, and management.</p>
+                
+                <div class="api-section">
+                    <h3>Downloaders</h3>
+                    <p>Download financial data from various sources.</p>
+                    
+                    <div class="api-method">
+                        <h4>FMPDownloader</h4>
+                        <p>Download data from Financial Modeling Prep API.</p>
+                        
+                        <div class="parameters">
+                            <h5>Parameters:</h5>
+                            <ul>
+                                <li><code>api_key</code> (str): FMP API key</li>
+                                <li><code>assets_path</code> (str): Path to assets list file</li>
+                                <li><code>data_path</code> (str): Output data path</li>
+                                <li><code>start_date</code> (str): Start date for data download</li>
+                                <li><code>end_date</code> (str): End date for data download</li>
+                                <li><code>level</code> (str): Data frequency (1day, 1min)</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="code-block">
+                            <pre>from finworld.downloader import FMPDownloader
+
+downloader = FMPDownloader(
+    api_key="your_api_key",
+    assets_path="configs/_asset_list_/dj30.json",
+    data_path="workdir/dj30_fmp_price_1day/price",
+    start_date="2020-01-01",
+    end_date="2023-12-31",
+    level="1day"
+)
+
+# Download data
+downloader.download()</pre>
+                        </div>
+                    </div>
+                    
+                    <div class="api-method">
+                        <h4>AlpacaDownloader</h4>
+                        <p>Download data from Alpaca Markets API.</p>
+                        
+                        <div class="parameters">
+                            <h5>Parameters:</h5>
+                            <ul>
+                                <li><code>api_key</code> (str): Alpaca API key</li>
+                                <li><code>secret_key</code> (str): Alpaca secret key</li>
+                                <li><code>base_url</code> (str): Alpaca base URL</li>
+                                <li><code>symbols</code> (list): List of symbols to download</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="code-block">
+                            <pre>from finworld.downloader import AlpacaDownloader
+
+downloader = AlpacaDownloader(
+    api_key="your_api_key",
+    secret_key="your_secret_key",
+    base_url="https://paper-api.alpaca.markets",
+    symbols=["AAPL", "GOOGL", "MSFT"]
+)</pre>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="api-section">
+                    <h3>Processors</h3>
+                    <p>Process and transform raw financial data.</p>
+                    
+                    <div class="api-method">
+                        <h4>Processor</h4>
+                        <p>Base processor for data transformation.</p>
+                        
+                        <div class="parameters">
+                            <h5>Parameters:</h5>
+                            <ul>
+                                <li><code>assets_name</code> (str): Name of asset list</li>
+                                <li><code>data_path</code> (str): Path to input data</li>
+                                <li><code>data_type</code> (str): Type of data (price, feature, news)</li>
+                                <li><code>feature_type</code> (str): Type of features (Alpha158, custom)</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="code-block">
+                            <pre>from finworld.processor import Processor
+
+processor = Processor(
+    assets_name="dj30",
+    data_path="workdir/dj30_fmp_price_1day/price",
+    data_type="price",
+    feature_type="Alpha158"
+)
+
+# Process data
+processor.process()</pre>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="api-section">
+                    <h3>Datasets</h3>
+                    <p>Dataset classes for different financial tasks.</p>
+                    
+                    <div class="api-method">
+                        <h4>SingleAssetDataset</h4>
+                        <p>Dataset for single asset trading tasks.</p>
+                        
+                        <div class="parameters">
+                            <h5>Parameters:</h5>
+                            <ul>
+                                <li><code>symbol</code> (str): Asset symbol</li>
+                                <li><code>level</code> (str): Data frequency</li>
+                                <li><code>start_timestamp</code> (str): Start timestamp</li>
+                                <li><code>end_timestamp</code> (str): End timestamp</li>
+                                <li><code>num_features</code> (int): Number of features</li>
+                                <li><code>if_norm</code> (bool): Whether to normalize data</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="code-block">
+                            <pre>from finworld.data import SingleAssetDataset
+
+dataset = SingleAssetDataset(
+    symbol="AAPL",
+    level="1day",
+    start_timestamp="2020-01-01",
+    end_timestamp="2023-12-31",
+    num_features=154,
+    if_norm=True
+)
+
+# Get data
+data = dataset.get_data()</pre>
+                        </div>
+                    </div>
+                    
+                    <div class="api-method">
+                        <h4>MultiAssetDataset</h4>
+                        <p>Dataset for multi-asset portfolio tasks.</p>
+                        
+                        <div class="parameters">
+                            <h5>Parameters:</h5>
+                            <ul>
+                                <li><code>symbols</code> (list): List of asset symbols</li>
+                                <li><code>level</code> (str): Data frequency</li>
+                                <li><code>start_timestamp</code> (str): Start timestamp</li>
+                                <li><code>end_timestamp</code> (str): End timestamp</li>
+                                <li><code>num_features</code> (int): Number of features per asset</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="code-block">
+                            <pre>from finworld.data import MultiAssetDataset
+
+dataset = MultiAssetDataset(
+    symbols=["AAPL", "GOOGL", "MSFT", "AMZN"],
+    level="1day",
+    start_timestamp="2020-01-01",
+    end_timestamp="2023-12-31",
+    num_features=154
+)</pre>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Model API -->
+            <section id="model-api">
+                <h2>Model API</h2>
+                <p>The Model API provides interfaces for various AI models and architectures.</p>
+                
+                <div class="api-section">
+                    <h3>Base Model</h3>
+                    <p>Base class for all models in FinWorld.</p>
+                    
+                    <div class="api-method">
+                        <h4>Model</h4>
+                        <p>Base class for all models in the FinWorld library.</p>
+                        
+                        <div class="code-block">
+                            <pre>from finworld.models.base import Model
+
+class MyCustomModel(Model):
+    def __init__(self, input_dim, hidden_dim, output_dim):
+        super().__init__()
+        self.encoder = nn.Linear(input_dim, hidden_dim)
+        self.decoder = nn.Linear(hidden_dim, output_dim)
+    
+    def forward(self, x):
+        x = self.encoder(x)
+        return self.decoder(x)</pre>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="api-section">
+                    <h3>Time Series Models</h3>
+                    <p>Models for time series forecasting tasks.</p>
+                    
+                    <div class="api-method">
+                        <h4>Autoformer</h4>
+                        <p>Autoformer model for time series forecasting.</p>
+                        
+                        <div class="parameters">
+                            <h5>Parameters:</h5>
+                            <ul>
+                                <li><code>input_dim</code> (int): Input dimension</li>
+                                <li><code>output_dim</code> (int): Output dimension</li>
+                                <li><code>seq_len</code> (int): Input sequence length</li>
+                                <li><code>pred_len</code> (int): Prediction length</li>
+                                <li><code>d_model</code> (int): Model dimension</li>
+                                <li><code>n_heads</code> (int): Number of attention heads</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="code-block">
+                            <pre>from finworld.models.time import Autoformer
+
+model = Autoformer(
+    input_dim=154,
+    output_dim=1,
+    seq_len=96,
+    pred_len=24,
+    d_model=512,
+    n_heads=8
+)</pre>
+                        </div>
+                    </div>
+                    
+                    <div class="api-method">
+                        <h4>Crossformer</h4>
+                        <p>Crossformer model for time series forecasting.</p>
+                        
+                        <div class="code-block">
+                            <pre>from finworld.models.time import Crossformer
+
+model = Crossformer(
+    input_dim=154,
+    output_dim=1,
+    seq_len=96,
+    pred_len=24,
+    d_model=512,
+    n_heads=8
+)</pre>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="api-section">
+                    <h3>RL Models</h3>
+                    <p>Models for reinforcement learning tasks.</p>
+                    
+                    <div class="api-method">
+                        <h4>PPO</h4>
+                        <p>Proximal Policy Optimization model.</p>
+                        
+                        <div class="parameters">
+                            <h5>Parameters:</h5>
+                            <ul>
+                                <li><code>actor</code> (dict): Actor network configuration</li>
+                                <li><code>critic</code> (dict): Critic network configuration</li>
+                                <li><code>gamma</code> (float): Discount factor</li>
+                                <li><code>clip_ratio</code> (float): PPO clip ratio</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="code-block">
+                            <pre>from finworld.models.rl import PPO
+
+model = PPO(
+    actor=dict(
+        type="Actor",
+        state_dim=64,
+        action_dim=3,
+        hidden_dim=128
+    ),
+    critic=dict(
+        type="Critic",
+        state_dim=64,
+        hidden_dim=128
+    ),
+    gamma=0.99,
+    clip_ratio=0.2
+)</pre>
+                        </div>
+                    </div>
+                    
+                    <div class="api-method">
+                        <h4>SAC</h4>
+                        <p>Soft Actor-Critic model.</p>
+                        
+                        <div class="code-block">
+                            <pre>from finworld.models.rl import SAC
+
+model = SAC(
+    actor=dict(
+        type="Actor",
+        state_dim=64,
+        action_dim=3,
+        hidden_dim=128
+    ),
+    critic=dict(
+        type="Critic",
+        state_dim=64,
+        action_dim=3,
+        hidden_dim=128
+    ),
+    temperature=0.1
+)</pre>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Training API -->
+            <section id="training-api">
+                <h2>Training API</h2>
+                <p>The Training API provides interfaces for model training and optimization.</p>
+                
+                <div class="api-section">
+                    <h3>Trainers</h3>
+                    <p>Training classes for different tasks.</p>
+                    
+                    <div class="api-method">
+                        <h4>TradingTrainer</h4>
+                        <p>Trainer for trading tasks.</p>
+                        
+                        <div class="parameters">
+                            <h5>Parameters:</h5>
+                            <ul>
+                                <li><code>model</code> (Model): Model to train</li>
+                                <li><code>dataset</code> (Dataset): Training dataset</li>
+                                <li><code>environment</code> (Environment): Training environment</li>
+                                <li><code>optimizer</code> (dict): Optimizer configuration</li>
+                                <li><code>scheduler</code> (dict): Scheduler configuration</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="code-block">
+                            <pre>from finworld.trainer import TradingTrainer
+
+trainer = TradingTrainer(
+    model=model,
+    dataset=dataset,
+    environment=environment,
+    optimizer=dict(
+        type="AdamW",
+        lr=3e-4,
+        weight_decay=0.01
+    ),
+    scheduler=dict(
+        type="CosineAnnealingLR",
+        T_max=1000
+    )
+)
+
+# Train model
+trainer.train()</pre>
+                        </div>
+                    </div>
+                    
+                    <div class="api-method">
+                        <h4>PortfolioTrainer</h4>
+                        <p>Trainer for portfolio management tasks.</p>
+                        
+                        <div class="code-block">
+                            <pre>from finworld.trainer import PortfolioTrainer
+
+trainer = PortfolioTrainer(
+    model=model,
+    dataset=dataset,
+    environment=environment,
+    optimizer=dict(
+        type="AdamW",
+        lr=3e-4
+    )
+)</pre>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Evaluation API -->
+            <section id="evaluation-api">
+                <h2>Evaluation API</h2>
+                <p>The Evaluation API provides interfaces for model evaluation and metrics.</p>
+                
+                <div class="api-section">
+                    <h3>Metrics</h3>
+                    <p>Financial-specific metrics for model evaluation.</p>
+                    
+                    <div class="api-method">
+                        <h4>ARR (Annualized Rate of Return)</h4>
+                        <p>Calculate annualized rate of return.</p>
+                        
+                        <div class="code-block">
+                            <pre>from finworld.metric import ARR
+
+metric = ARR(level="1day")
+result = metric.calculate(returns, benchmark_returns)</pre>
+                        </div>
+                    </div>
+                    
+                    <div class="api-method">
+                        <h4>SR (Sharpe Ratio)</h4>
+                        <p>Calculate Sharpe ratio.</p>
+                        
+                        <div class="code-block">
+                            <pre>from finworld.metric import SR
+
+metric = SR(level="1day")
+result = metric.calculate(returns, benchmark_returns)</pre>
+                        </div>
+                    </div>
+                    
+                    <div class="api-method">
+                        <h4>MDD (Maximum Drawdown)</h4>
+                        <p>Calculate maximum drawdown.</p>
+                        
+                        <div class="code-block">
+                            <pre>from finworld.metric import MDD
+
+metric = MDD(level="1day")
+result = metric.calculate(returns)</pre>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="api-section">
+                    <h3>Evaluators</h3>
+                    <p>Comprehensive evaluation classes.</p>
+                    
+                    <div class="api-method">
+                        <h4>TradingEvaluator</h4>
+                        <p>Evaluator for trading tasks.</p>
+                        
+                        <div class="code-block">
+                            <pre>from finworld.evaluator import TradingEvaluator
+
+evaluator = TradingEvaluator(
+    metrics=[ARR(), SR(), MDD()],
+    level="1day"
+)
+
+results = evaluator.evaluate(
+    returns=portfolio_returns,
+    benchmark_returns=benchmark_returns
+)</pre>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Agent API -->
+            <section id="agent-api">
+                <h2>Agent API</h2>
+                <p>The Agent API provides interfaces for AI agents and multi-agent systems.</p>
+                
+                <div class="api-section">
+                    <h3>Agents</h3>
+                    <p>AI agents for financial tasks.</p>
+                    
+                    <div class="api-method">
+                        <h4>FinanceAgent</h4>
+                        <p>Financial reasoning agent.</p>
+                        
+                        <div class="parameters">
+                            <h5>Parameters:</h5>
+                            <ul>
+                                <li><code>model</code> (str): LLM model name</li>
+                                <li><code>name</code> (str): Agent name</li>
+                                <li><code>description</code> (str): Agent description</li>
+                                <li><code>tools</code> (list): List of available tools</li>
+                                <li><code>max_steps</code> (int): Maximum reasoning steps</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="code-block">
+                            <pre>from finworld.agent import FinanceAgent
+
+agent = FinanceAgent(
+    model="Qwen3-32B",
+    name="finance_agent",
+    description="Finance agent for trading decisions",
+    tools=[],
+    max_steps=20
+)
+
+# Run agent
+result = agent.run(task_description, context)</pre>
+                        </div>
+                    </div>
+                    
+                    <div class="api-method">
+                        <h4>GeneralAgent</h4>
+                        <p>General-purpose agent with tool access.</p>
+                        
+                        <div class="code-block">
+                            <pre>from finworld.agent import GeneralAgent
+
+agent = GeneralAgent(
+    model="gpt-4.1",
+    name="general_agent",
+    description="General agent with tool access",
+    tools=[
+        dict(type="python_interpreter_tool"),
+        dict(type="web_fetcher_tool")
+    ],
+    max_steps=20
+)</pre>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>FinWorld</h3>
+                    <p>Empowering Financial AI Research and Applications</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Links</h4>
+                    <ul>
+                        <li><a href="https://github.com/DVampire/FinWorld">GitHub</a></li>
+                        <li><a href="https://arxiv.org/abs/2508.02292">Paper</a></li>
+                        <li><a href="documentation.html">Documentation</a></li>
+                        <li><a href="index.html">Home</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Authors</h4>
+                    <p>Wentao Zhang, Yilei Zhao, Chuqiao Zong, Xinrun Wang, Bo An</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 FinWorld Team. Built with ❤️ for the financial AI community.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
