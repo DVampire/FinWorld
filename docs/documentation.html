@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FinWorld Documentation - Development Guide</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .docs-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            gap: 30px;
+        }
+        
+        .docs-sidebar {
+            background: #f8fafc;
+            border-radius: 8px;
+            padding: 20px;
+            height: fit-content;
+            position: sticky;
+            top: 20px;
+        }
+        
+        .docs-content {
+            background: white;
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        
+        .sidebar-section {
+            margin-bottom: 25px;
+        }
+        
+        .sidebar-section h3 {
+            color: #1e293b;
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            padding-bottom: 5px;
+            border-bottom: 2px solid #e2e8f0;
+        }
+        
+        .sidebar-section ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .sidebar-section li {
+            margin-bottom: 8px;
+        }
+        
+        .sidebar-section a {
+            color: #64748b;
+            text-decoration: none;
+            font-size: 14px;
+            padding: 5px 0;
+            display: block;
+            transition: color 0.2s;
+        }
+        
+        .sidebar-section a:hover {
+            color: #2563eb;
+        }
+        
+        .docs-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px 0;
+            margin-bottom: 30px;
+            border-radius: 8px;
+        }
+        
+        .docs-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .docs-header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        
+        .section {
+            margin-bottom: 40px;
+        }
+        
+        .section h2 {
+            color: #1e293b;
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e2e8f0;
+        }
+        
+        .section h3 {
+            color: #334155;
+            font-size: 1.3rem;
+            margin: 25px 0 15px 0;
+        }
+        
+        .section h4 {
+            color: #475569;
+            font-size: 1.1rem;
+            margin: 20px 0 10px 0;
+        }
+        
+        .code-block {
+            background: #1e293b;
+            color: #e2e8f0;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 15px 0;
+            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+        }
+        
+        .code-block pre {
+            margin: 0;
+            white-space: pre-wrap;
+        }
+        
+        .info-box {
+            background: #dbeafe;
+            border-left: 4px solid #2563eb;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .warning-box {
+            background: #fef3c7;
+            border-left: 4px solid #f59e0b;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .success-box {
+            background: #d1fae5;
+            border-left: 4px solid #10b981;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .back-to-home {
+            display: inline-flex;
+            align-items: center;
+            color: #2563eb;
+            text-decoration: none;
+            font-weight: 500;
+            margin-bottom: 20px;
+            transition: color 0.2s;
+        }
+        
+        .back-to-home:hover {
+            color: #1d4ed8;
+        }
+        
+        .back-to-home i {
+            margin-right: 8px;
+        }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .feature-card {
+            background: #f8fafc;
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+        }
+        
+        .feature-card h4 {
+            color: #1e293b;
+            margin-top: 0;
+        }
+        
+        .table-container {
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+        }
+        
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        th {
+            background: #f8fafc;
+            font-weight: 600;
+            color: #1e293b;
+        }
+        
+        @media (max-width: 768px) {
+            .docs-container {
+                grid-template-columns: 1fr;
+                padding: 10px;
+            }
+            
+            .docs-sidebar {
+                position: static;
+                margin-bottom: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h2>FinWorld</h2>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#overview">Overview</a></li>
+                <li><a href="index.html#architecture">Architecture</a></li>
+                <li><a href="index.html#datasets">Datasets</a></li>
+                <li><a href="index.html#results">Results</a></li>
+                <li><a href="index.html#download">Download</a></li>
+                <li><a href="documentation.html" class="active">Documentation</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <div class="docs-container">
+        <!-- Sidebar -->
+        <div class="docs-sidebar">
+            <div class="sidebar-section">
+                <h3>Get Started</h3>
+                <ul>
+                    <li><a href="#introduction">Introduction</a></li>
+                    <li><a href="#installation">Installation</a></li>
+                    <li><a href="#quick-start">Quick Start</a></li>
+                    <li><a href="#configuration">Configuration</a></li>
+                </ul>
+            </div>
+            
+            <div class="sidebar-section">
+                <h3>Tutorials</h3>
+                <ul>
+                    <li><a href="#tutorial-forecasting">Time Series Forecasting</a></li>
+                    <li><a href="#tutorial-trading">Algorithmic Trading</a></li>
+                    <li><a href="#tutorial-portfolio">Portfolio Management</a></li>
+                    <li><a href="#tutorial-llm">LLM Applications</a></li>
+                </ul>
+            </div>
+            
+            <div class="sidebar-section">
+                <h3>API Reference</h3>
+                <ul>
+                    <li><a href="#data-modules">Data Modules</a></li>
+                    <li><a href="#model-api">Model API</a></li>
+                    <li><a href="#training-api">Training API</a></li>
+                    <li><a href="#evaluation-api">Evaluation API</a></li>
+                </ul>
+            </div>
+            
+            <div class="sidebar-section">
+                <h3>Advanced</h3>
+                <ul>
+                    <li><a href="#custom-models">Custom Models</a></li>
+                    <li><a href="#distributed-training">Distributed Training</a></li>
+                    <li><a href="#deployment">Deployment</a></li>
+                    <li><a href="#troubleshooting">Troubleshooting</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="docs-content">
+            <a href="index.html" class="back-to-home">
+                <i class="fas fa-arrow-left"></i> Back to Home
+            </a>
+            
+            <div class="docs-header">
+                <h1>FinWorld Documentation</h1>
+                <p>Complete development guide for the FinWorld platform</p>
+            </div>
+
+            <!-- Introduction -->
+            <section id="introduction" class="section">
+                <h2>Introduction</h2>
+                <p>FinWorld is a comprehensive, all-in-one open-source platform that provides end-to-end support for the entire financial AI workflow. This documentation covers everything you need to know to get started with FinWorld development.</p>
+                
+                <div class="info-box">
+                    <strong>Note:</strong> This project is under active development. Some features may be experimental.
+                </div>
+
+                <h3>Key Features</h3>
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <h4>Multi-task Support</h4>
+                        <p>Time series forecasting, algorithmic trading, portfolio management, and LLM applications</p>
+                    </div>
+                    <div class="feature-card">
+                        <h4>Multimodal Data</h4>
+                        <p>Structured market data, unstructured news, and multimodal information integration</p>
+                    </div>
+                    <div class="feature-card">
+                        <h4>AI Paradigms</h4>
+                        <p>ML, DL, RL, LLMs, and LLM agents with seamless integration</p>
+                    </div>
+                    <div class="feature-card">
+                        <h4>Advanced Automation</h4>
+                        <p>Distributed training, auto presentation, and experiment tracking</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Installation -->
+            <section id="installation" class="section">
+                <h2>Installation</h2>
+                
+                <h3>Prerequisites</h3>
+                <ul>
+                    <li>Python 3.11+</li>
+                    <li>CUDA 12.4+ (for GPU acceleration)</li>
+                    <li>Conda or Miniconda</li>
+                    <li>16+ GB RAM (recommended for large datasets)</li>
+                </ul>
+
+                <h3>Create Conda Environment</h3>
+                <div class="code-block">
+                    <pre># Create environment
+conda create -n finworld python=3.11
+conda activate finworld</pre>
+                </div>
+
+                <h3>Install Dependencies</h3>
+                <div class="code-block">
+                    <pre># Install base dependencies
+make install-base
+
+# Install browser automation tools
+make install-browser
+
+# Install VERL framework
+make install-verl</pre>
+                </div>
+
+                <div class="success-box">
+                    <strong>Success!</strong> You should now have FinWorld installed and ready to use.
+                </div>
+
+                <h3>Alternative Installation with Poetry</h3>
+                <div class="code-block">
+                    <pre># Install Poetry
+pip install poetry
+
+# Install dependencies
+poetry install</pre>
+                </div>
+            </section>
+
+            <!-- Quick Start -->
+            <section id="quick-start" class="section">
+                <h2>Quick Start</h2>
+                
+                <h3>1. Download Financial Data</h3>
+                <div class="code-block">
+                    <pre># Download DJ30 data (example)
+python scripts/download/download.py --config configs/download/dj30/dj30_fmp_price_1day.py
+python scripts/download/download.py --config configs/download/dj30/dj30_fmp_price_1min.py</pre>
+                </div>
+
+                <h3>2. Train RL Trading Models</h3>
+                <div class="code-block">
+                    <pre># Train PPO trading models for multiple stocks
+CUDA_VISIBLE_DEVICES=0 python scripts/rl_trading/train.py --config=configs/rl_trading/ppo/AAPL_ppo_trading.py</pre>
+                </div>
+
+                <h3>3. Train Portfolio Models</h3>
+                <div class="code-block">
+                    <pre># Train PPO portfolio models for different indices
+CUDA_VISIBLE_DEVICES=0 python scripts/rl_portfolio/train.py --config=configs/rl_portfolio/ppo/dj30_ppo_portfolio.py</pre>
+                </div>
+
+                <h3>4. Use Pre-built Scripts</h3>
+                <div class="code-block">
+                    <pre># Run example scripts
+bash examples/ppo_trading.sh
+bash examples/ppo_portfolio.sh
+bash examples/download.sh</pre>
+                </div>
+            </section>
+
+            <!-- Configuration -->
+            <section id="configuration" class="section">
+                <h2>Configuration</h2>
+                <p>FinWorld uses a flexible configuration system based on YAML files and the mmengine framework.</p>
+                
+                <h3>Configuration Structure</h3>
+                <div class="code-block">
+                    <pre>configs/
+├── _asset_list_/          # Asset list configurations
+├── agent/                 # Agent configurations
+├── download/              # Data download configurations
+├── finreasoner/           # Financial reasoning configs
+├── ml_portfolio/          # ML portfolio configurations
+├── ml_trading/            # ML trading configurations
+├── process/               # Data processing configurations
+├── rl_portfolio/          # RL portfolio configurations
+├── rl_trading/            # RL trading configurations
+├── rule_portfolio/        # Rule-based portfolio configs
+├── rule_trading/          # Rule-based trading configs
+├── storm/                 # Storm framework configs
+├── time/                  # Time series model configs
+└── vae/                   # VAE model configurations</pre>
+                </div>
+
+                <h3>Example Configuration</h3>
+                <div class="code-block">
+                    <pre># Example: DJ30 PPO Trading Configuration
+model = dict(
+    type='PPO',
+    actor=dict(
+        type='Actor',
+        state_dim=64,
+        action_dim=3
+    ),
+    critic=dict(
+        type='Critic',
+        state_dim=64
+    )
+)
+
+train = dict(
+    batch_size=64,
+    learning_rate=3e-4,
+    epochs=1000
+)</pre>
+                </div>
+            </section>
+
+            <!-- Tutorials -->
+            <section id="tutorial-forecasting" class="section">
+                <h2>Time Series Forecasting Tutorial</h2>
+                <p>Learn how to build and train time series forecasting models with FinWorld.</p>
+                
+                <h3>Supported Models</h3>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Model</th>
+                                <th>Type</th>
+                                <th>Best For</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Autoformer</td>
+                                <td>Transformer</td>
+                                <td>Long-term forecasting</td>
+                            </tr>
+                            <tr>
+                                <td>Crossformer</td>
+                                <td>Transformer</td>
+                                <td>Cross-variable dependencies</td>
+                            </tr>
+                            <tr>
+                                <td>DLinear</td>
+                                <td>Linear</td>
+                                <td>Simple, fast training</td>
+                            </tr>
+                            <tr>
+                                <td>TimeMixer</td>
+                                <td>MLP</td>
+                                <td>Efficient training</td>
+                            </tr>
+                            <tr>
+                                <td>TimeXer</td>
+                                <td>Transformer</td>
+                                <td>High performance</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3>Training Example</h3>
+                <div class="code-block">
+                    <pre># Train TimeXer on DJ30 dataset
+python scripts/time/train.py --config configs/time/dj30_timexer.py</pre>
+                </div>
+            </section>
+
+            <section id="tutorial-trading" class="section">
+                <h2>Algorithmic Trading Tutorial</h2>
+                <p>Build and deploy algorithmic trading strategies using reinforcement learning.</p>
+                
+                <h3>Supported Algorithms</h3>
+                <ul>
+                    <li><strong>PPO (Proximal Policy Optimization)</strong>: Stable policy gradient method</li>
+                    <li><strong>SAC (Soft Actor-Critic)</strong>: Off-policy algorithm with entropy regularization</li>
+                    <li><strong>DQN (Deep Q-Network)</strong>: Value-based method for discrete actions</li>
+                </ul>
+
+                <h3>Training Example</h3>
+                <div class="code-block">
+                    <pre># Train PPO trading agent for AAPL
+CUDA_VISIBLE_DEVICES=0 python scripts/rl_trading/train.py \
+    --config configs/rl_trading/ppo/AAPL_ppo_trading.py</pre>
+                </div>
+            </section>
+
+            <section id="tutorial-portfolio" class="section">
+                <h2>Portfolio Management Tutorial</h2>
+                <p>Learn how to optimize multi-asset portfolios using various strategies.</p>
+                
+                <h3>Supported Strategies</h3>
+                <ul>
+                    <li><strong>Reinforcement Learning</strong>: PPO, SAC for dynamic allocation</li>
+                    <li><strong>Machine Learning</strong>: LightGBM, XGBoost for factor-based allocation</li>
+                    <li><strong>Rule-based</strong>: Buy-and-hold, equal-weight strategies</li>
+                </ul>
+
+                <h3>Training Example</h3>
+                <div class="code-block">
+                    <pre># Train SAC portfolio manager for SP500
+CUDA_VISIBLE_DEVICES=0 python scripts/rl_portfolio/train.py \
+    --config configs/rl_portfolio/sac/sp500_sac_portfolio.py</pre>
+                </div>
+            </section>
+
+            <section id="tutorial-llm" class="section">
+                <h2>LLM Applications Tutorial</h2>
+                <p>Build financial reasoning models and LLM agents for trading.</p>
+                
+                <h3>FinReasoner Training</h3>
+                <div class="code-block">
+                    <pre># Train FinReasoner model
+python scripts/finreasoner/train.py --config configs/finreasoner/finreasoner_base.py</pre>
+                </div>
+
+                <h3>LLM Agent Training</h3>
+                <div class="code-block">
+                    <pre># Train LLM trading agent
+python scripts/agent/train.py --config configs/agent/finance_agent.py</pre>
+                </div>
+            </section>
+
+            <!-- API Reference -->
+            <section id="data-modules" class="section">
+                <h2>Data Modules API</h2>
+                <p>Comprehensive API reference for data handling and processing.</p>
+                
+                <h3>Downloader Module</h3>
+                <div class="code-block">
+                    <pre>from finworld.downloader import FMPDownloader, AlpacaDownloader
+
+# Download data from FMP
+downloader = FMPDownloader(api_key="your_api_key")
+data = downloader.download_stock_data(symbol="AAPL", start_date="2020-01-01")</pre>
+                </div>
+
+                <h3>Dataset Module</h3>
+                <div class="code-block">
+                    <pre>from finworld.data import SingleAssetDataset, MultiAssetDataset
+
+# Create single asset dataset
+dataset = SingleAssetDataset(
+    data_path="data/AAPL.csv",
+    features=["open", "high", "low", "close", "volume"],
+    target="close"
+)</pre>
+                </div>
+            </section>
+
+            <section id="model-api" class="section">
+                <h2>Model API</h2>
+                <p>API reference for building and training models.</p>
+                
+                <h3>Model Registration</h3>
+                <div class="code-block">
+                    <pre>from finworld.models import MODEL_REGISTRY
+
+@MODEL_REGISTRY.register_module()
+class CustomModel(nn.Module):
+    def __init__(self, input_dim, hidden_dim, output_dim):
+        super().__init__()
+        self.layers = nn.Sequential(
+            nn.Linear(input_dim, hidden_dim),
+            nn.ReLU(),
+            nn.Linear(hidden_dim, output_dim)
+        )</pre>
+                </div>
+            </section>
+
+            <!-- Advanced Topics -->
+            <section id="custom-models" class="section">
+                <h2>Custom Models</h2>
+                <p>Learn how to implement custom models and integrate them with FinWorld.</p>
+                
+                <h3>Creating Custom Models</h3>
+                <div class="code-block">
+                    <pre># 1. Create your model class
+class MyCustomModel(nn.Module):
+    def __init__(self, config):
+        super().__init__()
+        # Your model implementation
+        
+    def forward(self, x):
+        # Your forward pass
+        return output
+
+# 2. Register with FinWorld
+from finworld.models import MODEL_REGISTRY
+MODEL_REGISTRY.register_module()(MyCustomModel)
+
+# 3. Use in configuration
+model = dict(
+    type='MyCustomModel',
+    # Your model parameters
+)</pre>
+                </div>
+            </section>
+
+            <section id="distributed-training" class="section">
+                <h2>Distributed Training</h2>
+                <p>Scale your training across multiple GPUs and nodes.</p>
+                
+                <h3>Multi-GPU Training</h3>
+                <div class="code-block">
+                    <pre># Train on multiple GPUs
+CUDA_VISIBLE_DEVICES=0,1,2,3 python -m torch.distributed.launch \
+    --nproc_per_node=4 scripts/rl_trading/train.py \
+    --config configs/rl_trading/ppo/AAPL_ppo_trading.py</pre>
+                </div>
+            </section>
+
+            <section id="troubleshooting" class="section">
+                <h2>Troubleshooting</h2>
+                <p>Common issues and solutions.</p>
+                
+                <h3>Common Issues</h3>
+                <div class="warning-box">
+                    <strong>CUDA Out of Memory:</strong> Reduce batch size or use gradient accumulation.
+                </div>
+                
+                <div class="warning-box">
+                    <strong>Data Loading Issues:</strong> Check data paths and file permissions.
+                </div>
+                
+                <div class="warning-box">
+                    <strong>Model Convergence:</strong> Adjust learning rate and check data preprocessing.
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>FinWorld</h3>
+                    <p>Empowering Financial AI Research and Applications</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Links</h4>
+                    <ul>
+                        <li><a href="https://github.com/DVampire/FinWorld">GitHub</a></li>
+                        <li><a href="https://arxiv.org/abs/2508.02292">Paper</a></li>
+                        <li><a href="documentation.html">Documentation</a></li>
+                        <li><a href="index.html">Home</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Authors</h4>
+                    <p>Wentao Zhang, Yilei Zhao, Chuqiao Zong, Xinrun Wang, Bo An</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 FinWorld Team. Built with ❤️ for the financial AI community.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

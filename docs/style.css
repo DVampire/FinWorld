@@ -156,6 +156,34 @@ body {
     transform: translateY(-2px);
 }
 
+.btn-tertiary {
+    background: #10b981;
+    color: white;
+    border: 2px solid #10b981;
+}
+
+.btn-tertiary:hover {
+    background: #059669;
+    border-color: #059669;
+    transform: translateY(-2px);
+}
+
+/* Documentation page styles */
+.nav-menu .active {
+    color: #10b981 !important;
+    font-weight: 600;
+}
+
+.nav-menu .active::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: #10b981;
+}
+
 /* 确保按钮始终可点击 */
 .btn:active,
 .btn:focus {
