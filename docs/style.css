@@ -118,13 +118,49 @@ body {
     display: flex;
     gap: 1rem;
     margin-bottom: 2rem;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: nowrap;
+}
+
+.hero-buttons .btn {
+    min-width: 160px;
+    max-width: 200px;
+    justify-content: center;
+    text-align: center;
+    flex: 1;
+}
+
+@media (max-width: 1024px) {
+    .hero-buttons {
+        gap: 0.8rem;
+    }
+    
+    .hero-buttons .btn {
+        min-width: 140px;
+        max-width: 180px;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-buttons {
+        flex-direction: column;
+        gap: 0.8rem;
+    }
+    
+    .hero-buttons .btn {
+        width: 100%;
+        max-width: 280px;
+        min-width: auto;
+    }
 }
 
 .btn {
-    padding: 12px 24px;
+    padding: 12px 20px;
     border-radius: 8px;
     text-decoration: none;
     font-weight: 600;
+    font-size: 14px;
     transition: all 0.3s ease;
     display: inline-flex;
     align-items: center;
@@ -133,39 +169,46 @@ body {
     pointer-events: auto;
     position: relative;
     z-index: 10;
+    border: none;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.12);
 }
 
 .btn-primary {
-    background: #2563eb;
+    background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
     color: white;
+    border: 2px solid transparent;
 }
 
 .btn-primary:hover {
-    background: #1d4ed8;
+    background: linear-gradient(135deg, #1d4ed8 0%, #1e40af 100%);
     transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(37, 99, 235, 0.25);
 }
 
 .btn-secondary {
-    background: rgba(255, 255, 255, 0.1);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.1) 100%);
     color: white;
-    border: 2px solid rgba(255, 255, 255, 0.3);
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(10px);
 }
 
 .btn-secondary:hover {
-    background: rgba(255, 255, 255, 0.2);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0.2) 100%);
+    border-color: rgba(255, 255, 255, 0.6);
     transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(255, 255, 255, 0.15);
 }
 
 .btn-tertiary {
-    background: #10b981;
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
     color: white;
-    border: 2px solid #10b981;
+    border: 2px solid transparent;
 }
 
 .btn-tertiary:hover {
-    background: #059669;
-    border-color: #059669;
+    background: linear-gradient(135deg, #059669 0%, #047857 100%);
     transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(16, 185, 129, 0.25);
 }
 
 /* Documentation page styles */

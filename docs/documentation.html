@@ -3,449 +3,116 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FinWorld Documentation - Development Guide</title>
+    <title>FinWorld Documentation</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="docs.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <style>
-        .docs-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-            display: grid;
-            grid-template-columns: 250px 1fr;
-            gap: 30px;
-        }
-        
-        .docs-sidebar {
-            background: #f8fafc;
-            border-radius: 8px;
-            padding: 20px;
-            height: fit-content;
-            position: sticky;
-            top: 20px;
-        }
-        
-        .docs-content {
-            background: white;
-            border-radius: 8px;
-            padding: 30px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-        }
-        
-        .sidebar-section {
-            margin-bottom: 25px;
-        }
-        
-        .sidebar-section h3 {
-            color: #1e293b;
-            font-size: 16px;
-            font-weight: 600;
-            margin-bottom: 10px;
-            padding-bottom: 5px;
-            border-bottom: 2px solid #e2e8f0;
-        }
-        
-        .sidebar-section ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-        
-        .sidebar-section li {
-            margin-bottom: 8px;
-        }
-        
-        .sidebar-section a {
-            color: #64748b;
-            text-decoration: none;
-            font-size: 14px;
-            padding: 5px 0;
-            display: block;
-            transition: color 0.2s;
-        }
-        
-        .sidebar-section a:hover {
-            color: #2563eb;
-        }
-        
-        .docs-header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 40px 0;
-            margin-bottom: 30px;
-            border-radius: 8px;
-        }
-        
-        .docs-header h1 {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-        }
-        
-        .docs-header p {
-            font-size: 1.1rem;
-            opacity: 0.9;
-        }
-        
-        .section {
-            margin-bottom: 40px;
-        }
-        
-        .section h2 {
-            color: #1e293b;
-            font-size: 1.8rem;
-            margin-bottom: 15px;
-            padding-bottom: 10px;
-            border-bottom: 2px solid #e2e8f0;
-        }
-        
-        .section h3 {
-            color: #334155;
-            font-size: 1.3rem;
-            margin: 25px 0 15px 0;
-        }
-        
-        .section h4 {
-            color: #475569;
-            font-size: 1.1rem;
-            margin: 20px 0 10px 0;
-        }
-        
-        .code-block {
-            background: #1e293b;
-            color: #e2e8f0;
-            padding: 20px;
-            border-radius: 8px;
-            overflow-x: auto;
-            margin: 15px 0;
-            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
-        }
-        
-        .code-block pre {
-            margin: 0;
-            white-space: pre-wrap;
-        }
-        
-        .info-box {
-            background: #dbeafe;
-            border-left: 4px solid #2563eb;
-            padding: 15px;
-            margin: 15px 0;
-            border-radius: 0 8px 8px 0;
-        }
-        
-        .warning-box {
-            background: #fef3c7;
-            border-left: 4px solid #f59e0b;
-            padding: 15px;
-            margin: 15px 0;
-            border-radius: 0 8px 8px 0;
-        }
-        
-        .success-box {
-            background: #d1fae5;
-            border-left: 4px solid #10b981;
-            padding: 15px;
-            margin: 15px 0;
-            border-radius: 0 8px 8px 0;
-        }
-        
-        .back-to-home {
-            display: inline-flex;
-            align-items: center;
-            color: #2563eb;
-            text-decoration: none;
-            font-weight: 500;
-            margin-bottom: 20px;
-            transition: color 0.2s;
-        }
-        
-        .back-to-home:hover {
-            color: #1d4ed8;
-        }
-        
-        .back-to-home i {
-            margin-right: 8px;
-        }
-        
-        .feature-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-            margin: 20px 0;
-        }
-        
-        .feature-card {
-            background: #f8fafc;
-            padding: 20px;
-            border-radius: 8px;
-            border: 1px solid #e2e8f0;
-        }
-        
-        .feature-card h4 {
-            color: #1e293b;
-            margin-top: 0;
-        }
-        
-        .page-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 25px;
-            margin: 30px 0;
-        }
-        
-        .page-card {
-            background: white;
-            border: 2px solid #e2e8f0;
-            border-radius: 12px;
-            padding: 25px;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            color: inherit;
-        }
-        
-        .page-card:hover {
-            border-color: #2563eb;
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(37, 99, 235, 0.15);
-        }
-        
-        .page-card h3 {
-            color: #1e293b;
-            margin-top: 0;
-            margin-bottom: 15px;
-            font-size: 1.4rem;
-        }
-        
-        .page-card p {
-            color: #64748b;
-            margin-bottom: 20px;
-            line-height: 1.6;
-        }
-        
-        .page-card .card-icon {
-            font-size: 2rem;
-            color: #2563eb;
-            margin-bottom: 15px;
-        }
-        
-        .page-card .card-features {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-        
-        .page-card .card-features li {
-            padding: 5px 0;
-            color: #64748b;
-            font-size: 14px;
-        }
-        
-        .page-card .card-features li:before {
-            content: "✓";
-            color: #10b981;
-            font-weight: bold;
-            margin-right: 8px;
-        }
-        
-        @media (max-width: 768px) {
-            .docs-container {
-                grid-template-columns: 1fr;
-                padding: 10px;
-            }
-            
-            .docs-sidebar {
-                position: static;
-                margin-bottom: 20px;
-            }
-        }
-    </style>
+    <!-- MathJax for mathematical formulas -->
+    <script src="mathjax-config.js"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="nav-logo">
-                <h2>FinWorld</h2>
-            </div>
-            <ul class="nav-menu">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="index.html#overview">Overview</a></li>
-                <li><a href="index.html#architecture">Architecture</a></li>
-                <li><a href="index.html#datasets">Datasets</a></li>
-                <li><a href="index.html#results">Results</a></li>
-                <li><a href="index.html#download">Download</a></li>
-                <li><a href="documentation.html" class="active">Documentation</a></li>
-            </ul>
-            <div class="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-        </div>
-    </nav>
+    <!-- Navigation Container -->
+    <div id="navigation-container"></div>
 
+    <!-- Sidebar Container -->
+    <div id="sidebar-container"></div>
+
+    <!-- Documentation Container -->
     <div class="docs-container">
-        <!-- Sidebar -->
-        <div class="docs-sidebar">
-            <div class="sidebar-section">
-                <h3>Get Started</h3>
-                <ul>
-                    <li><a href="#introduction">Introduction</a></li>
-                    <li><a href="#installation">Installation</a></li>
-                    <li><a href="#quick-start">Quick Start</a></li>
-                </ul>
-            </div>
-            
-            <div class="sidebar-section">
-                <h3>Core Documentation</h3>
-                <ul>
-                    <li><a href="architecture.html">Architecture Guide</a></li>
-                    <li><a href="configuration.html">Configuration Guide</a></li>
-                    <li><a href="api-reference.html">API Reference</a></li>
-                    <li><a href="tutorials.html">Tutorials</a></li>
-                </ul>
-            </div>
-            
-            <div class="sidebar-section">
-                <h3>Advanced Topics</h3>
-                <ul>
-                    <li><a href="#custom-models">Custom Models</a></li>
-                    <li><a href="#distributed-training">Distributed Training</a></li>
-                    <li><a href="#deployment">Deployment</a></li>
-                    <li><a href="#troubleshooting">Troubleshooting</a></li>
-                </ul>
-            </div>
-        </div>
-
         <!-- Main Content -->
-        <div class="docs-content">
-            <a href="index.html" class="back-to-home">
-                <i class="fas fa-arrow-left"></i> Back to Home
-            </a>
-            
+        <main class="docs-content">
             <div class="docs-header">
-                <h1>FinWorld Documentation</h1>
-                <p>Complete development guide for the FinWorld platform</p>
+                <h1>Documentation</h1>
+                <p>Welcome to FinWorld - Your comprehensive guide to financial AI development</p>
             </div>
 
-            <!-- Introduction -->
-            <section id="introduction" class="section">
-                <h2>Welcome to FinWorld Documentation</h2>
-                <p>FinWorld is a comprehensive, all-in-one open-source platform that provides end-to-end support for the entire financial AI workflow. This documentation covers everything you need to know to get started with FinWorld development.</p>
+            <!-- Introduction Section -->
+            <div class="content-section" id="introduction">
+                <h2>Welcome to FinWorld</h2>
+                <p>FinWorld is a comprehensive framework for financial AI research and development. It provides a unified platform for data processing, model training, backtesting, and deployment of financial AI systems.</p>
                 
-                <div class="info-box">
-                    <strong>Note:</strong> This project is under active development. Some features may be experimental.
-                </div>
+                <p>Our framework supports multiple AI paradigms including reinforcement learning, machine learning, and rule-based approaches, making it suitable for various financial applications from trading to portfolio management.</p>
+            </div>
 
-                <h3>What is FinWorld?</h3>
-                <p>FinWorld is a unified framework that seamlessly integrates diverse AI paradigms, heterogeneous data sources, and modern technologies to enable comprehensive financial AI development and evaluation.</p>
-
-                <h3>Key Features</h3>
-                <div class="feature-grid">
-                    <div class="feature-card">
-                        <h4>Multi-task Support</h4>
-                        <p>Time series forecasting, algorithmic trading, portfolio management, and LLM applications</p>
+            <!-- Page Cards -->
+            <div class="page-cards">
+                <a href="architecture.html" class="page-card">
+                    <div class="page-card-icon">
+                        <i class="fas fa-sitemap"></i>
                     </div>
-                    <div class="feature-card">
-                        <h4>Multimodal Data</h4>
-                        <p>Structured market data, unstructured news, and multimodal information integration</p>
+                    <h3>Architecture Guide</h3>
+                    <p>Learn about FinWorld's seven-layer architecture and how components interact to build robust financial AI systems.</p>
+                    <div class="learn-more">Learn More</div>
+                </a>
+
+                <a href="tasks.html" class="page-card">
+                    <div class="page-card-icon">
+                        <i class="fas fa-tasks"></i>
                     </div>
-                    <div class="feature-card">
-                        <h4>AI Paradigms</h4>
-                        <p>ML, DL, RL, LLMs, and LLM agents with seamless integration</p>
+                    <h3>Financial Tasks</h3>
+                    <p>Comprehensive overview of the four core financial AI tasks: forecasting, trading, portfolio management, and LLM applications.</p>
+                    <div class="learn-more">Learn More</div>
+                </a>
+
+                <a href="configuration.html" class="page-card">
+                    <div class="page-card-icon">
+                        <i class="fas fa-cogs"></i>
                     </div>
-                    <div class="feature-card">
-                        <h4>Advanced Automation</h4>
-                        <p>Distributed training, auto presentation, and experiment tracking</p>
+                    <h3>Configuration Guide</h3>
+                    <p>Understand how to configure FinWorld using YAML files and the mmengine configuration system.</p>
+                    <div class="learn-more">Learn More</div>
+                </a>
+
+                <a href="api-reference.html" class="page-card">
+                    <div class="page-card-icon">
+                        <i class="fas fa-code"></i>
                     </div>
-                </div>
-            </section>
+                    <h3>API Reference</h3>
+                    <p>Complete API documentation for all FinWorld components, classes, and methods.</p>
+                    <div class="learn-more">Learn More</div>
+                </a>
 
-            <!-- Documentation Pages -->
-            <section class="section">
-                <h2>Core Documentation</h2>
-                <p>Explore our comprehensive documentation organized by topic:</p>
-                
-                <div class="page-grid">
-                    <a href="architecture.html" class="page-card">
-                        <div class="card-icon">
-                            <i class="fas fa-sitemap"></i>
-                        </div>
-                        <h3>Architecture Guide</h3>
-                        <p>Detailed explanation of FinWorld's seven-layer architecture, component interactions, and system design principles.</p>
-                        <ul class="card-features">
-                            <li>Seven-layer architecture overview</li>
-                            <li>Component interaction diagrams</li>
-                            <li>System design principles</li>
-                            <li>Module organization</li>
-                        </ul>
-                    </a>
+                <a href="tutorials.html" class="page-card">
+                    <div class="page-card-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3>Tutorials</h3>
+                    <p>Step-by-step tutorials to get you started with FinWorld development and deployment.</p>
+                    <div class="learn-more">Learn More</div>
+                </a>
 
-                    <a href="configuration.html" class="page-card">
-                        <div class="card-icon">
-                            <i class="fas fa-cogs"></i>
-                        </div>
-                        <h3>Configuration Guide</h3>
-                        <p>Complete guide to configuring FinWorld for different tasks, models, and environments.</p>
-                        <ul class="card-features">
-                            <li>Configuration file structure</li>
-                            <li>Task-specific configurations</li>
-                            <li>Model parameter settings</li>
-                            <li>Environment setup</li>
-                        </ul>
-                    </a>
+                <a href="examples.html" class="page-card">
+                    <div class="page-card-icon">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <h3>Examples</h3>
+                    <p>Practical examples and code samples to help you implement FinWorld in your projects.</p>
+                    <div class="learn-more">Learn More</div>
+                </a>
+            </div>
 
-                    <a href="api-reference.html" class="page-card">
-                        <div class="card-icon">
-                            <i class="fas fa-code"></i>
-                        </div>
-                        <h3>API Reference</h3>
-                        <p>Comprehensive API documentation for all FinWorld modules, classes, and functions.</p>
-                        <ul class="card-features">
-                            <li>Data modules API</li>
-                            <li>Model API reference</li>
-                            <li>Training API documentation</li>
-                            <li>Evaluation API guide</li>
-                        </ul>
-                    </a>
-
-                    <a href="tutorials.html" class="page-card">
-                        <div class="card-icon">
-                            <i class="fas fa-graduation-cap"></i>
-                        </div>
-                        <h3>Tutorials</h3>
-                        <p>Step-by-step tutorials for common FinWorld tasks and use cases.</p>
-                        <ul class="card-features">
-                            <li>Time series forecasting</li>
-                            <li>Algorithmic trading</li>
-                            <li>Portfolio management</li>
-                            <li>LLM applications</li>
-                        </ul>
-                    </a>
-                </div>
-            </section>
-
-            <!-- Installation -->
-            <section id="installation" class="section">
+            <!-- Installation Section -->
+            <div class="content-section" id="installation">
                 <h2>Installation</h2>
+                <p>FinWorld requires Python 3.11+ and can be installed using conda and make commands. Here's the complete installation process:</p>
                 
-                <h3>Prerequisites</h3>
+                <h3>Requirements</h3>
                 <ul>
                     <li>Python 3.11+</li>
                     <li>CUDA 12.4+ (for GPU acceleration)</li>
                     <li>Conda or Miniconda</li>
                     <li>16+ GB RAM (recommended for large datasets)</li>
                 </ul>
-
-                <h3>Create Conda Environment</h3>
+                
+                <h3>1. Create Conda Environment</h3>
                 <div class="code-block">
-                    <pre># Create environment
-conda create -n finworld python=3.11
+                    <pre>conda create -n finworld python=3.11
 conda activate finworld</pre>
                 </div>
-
-                <h3>Install Dependencies</h3>
+                
+                <h3>2. Install Dependencies</h3>
                 <div class="code-block">
                     <pre># Install base dependencies
 make install-base
@@ -456,11 +123,7 @@ make install-browser
 # Install VERL framework
 make install-verl</pre>
                 </div>
-
-                <div class="success-box">
-                    <strong>Success!</strong> You should now have FinWorld installed and ready to use.
-                </div>
-
+                
                 <h3>Alternative Installation with Poetry</h3>
                 <div class="code-block">
                     <pre># Install Poetry
@@ -469,11 +132,12 @@ pip install poetry
 # Install dependencies
 poetry install</pre>
                 </div>
-            </section>
+            </div>
 
-            <!-- Quick Start -->
-            <section id="quick-start" class="section">
+            <!-- Quick Start Section -->
+            <div class="content-section" id="quick-start">
                 <h2>Quick Start</h2>
+                <p>Get started with FinWorld in just a few steps:</p>
                 
                 <h3>1. Download Financial Data</h3>
                 <div class="code-block">
@@ -481,19 +145,19 @@ poetry install</pre>
 python scripts/download/download.py --config configs/download/dj30/dj30_fmp_price_1day.py
 python scripts/download/download.py --config configs/download/dj30/dj30_fmp_price_1min.py</pre>
                 </div>
-
+                
                 <h3>2. Train RL Trading Models</h3>
                 <div class="code-block">
                     <pre># Train PPO trading models for multiple stocks
 CUDA_VISIBLE_DEVICES=0 python scripts/rl_trading/train.py --config=configs/rl_trading/ppo/AAPL_ppo_trading.py</pre>
                 </div>
-
+                
                 <h3>3. Train Portfolio Models</h3>
                 <div class="code-block">
                     <pre># Train PPO portfolio models for different indices
 CUDA_VISIBLE_DEVICES=0 python scripts/rl_portfolio/train.py --config=configs/rl_portfolio/ppo/dj30_ppo_portfolio.py</pre>
                 </div>
-
+                
                 <h3>4. Use Pre-built Scripts</h3>
                 <div class="code-block">
                     <pre># Run example scripts
@@ -501,56 +165,14 @@ bash examples/ppo_trading.sh
 bash examples/ppo_portfolio.sh
 bash examples/download.sh</pre>
                 </div>
-            </section>
-
-            <!-- Advanced Topics -->
-            <section id="custom-models" class="section">
-                <h2>Advanced Topics</h2>
-                <p>For advanced users, FinWorld provides extensive customization capabilities:</p>
-                
-                <h3>Custom Models</h3>
-                <p>Learn how to implement custom models and integrate them with FinWorld's framework.</p>
-                
-                <h3>Distributed Training</h3>
-                <p>Scale your training across multiple GPUs and nodes for large-scale experiments.</p>
-                
-                <h3>Deployment</h3>
-                <p>Deploy your trained models in production environments with proper monitoring.</p>
-                
-                <h3>Troubleshooting</h3>
-                <p>Common issues and solutions for FinWorld development and deployment.</p>
-            </section>
-        </div>
+            </div>
+        </main>
     </div>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>FinWorld</h3>
-                    <p>Empowering Financial AI Research and Applications</p>
-                </div>
-                <div class="footer-section">
-                    <h4>Links</h4>
-                    <ul>
-                        <li><a href="https://github.com/DVampire/FinWorld">GitHub</a></li>
-                        <li><a href="https://arxiv.org/abs/2508.02292">Paper</a></li>
-                        <li><a href="documentation.html">Documentation</a></li>
-                        <li><a href="index.html">Home</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Authors</h4>
-                    <p>Wentao Zhang, Yilei Zhao, Chuqiao Zong, Xinrun Wang, Bo An</p>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 FinWorld Team. Built with ❤️ for the financial AI community.</p>
-            </div>
-        </div>
-    </footer>
+    <!-- Footer Container -->
+    <div id="footer-container"></div>
 
-    <script src="script.js"></script>
+    <!-- Load Components -->
+    <script src="components/load-components.js"></script>
 </body>
 </html>

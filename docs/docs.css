@@ -1,0 +1,539 @@
+/* FinWorld Documentation Styles */
+
+/* Documentation Layout */
+.docs-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0;
+    display: flex;
+    min-height: calc(100vh - 80px);
+}
+
+.docs-sidebar {
+    width: 280px;
+    background: linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%);
+    border-right: 1px solid #e2e8f0;
+    padding: 40px 30px;
+    height: 100vh;
+    position: fixed;
+    left: 0;
+    top: 80px;
+    overflow-y: auto;
+    z-index: 100;
+    transition: width 0.3s ease, padding 0.3s ease;
+}
+
+.docs-content {
+    flex: 1;
+    margin-left: 280px;
+    background: white;
+    padding: 60px 80px;
+    min-height: calc(100vh - 80px);
+    padding-bottom: 300px;
+    transition: margin-left 0.3s ease;
+}
+
+/* Sidebar Navigation */
+.sidebar-section {
+    margin-bottom: 35px;
+}
+
+.sidebar-section h3 {
+    color: #1e293b;
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 15px;
+    padding-bottom: 8px;
+    border-bottom: 3px solid #2563eb;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.sidebar-section ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar-section li {
+    margin-bottom: 8px;
+}
+
+.sidebar-section a {
+    color: #64748b;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 15px;
+    padding: 8px 12px;
+    border-radius: 6px;
+    display: block;
+    transition: all 0.2s ease;
+    position: relative;
+}
+
+.sidebar-section a:hover {
+    color: #2563eb;
+    background: rgba(37, 99, 235, 0.08);
+    transform: translateX(4px);
+}
+
+.sidebar-section a.active {
+    color: #2563eb;
+    background: rgba(37, 99, 235, 0.12);
+    font-weight: 600;
+}
+
+.sidebar-section a.active::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 3px;
+    height: 20px;
+    background: #2563eb;
+    border-radius: 0 2px 2px 0;
+}
+
+/* Documentation Header */
+.docs-header {
+    text-align: center;
+    margin-bottom: 50px;
+    padding-bottom: 30px;
+    border-bottom: 2px solid #e2e8f0;
+}
+
+.docs-header h1 {
+    font-size: 3rem;
+    font-weight: 800;
+    color: #1e293b;
+    margin-bottom: 15px;
+    background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.docs-header p {
+    font-size: 1.2rem;
+    color: #64748b;
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+/* Page Cards */
+.page-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 35px;
+    margin: 50px 0;
+    padding: 20px 0;
+}
+
+.page-card {
+    background: linear-gradient(145deg, #ffffff 0%, #f8fafc 100%);
+    border: 1px solid rgba(37, 99, 235, 0.1);
+    border-radius: 20px;
+    padding: 40px 35px;
+    text-align: center;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 
+        0 4px 20px rgba(0, 0, 0, 0.08),
+        0 1px 3px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    text-decoration: none !important;
+}
+
+.page-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 50%, #3b82f6 100%);
+    transform: scaleX(0);
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: 20px 20px 0 0;
+}
+
+.page-card::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(37, 99, 235, 0.05) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+}
+
+.page-card:hover::before {
+    transform: scaleX(1);
+}
+
+.page-card:hover::after {
+    opacity: 1;
+}
+
+.page-card:hover {
+    transform: translateY(-12px) scale(1.02);
+    border-color: rgba(37, 99, 235, 0.3);
+    box-shadow: 
+        0 20px 40px rgba(37, 99, 235, 0.15),
+        0 8px 25px rgba(0, 0, 0, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+.page-card-icon {
+    font-size: 3rem;
+    color: #2563eb;
+    margin-bottom: 25px;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    z-index: 2;
+    text-shadow: 0 2px 4px rgba(37, 99, 235, 0.2);
+}
+
+.page-card:hover .page-card-icon {
+    transform: scale(1.15) rotate(5deg);
+    color: #1d4ed8;
+    text-shadow: 0 4px 8px rgba(37, 99, 235, 0.3);
+}
+
+.page-card h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #1e293b;
+    margin-bottom: 18px;
+    transition: all 0.3s ease;
+    position: relative;
+    z-index: 2;
+    letter-spacing: -0.02em;
+    text-decoration: none !important;
+}
+
+.page-card:hover h3 {
+    color: #2563eb;
+    transform: translateY(-2px);
+}
+
+.page-card p {
+    color: #64748b;
+    line-height: 1.7;
+    margin-bottom: 25px;
+    font-size: 0.95rem;
+    position: relative;
+    z-index: 2;
+    transition: color 0.3s ease;
+    text-decoration: none !important;
+}
+
+.page-card:hover p {
+    color: #475569;
+}
+
+.page-card .learn-more {
+    color: #2563eb;
+    font-weight: 600;
+    font-size: 0.9rem;
+    opacity: 0;
+    transform: translateY(15px);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    z-index: 2;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none !important;
+}
+
+.page-card .learn-more::after {
+    content: '→';
+    font-size: 1.1rem;
+    transition: transform 0.3s ease;
+}
+
+.page-card:hover .learn-more {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.page-card:hover .learn-more::after {
+    transform: translateX(4px);
+}
+
+/* Card-specific styling */
+.page-card:nth-child(1) {
+    background: linear-gradient(145deg, #ffffff 0%, #f0f9ff 100%);
+}
+
+.page-card:nth-child(2) {
+    background: linear-gradient(145deg, #ffffff 0%, #f0fdf4 100%);
+}
+
+.page-card:nth-child(3) {
+    background: linear-gradient(145deg, #ffffff 0%, #fefce8 100%);
+}
+
+.page-card:nth-child(4) {
+    background: linear-gradient(145deg, #ffffff 0%, #fdf4ff 100%);
+}
+
+/* Enhanced hover effects for different cards */
+.page-card:nth-child(1):hover {
+    box-shadow: 
+        0 20px 40px rgba(59, 130, 246, 0.15),
+        0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.page-card:nth-child(2):hover {
+    box-shadow: 
+        0 20px 40px rgba(34, 197, 94, 0.15),
+        0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.page-card:nth-child(3):hover {
+    box-shadow: 
+        0 20px 40px rgba(245, 158, 11, 0.15),
+        0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.page-card:nth-child(4):hover {
+    box-shadow: 
+        0 20px 40px rgba(168, 85, 247, 0.15),
+        0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* Content Sections */
+.content-section {
+    margin-bottom: 40px;
+}
+
+.content-section h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #1e293b;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 3px solid #2563eb;
+}
+
+.content-section h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #374151;
+    margin: 30px 0 15px 0;
+}
+
+.content-section p {
+    color: #4b5563;
+    line-height: 1.7;
+    margin-bottom: 15px;
+}
+
+.content-section ul, .content-section ol {
+    margin: 15px 0;
+    padding-left: 25px;
+}
+
+.content-section li {
+    color: #4b5563;
+    line-height: 1.6;
+    margin-bottom: 8px;
+}
+
+/* Code Blocks */
+.code-block {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 20px 0;
+    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+    font-size: 14px;
+    line-height: 1.5;
+    overflow-x: auto;
+}
+
+.code-block pre {
+    margin: 0;
+    color: #1e293b;
+}
+
+/* Back to Home Link */
+.back-to-home {
+    display: inline-flex;
+    align-items: center;
+    color: #2563eb;
+    text-decoration: none;
+    font-weight: 500;
+    margin-bottom: 40px;
+    margin-top: 20px;
+    transition: color 0.2s;
+}
+
+.back-to-home:hover {
+    color: #1d4ed8;
+}
+
+.back-to-home i {
+    margin-right: 8px;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .docs-sidebar {
+        width: 250px;
+        padding: 30px 20px;
+    }
+    
+    .docs-content {
+        margin-left: 250px;
+        padding: 40px 50px;
+    }
+    
+    .page-cards {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 25px;
+    }
+}
+
+@media (max-width: 768px) {
+    .docs-container {
+        flex-direction: column;
+    }
+    
+    .docs-sidebar {
+        position: static;
+        width: 100%;
+        height: auto;
+        padding: 20px;
+        border-right: none;
+        border-bottom: 1px solid #e2e8f0;
+    }
+    
+    .docs-content {
+        margin-left: 0;
+        padding: 30px 20px;
+    }
+    
+    .docs-header h1 {
+        font-size: 2.5rem;
+    }
+    
+    .page-cards {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .page-card {
+        padding: 25px;
+    }
+}
+
+@media (max-width: 480px) {
+    .docs-header h1 {
+        font-size: 2rem;
+    }
+    
+    .docs-header p {
+        font-size: 1rem;
+    }
+    
+    .page-card {
+        padding: 20px;
+    }
+    
+    .page-card h3 {
+        font-size: 1.2rem;
+    }
+}
+
+/* Sidebar Toggle Styles */
+.sidebar-toggle {
+    position: absolute;
+    top: 20px;
+    right: -15px;
+    width: 35px;
+    height: 35px;
+    background: #2563eb;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 1001;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.4);
+    border: 2px solid white;
+}
+
+.sidebar-toggle:hover {
+    background: #1d4ed8;
+    transform: scale(1.1);
+}
+
+.sidebar-toggle i {
+    color: white;
+    font-size: 16px;
+    transition: transform 0.3s ease;
+    font-weight: bold;
+}
+
+/* Collapsed Sidebar Styles */
+.docs-sidebar.collapsed {
+    width: 60px;
+    padding: 40px 15px;
+}
+
+.docs-sidebar.collapsed .sidebar-content {
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.docs-sidebar.collapsed .sidebar-toggle {
+    right: 15px;
+}
+
+.docs-sidebar.collapsed .sidebar-toggle i {
+    transform: rotate(180deg);
+}
+
+/* Content adjustment when sidebar is collapsed */
+.docs-content.sidebar-collapsed {
+    margin-left: 60px;
+    padding-bottom: 300px;
+}
+
+/* Sidebar content transition */
+.sidebar-content {
+    transition: all 0.3s ease;
+}
+
+/* Mobile responsive for sidebar toggle */
+@media (max-width: 768px) {
+    .sidebar-toggle {
+        display: none;
+    }
+    
+    .docs-sidebar {
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
+    }
+    
+    .docs-sidebar.mobile-open {
+        transform: translateX(0);
+    }
+    
+    .docs-content {
+        margin-left: 0;
+    }
+}

@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Examples - FinWorld Documentation</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="docs.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="mathjax-config.js"></script>
+</head>
+<body>
+    <!-- Navigation -->
+    <div id="navigation-container"></div>
+    
+    <!-- Sidebar -->
+    <div id="sidebar-container"></div>
+    
+    <!-- Main Content -->
+    <div class="docs-container">
+        <main class="docs-content">
+            <!-- Back to Documentation -->
+            <div class="back-to-home">
+                <a href="documentation.html">← Back to Documentation</a>
+            </div>
+            
+            <!-- Header -->
+            <div class="docs-header">
+                <h1>Examples</h1>
+                <p>Advanced use cases and real-world applications of FinWorld</p>
+            </div>
+
+            <!-- Example 1: Data Download and Processing -->
+            <div class="content-section">
+                <h2>Example 1: Data Download and Processing</h2>
+                <p>This example shows how to download and process financial data using the provided shell scripts.</p>
+                
+                <h3>Download Scripts</h3>
+                <p>Use the provided download scripts in <code>examples/download.sh</code>:</p>
+                <pre><code class="language-bash">#!/bin/bash
+
+# Download HS300 data
+python scripts/download/download.py --config configs/download/hs300/hs300_fmp_price_1day.py
+python scripts/download/download.py --config configs/download/hs300/hs300_fmp_price_1min.py
+
+# Download SP500 data
+python scripts/download/download.py --config configs/download/sp500/sp500_fmp_price_1day.py
+python scripts/download/download.py --config configs/download/sp500/sp500_fmp_price_1min.py
+
+# Download DJ30 data
+python scripts/download/download.py --config configs/download/dj30/dj30_fmp_price_1day.py
+python scripts/download/download.py --config configs/download/dj30/dj30_fmp_price_1min.py</code></pre>
+
+                <h3>Processing Scripts</h3>
+                <p>Use the provided processing scripts in <code>examples/process.sh</code>:</p>
+                <pre><code class="language-bash">#!/bin/bash
+
+# Process HS300 data
+python scripts/process/process.py --config configs/process/hs300.py
+
+# Process SP500 data
+python scripts/process/process.py --config configs/process/sp500.py
+
+# Process DJ30 data
+python scripts/process/process.py --config configs/process/dj30.py</code></pre>
+
+                <h3>Key Features</h3>
+                <ul>
+                    <li><strong>Multiple Data Sources:</strong> FMP, Alpaca, AkShare, TuShare</li>
+                    <li><strong>Different Time Frames:</strong> Daily and minute-level data</li>
+                    <li><strong>Batch Processing:</strong> Process multiple datasets simultaneously</li>
+                    <li><strong>Data Quality:</strong> Built-in validation and cleaning</li>
+                </ul>
+            </div>
+
+            <!-- Example 2: Time Series Forecasting -->
+            <div class="content-section">
+                <h2>Example 2: Time Series Forecasting</h2>
+                <p>This example demonstrates time series forecasting using different model architectures.</p>
+                
+                <h3>Training Scripts</h3>
+                <p>Use the provided time series training scripts in <code>examples/time.sh</code>:</p>
+                <pre><code class="language-bash">#!/bin/bash
+
+# Train Autoformer model
+CUDA_VISIBLE_DEVICES=4,5 torchrun --master_port=29510 --nproc_per_node=2 scripts/time/train.py --config configs/time/dj30_autoformer.py
+
+# Train Crossformer model
+CUDA_VISIBLE_DEVICES=4,5 torchrun --master_port=29511 --nproc_per_node=2 scripts/time/train.py --config configs/time/dj30_crossformer.py
+
+# Train DLinear model
+CUDA_VISIBLE_DEVICES=4,5 torchrun --master_port=29512 --nproc_per_node=2 scripts/time/train.py --config configs/time/dj30_dlinear.py
+
+# Train ETSformer model
+CUDA_VISIBLE_DEVICES=4,5 torchrun --master_port=29513 --nproc_per_node=2 scripts/time/train.py --config configs/time/dj30_etsformer.py</code></pre>
+
+                <h3>Key Features</h3>
+                <ul>
+                    <li><strong>Multiple Architectures:</strong> Autoformer, Crossformer, DLinear, ETSformer</li>
+                    <li><strong>Distributed Training:</strong> Multi-GPU support for faster training</li>
+                    <li><strong>Different Datasets:</strong> DJ30, SP500, HS300, SSE50</li>
+                    <li><strong>Performance Comparison:</strong> Easy to compare different models</li>
+                </ul>
+            </div>
+
+            <!-- Example 3: RL Trading with PPO -->
+            <div class="content-section">
+                <h2>Example 3: RL Trading with PPO</h2>
+                <p>This example demonstrates reinforcement learning trading using PPO algorithm across multiple stocks.</p>
+                
+                <h3>Training Scripts</h3>
+                <p>Use the provided PPO trading scripts in <code>examples/ppo_trading.sh</code>:</p>
+                <pre><code class="language-bash">#!/usr/bin/env bash
+
+# Train PPO trading agents for different stocks
+CUDA_VISIBLE_DEVICES=4 python scripts/rl_trading/train.py --config=configs/rl_trading/ppo/AAPL_ppo_trading.py &
+CUDA_VISIBLE_DEVICES=4 python scripts/rl_trading/train.py --config=configs/rl_trading/ppo/AMZN_ppo_trading.py &
+CUDA_VISIBLE_DEVICES=4 python scripts/rl_trading/train.py --config=configs/rl_trading/ppo/GOOGL_ppo_trading.py &
+CUDA_VISIBLE_DEVICES=4 python scripts/rl_trading/train.py --config=configs/rl_trading/ppo/META_ppo_trading.py &
+CUDA_VISIBLE_DEVICES=4 python scripts/rl_trading/train.py --config=configs/rl_trading/ppo/MSFT_ppo_trading.py &
+CUDA_VISIBLE_DEVICES=4 python scripts/rl_trading/train.py --config=configs/rl_trading/ppo/TSLA_ppo_trading.py &</code></pre>
+
+                <h3>Key Features</h3>
+                <ul>
+                    <li><strong>Multi-Stock Training:</strong> Train on multiple stocks simultaneously</li>
+                    <li><strong>PPO Algorithm:</strong> Stable and sample-efficient RL algorithm</li>
+                    <li><strong>Risk Management:</strong> Built-in position limits and transaction costs</li>
+                    <li><strong>Performance Metrics:</strong> Sharpe ratio, returns, drawdown analysis</li>
+                </ul>
+            </div>
+
+            <!-- Example 4: RL Trading with SAC -->
+            <div class="content-section">
+                <h2>Example 4: RL Trading with SAC</h2>
+                <p>This example demonstrates reinforcement learning trading using SAC (Soft Actor-Critic) algorithm.</p>
+                
+                <h3>Training Scripts</h3>
+                <p>Use the provided SAC trading scripts in <code>examples/sac_trading.sh</code>:</p>
+                <pre><code class="language-bash">#!/usr/bin/env bash
+
+# Kill any existing SAC trading processes
+# ps -ef | grep sac | grep -v grep | awk '{print $2}' | xargs kill -9
+
+CUDA_VISIBLE_DEVICES=4 python scripts/rl_trading/train.py --config=configs/rl_trading/sac/AAPL_sac_trading.py &
+CUDA_VISIBLE_DEVICES=4 python scripts/rl_trading/train.py --config=configs/rl_trading/sac/AMZN_sac_trading.py &
+CUDA_VISIBLE_DEVICES=4 python scripts/rl_trading/train.py --config=configs/rl_trading/sac/GOOGL_sac_trading.py &
+CUDA_VISIBLE_DEVICES=4 python scripts/rl_trading/train.py --config=configs/rl_trading/sac/META_sac_trading.py &
+CUDA_VISIBLE_DEVICES=4 python scripts/rl_trading/train.py --config=configs/rl_trading/sac/MSFT_sac_trading.py &
+CUDA_VISIBLE_DEVICES=4 python scripts/rl_trading/train.py --config=configs/rl_trading/sac/TSLA_sac_trading.py &</code></pre>
+
+                <h3>Key Features</h3>
+                <ul>
+                    <li><strong>SAC Algorithm:</strong> Sample-efficient off-policy RL algorithm</li>
+                    <li><strong>Experience Replay:</strong> Better sample efficiency with replay buffer</li>
+                    <li><strong>Entropy Regularization:</strong> Automatic exploration-exploitation balance</li>
+                    <li><strong>Double Q-Learning:</strong> Reduces overestimation bias</li>
+                </ul>
+            </div>
+
+            <!-- Example 5: RL Portfolio with PPO -->
+            <div class="content-section">
+                <h2>Example 5: RL Portfolio with PPO</h2>
+                <p>This example demonstrates reinforcement learning portfolio optimization using PPO algorithm across different asset classes.</p>
+                
+                <h3>Training Scripts</h3>
+                <p>Use the provided PPO portfolio scripts in <code>examples/ppo_portfolio.sh</code>:</p>
+                <pre><code class="language-bash">#!/usr/bin/env bash
+
+CUDA_VISIBLE_DEVICES=5 python scripts/rl_portfolio/train.py --config=configs/rl_portfolio/ppo/dj30_ppo_portfolio.py &
+CUDA_VISIBLE_DEVICES=5 python scripts/rl_portfolio/train.py --config=configs/rl_portfolio/ppo/sse50_ppo_portfolio.py &
+CUDA_VISIBLE_DEVICES=5 python scripts/rl_portfolio/train.py --config=configs/rl_portfolio/ppo/hs300_ppo_portfolio.py &
+CUDA_VISIBLE_DEVICES=5 python scripts/rl_portfolio/train.py --config=configs/rl_portfolio/ppo/sp500_ppo_portfolio.py &</code></pre>
+
+                <h3>Key Features</h3>
+                <ul>
+                    <li><strong>Multi-Asset Portfolio:</strong> Optimize across multiple asset classes</li>
+                    <li><strong>Risk-Adjusted Returns:</strong> Focus on Sharpe ratio and risk management</li>
+                    <li><strong>Diversification:</strong> Built-in diversification constraints</li>
+                    <li><strong>Rebalancing:</strong> Dynamic portfolio rebalancing strategies</li>
+                </ul>
+            </div>
+
+            <!-- Example 6: RL Portfolio with SAC -->
+            <div class="content-section">
+                <h2>Example 6: RL Portfolio with SAC</h2>
+                <p>This example demonstrates reinforcement learning portfolio optimization using SAC algorithm.</p>
+                
+                <h3>Training Scripts</h3>
+                <p>Use the provided SAC portfolio scripts in <code>examples/sac_portfolio.sh</code>:</p>
+                <pre><code class="language-bash">#!/usr/bin/env bash
+
+CUDA_VISIBLE_DEVICES=5 python scripts/rl_portfolio/train.py --config=configs/rl_portfolio/sac/dj30_sac_portfolio.py &
+CUDA_VISIBLE_DEVICES=5 python scripts/rl_portfolio/train.py --config=configs/rl_portfolio/sac/sse50_sac_portfolio.py &
+CUDA_VISIBLE_DEVICES=5 python scripts/rl_portfolio/train.py --config=configs/rl_portfolio/sac/hs300_sac_portfolio.py &
+CUDA_VISIBLE_DEVICES=5 python scripts/rl_portfolio/train.py --config=configs/rl_portfolio/sac/sp500_sac_portfolio.py &</code></pre>
+
+                <h3>Key Features</h3>
+                <ul>
+                    <li><strong>Continuous Action Space:</strong> Fine-grained portfolio allocation</li>
+                    <li><strong>Sample Efficiency:</strong> SAC's off-policy learning advantage</li>
+                    <li><strong>Stable Training:</strong> Reduced variance in portfolio optimization</li>
+                    <li><strong>Adaptive Strategies:</strong> Dynamic adjustment to market conditions</li>
+                </ul>
+            </div>
+
+            <!-- Getting Started -->
+            <div class="content-section">
+                <h2>Getting Started with Examples</h2>
+                <p>To run these examples, follow these steps:</p>
+                
+                <ol>
+                    <li><strong>Prepare Data:</strong> Download the required datasets using the download tutorials</li>
+                    <li><strong>Install Dependencies:</strong> Ensure all required packages are installed</li>
+                    <li><strong>Configure Environment:</strong> Set up your configuration files</li>
+                    <li><strong>Run Examples:</strong> Execute the example scripts</li>
+                    <li><strong>Analyze Results:</strong> Review performance metrics and visualizations</li>
+                </ol>
+
+                <div class="tip-box">
+                    <h4>💡 Pro Tips</h4>
+                    <ul>
+                        <li>Start with simpler examples and gradually move to more complex ones</li>
+                        <li>Modify configurations to match your specific requirements</li>
+                        <li>Use the built-in visualization tools to analyze results</li>
+                        <li>Consider computational resources for large-scale examples</li>
+                    </ul>
+                </div>
+
+                <p>For more detailed information, check out our <a href="tutorials.html">Tutorials</a> and <a href="api-reference.html">API Reference</a>.</p>
+            </div>
+        </main>
+    </div>
+
+    <!-- Footer -->
+    <div id="footer-container"></div>
+
+    <!-- Load Components -->
+    <script src="components/load-components.js"></script>
+</body>
+</html>

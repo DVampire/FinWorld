@@ -3,386 +3,174 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FinWorld Architecture - Seven-Layer Design</title>
+    <title>FinWorld Architecture</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="docs.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <style>
-        .docs-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-            display: grid;
-            grid-template-columns: 250px 1fr;
-            gap: 30px;
-        }
-        
-        .docs-sidebar {
-            background: #f8fafc;
-            border-radius: 8px;
-            padding: 20px;
-            height: fit-content;
-            position: sticky;
-            top: 20px;
-        }
-        
-        .docs-content {
-            background: white;
-            border-radius: 8px;
-            padding: 30px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-        }
-        
-        .back-to-home {
-            display: inline-flex;
-            align-items: center;
-            color: #2563eb;
-            text-decoration: none;
-            font-weight: 500;
-            margin-bottom: 20px;
-            transition: color 0.2s;
-        }
-        
-        .back-to-home:hover {
-            color: #1d4ed8;
-        }
-        
-        .back-to-home i {
-            margin-right: 8px;
-        }
-        
-        .docs-header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 40px 0;
-            margin-bottom: 30px;
-            border-radius: 8px;
-        }
-        
-        .docs-header h1 {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-        }
-        
-        .docs-header p {
-            font-size: 1.1rem;
-            opacity: 0.9;
-        }
-        
-        .layer-card {
-            background: #f8fafc;
-            border: 2px solid #e2e8f0;
-            border-radius: 12px;
-            padding: 25px;
-            margin: 20px 0;
-            transition: all 0.3s ease;
-        }
-        
-        .layer-card:hover {
-            border-color: #2563eb;
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(37, 99, 235, 0.15);
-        }
-        
-        .layer-number {
-            background: #2563eb;
-            color: white;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            font-size: 1.2rem;
-            margin-bottom: 15px;
-        }
-        
-        .layer-title {
-            color: #1e293b;
-            font-size: 1.4rem;
-            margin-bottom: 10px;
-        }
-        
-        .layer-description {
-            color: #64748b;
-            margin-bottom: 15px;
-            line-height: 1.6;
-        }
-        
-        .layer-components {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-        
-        .layer-components li {
-            padding: 8px 0;
-            color: #475569;
-            border-bottom: 1px solid #e2e8f0;
-        }
-        
-        .layer-components li:last-child {
-            border-bottom: none;
-        }
-        
-        .layer-components li:before {
-            content: "→";
-            color: #2563eb;
-            font-weight: bold;
-            margin-right: 10px;
-        }
-        
-        .architecture-diagram {
-            text-align: center;
-            margin: 40px 0;
-            padding: 30px;
-            background: #f8fafc;
-            border-radius: 12px;
-        }
-        
-        .architecture-diagram img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        }
-        
-        @media (max-width: 768px) {
-            .docs-container {
-                grid-template-columns: 1fr;
-                padding: 10px;
-            }
-            
-            .docs-sidebar {
-                position: static;
-                margin-bottom: 20px;
-            }
-        }
-    </style>
+    <!-- MathJax for mathematical formulas -->
+    <script src="mathjax-config.js"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="nav-logo">
-                <h2>FinWorld</h2>
-            </div>
-            <ul class="nav-menu">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="index.html#overview">Overview</a></li>
-                <li><a href="index.html#architecture">Architecture</a></li>
-                <li><a href="index.html#datasets">Datasets</a></li>
-                <li><a href="index.html#results">Results</a></li>
-                <li><a href="index.html#download">Download</a></li>
-                <li><a href="documentation.html">Documentation</a></li>
-            </ul>
-            <div class="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-        </div>
-    </nav>
+    <!-- Navigation Container -->
+    <div id="navigation-container"></div>
 
+    <!-- Sidebar Container -->
+    <div id="sidebar-container"></div>
+
+    <!-- Documentation Container -->
     <div class="docs-container">
-        <!-- Sidebar -->
-        <div class="docs-sidebar">
-            <div class="sidebar-section">
-                <h3>Architecture</h3>
-                <ul>
-                    <li><a href="#overview">Overview</a></li>
-                    <li><a href="#layer1">Layer 1: Configuration</a></li>
-                    <li><a href="#layer2">Layer 2: Dataset</a></li>
-                    <li><a href="#layer3">Layer 3: Model</a></li>
-                    <li><a href="#layer4">Layer 4: Training</a></li>
-                    <li><a href="#layer5">Layer 5: Evaluation</a></li>
-                    <li><a href="#layer6">Layer 6: Task</a></li>
-                    <li><a href="#layer7">Layer 7: Presentation</a></li>
-                </ul>
-            </div>
-            
-            <div class="sidebar-section">
-                <h3>Components</h3>
-                <ul>
-                    <li><a href="#components">Core Components</a></li>
-                    <li><a href="#interactions">Layer Interactions</a></li>
-                    <li><a href="#data-flow">Data Flow</a></li>
-                </ul>
-            </div>
-        </div>
-
         <!-- Main Content -->
-        <div class="docs-content">
+        <main class="docs-content">
             <a href="documentation.html" class="back-to-home">
                 <i class="fas fa-arrow-left"></i> Back to Documentation
             </a>
-            
+
             <div class="docs-header">
-                <h1>FinWorld Architecture</h1>
-                <p>Seven-layer architecture for comprehensive financial AI development</p>
+                <h1>Architecture Guide</h1>
+                <p>Understanding FinWorld's seven-layer architecture and component interactions</p>
             </div>
 
-            <!-- Overview -->
-            <section id="overview">
-                <h2>Architecture Overview</h2>
-                <p>FinWorld employs a layered, object-oriented architecture with seven core layers, each handling specific aspects of the financial AI workflow.</p>
+            <!-- Architecture Overview -->
+            <div class="content-section">
+                <h2>Seven-Layer Architecture</h2>
+                <p>FinWorld employs a hierarchical, layered architecture with object-oriented design principles to ensure clear separation of concerns and facilitate both flexibility and scalability across the platform. This modular seven-layer architecture enables seamless integration of multiple AI paradigms including traditional ML, DL, RL, LLMs, and LLM agents.</p>
                 
-                <div class="architecture-diagram">
-                    <img src="assets/finworld.png" alt="FinWorld Seven-Layer Architecture">
-                    <p><em>Figure 1: FinWorld's comprehensive seven-layer architecture</em></p>
+                <!-- Architecture Diagram -->
+                <div style="text-align: center; margin: 40px 0;">
+                    <img src="assets/finworld.png" alt="FinWorld Architecture Diagram" style="max-width: 100%; height: auto; border-radius: 12px; box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);">
+                    <p style="margin-top: 15px; color: #64748b; font-style: italic;">Figure 1: FinWorld's comprehensive seven-layer architecture</p>
                 </div>
-            </section>
+                
+                <h3>Why Seven Layers?</h3>
+                <p>The seven-layer design addresses the complexity of financial AI systems by providing:</p>
+                <ul>
+                    <li><strong>Clear Separation of Concerns</strong> - Each layer handles specific responsibilities without overlap</li>
+                    <li><strong>Modular and Decoupled Design</strong> - Components are self-contained with well-defined interfaces</li>
+                    <li><strong>Extensibility and Paradigm Fusion</strong> - Standardized extension points for novel algorithms and datasets</li>
+                    <li><strong>Unified Interface</strong> - Consistent APIs across different AI paradigms</li>
+                    <li><strong>Reproducibility</strong> - Standardized configuration and evaluation protocols</li>
+                </ul>
+                
+                <h3>Layer Overview</h3>
+                <ol>
+                    <li><strong>Configuration Layer</strong> - Centralizes all experiment and system settings for reproducibility</li>
+                    <li><strong>Dataset Layer</strong> - Handles data collection, preprocessing, and management for various financial datasets</li>
+                    <li><strong>Model Layer</strong> - Supports multiple paradigms (ML, DL, RL, LLMs, LLM Agents) for flexible modeling</li>
+                    <li><strong>Training Layer</strong> - Oversees training, hyperparameter tuning, and distributed learning</li>
+                    <li><strong>Evaluation Layer</strong> - Provides standardized evaluation protocols and metrics for financial applications</li>
+                    <li><strong>Task Layer</strong> - Defines and organizes financial tasks for rapid prototyping and extension</li>
+                    <li><strong>Presentation Layer</strong> - Enables visualization, reporting, and interactive analysis of results</li>
+                </ol>
+            </div>
 
-            <!-- Layer 1: Configuration -->
-            <section id="layer1">
-                <div class="layer-card">
-                    <div class="layer-number">1</div>
-                    <h3 class="layer-title">Configuration Layer</h3>
-                    <p class="layer-description">Built on mmengine for unified experiment management with registry mechanism and configuration inheritance.</p>
-                    
-                    <h4>Key Components:</h4>
-                    <ul class="layer-components">
-                        <li>Registry System: Flexible component management and instantiation</li>
-                        <li>Configuration Inheritance: Support for configuration overrides and extensions</li>
-                        <li>Experiment Management: Centralized configuration for reproducibility</li>
-                        <li>Parameter Validation: Automatic configuration validation and error checking</li>
-                    </ul>
-                </div>
-            </section>
+            <!-- Configuration Layer -->
+            <div class="content-section">
+                <h2>Configuration Layer</h2>
+                <p>The configuration layer is built on <code>mmengine</code> and provides a unified and extensible system using dictionaries. It centralizes all experimental settings, including datasets, models, training, and evaluation, in a readable and modular format.</p>
+                
+                <h3>Key Features</h3>
+                <ul>
+                    <li><strong>Unified Configuration</strong> - All experimental settings in one place</li>
+                    <li><strong>Configuration Inheritance</strong> - Support for configuration inheritance and overrides</li>
+                    <li><strong>Registry Mechanism</strong> - Manages core components by type</li>
+                    <li><strong>Reproducibility</strong> - Ensures experiment reproducibility and collaborative development</li>
+                </ul>
+            </div>
 
-            <!-- Layer 2: Dataset -->
-            <section id="layer2">
-                <div class="layer-card">
-                    <div class="layer-number">2</div>
-                    <h3 class="layer-title">Dataset Layer</h3>
-                    <p class="layer-description">Multi-source data acquisition, feature engineering, task-specific organization, and RL environment encapsulation.</p>
-                    
-                    <h4>Core Modules:</h4>
-                    <ul class="layer-components">
-                        <li>Downloader Module: Multi-source data acquisition (FMP, Alpaca, AKShare, TuShare)</li>
-                        <li>Processor Module: Feature engineering and preprocessing (Alpha158 factors)</li>
-                        <li>Dataset Module: Task-specific data organization</li>
-                        <li>Environment Module: RL environment encapsulation</li>
-                    </ul>
-                </div>
-            </section>
+            <!-- Dataset Layer -->
+            <div class="content-section">
+                <h2>Dataset Layer</h2>
+                <p>The dataset layer comprises multiple functional modules designed to enable standardized, extensible, and task-oriented data management for financial AI research. It abstracts the complexities of diverse data sources and modalities, offering a unified interface for data acquisition, preprocessing, and task-specific organization.</p>
+                
+                <h3>Key Modules</h3>
+                <ul>
+                    <li><strong>Downloader Module</strong> - Market data downloaders (FMP, Alpaca) and LLM reasoning dataset downloaders</li>
+                    <li><strong>Processor Module</strong> - Factor computation (alpha158), feature selection, and normalization</li>
+                    <li><strong>Dataset Module</strong> - Task-specific data organization for trading, portfolio, and multi-asset problems</li>
+                    <li><strong>Dataloader Module</strong> - Standardized dataloaders for ML, DL, and LLM applications</li>
+                    <li><strong>Environment Module</strong> - Interactive environments for RL paradigms and LLM-based agents</li>
+                </ul>
+            </div>
 
-            <!-- Layer 3: Model -->
-            <section id="layer3">
-                <div class="layer-card">
-                    <div class="layer-number">3</div>
-                    <h3 class="layer-title">Model Layer</h3>
-                    <p class="layer-description">ML models, DL architectures, RL networks, and unified LLM interface with financial constraints.</p>
-                    
-                    <h4>Model Categories:</h4>
-                    <ul class="layer-components">
-                        <li>ML Models: Traditional ML algorithms (LightGBM, XGBoost)</li>
-                        <li>DL Models: Neural architectures (Transformer, LSTM, VAE)</li>
-                        <li>RL Models: Actor-critic networks with financial constraints</li>
-                        <li>LLM Models: Unified interface for commercial and open-source LLMs</li>
-                    </ul>
-                </div>
-            </section>
+            <!-- Model Layer -->
+            <div class="content-section">
+                <h2>Model Layer</h2>
+                <p>The model layer consists of multiple specialized modules that enable unified definition, management, and invocation of diverse modeling paradigms within the platform. It abstracts the construction and orchestration of traditional ML models, deep neural networks, and LLMs, providing standardized interfaces for consistent training, inference, and integration across multi-tasks.</p>
+                
+                <h3>Model Categories</h3>
+                <ul>
+                    <li><strong>ML Models</strong> - Linear/logistic regression, decision trees, random forests, gradient boosting (XGBoost, LightGBM)</li>
+                    <li><strong>DL Models</strong> - Neural architectures with components, layers, and networks (Autoformer, VAE, GPT-style decoders)</li>
+                    <li><strong>RL Models</strong> - Actor-critic abstraction with policy and value networks, financial constraints</li>
+                    <li><strong>LLMs Models</strong> - Unified interface for proprietary and open-source LLMs (GPT-4.1, Claude-4-Sonnet, Qwen2.5)</li>
+                </ul>
+            </div>
 
-            <!-- Layer 4: Training -->
-            <section id="layer4">
-                <div class="layer-card">
-                    <div class="layer-number">4</div>
-                    <h3 class="layer-title">Training Layer</h3>
-                    <p class="layer-description">Optimizers, loss functions, schedulers, metrics, and task-specific trainers with distributed support.</p>
-                    
-                    <h4>Training Components:</h4>
-                    <ul class="layer-components">
-                        <li>Optimizers: Adam, AdamW, SGD with gradient centralization</li>
-                        <li>Loss Functions: Regression, classification, and RL surrogate losses</li>
-                        <li>Schedulers: Cosine, linear, and adaptive learning rate scheduling</li>
-                        <li>Trainers: Task-specific training pipelines with distributed support</li>
-                    </ul>
-                </div>
-            </section>
+            <!-- Training Layer -->
+            <div class="content-section">
+                <h2>Training Layer</h2>
+                <p>The training layer offers a modular scaffold that abstracts every element required to optimize all method pipelines for financial applications. A uniform interface guarantees experiment reproducibility, smooth scaling from single GPU notebooks to distributed clusters, and quick transfer of best practices across tasks.</p>
+                
+                <h3>Key Components</h3>
+                <ul>
+                    <li><strong>Optimizer</strong> - Rich catalogue of first-order methods (SGD, Adam, AdamW) with gradient centralization and mixed precision</li>
+                    <li><strong>Loss</strong> - Flexible factory for regression, classification, and RL surrogate objectives</li>
+                    <li><strong>Scheduler</strong> - Static and adaptive strategies for learning rates and regularization</li>
+                    <li><strong>Metrics</strong> - Finance-specific diagnostics (ARR, SR, MDD) with configurable logging</li>
+                    <li><strong>Trainer</strong> - Orchestrates data loading, training loops, and experiment logging</li>
+                </ul>
+            </div>
 
-            <!-- Layer 5: Evaluation -->
-            <section id="layer5">
-                <div class="layer-card">
-                    <div class="layer-number">5</div>
-                    <h3 class="layer-title">Evaluation Layer</h3>
-                    <p class="layer-description">Financial-specific metrics, visualization tools, and standardized evaluation protocols.</p>
-                    
-                    <h4>Evaluation Components:</h4>
-                    <ul class="layer-components">
-                        <li>Financial Metrics: ARR, SR, MDD, CR, SoR, VOL</li>
-                        <li>Visualization: K-line charts, cumulative returns, compass plots</li>
-                        <li>Standardized Protocols: Consistent evaluation across all tasks</li>
-                        <li>Performance Tracking: Real-time monitoring and analysis</li>
-                    </ul>
-                </div>
-            </section>
+            <!-- Evaluation Layer -->
+            <div class="content-section">
+                <h2>Evaluation Layer</h2>
+                <p>The evaluation layer provides a comprehensive and extensible framework for assessing financial AI models and strategies. It dynamically selects and applies appropriate evaluation protocols and metrics based on the specific task and model type, supporting both established benchmarks and user-defined criteria.</p>
+                
+                <h3>Key Features</h3>
+                <ul>
+                    <li><strong>Financial Metrics</strong> - ARR, MDD, SR, MSE with flexible combination and extension</li>
+                    <li><strong>Visualization Tools</strong> - Candlestick charts, cumulative return plots, drawdown curves, trade annotations</li>
+                    <li><strong>Systematic Comparison</strong> - Supports systematic comparison, diagnosis, and iterative improvement</li>
+                    <li><strong>Integration</strong> - Integrated into trainer's validation and test stages</li>
+                </ul>
+            </div>
 
-            <!-- Layer 6: Task -->
-            <section id="layer6">
-                <div class="layer-card">
-                    <div class="layer-number">6</div>
-                    <h3 class="layer-title">Task Layer</h3>
-                    <p class="layer-description">Time series forecasting, algorithmic trading, portfolio management, and LLM applications.</p>
-                    
-                    <h4>Supported Tasks:</h4>
-                    <ul class="layer-components">
-                        <li>Time Series Forecasting: Multi-step prediction with various horizons</li>
-                        <li>Algorithmic Trading: Single-asset trading with risk management</li>
-                        <li>Portfolio Management: Multi-asset allocation with constraints</li>
-                        <li>LLM Applications: Financial reasoning and agent training</li>
-                    </ul>
-                </div>
-            </section>
+            <!-- Task Layer -->
+            <div class="content-section">
+                <h2>Task Layer</h2>
+                <p>The task layer is responsible for the systematic definition, abstraction, and encapsulation of financial AI task types. It systematically supports a wide spectrum of financial AI tasks, providing unified abstractions and modular interfaces that facilitate integration with upstream data modules and downstream modeling components.</p>
+                
+                <h3>Core Tasks</h3>
+                <ul>
+                    <li><strong>Time Series Forecasting</strong> - Predictive modeling for financial time series</li>
+                    <li><strong>Algorithmic Trading</strong> - Automated trading strategy development</li>
+                    <li><strong>Portfolio Management</strong> - Multi-asset portfolio optimization</li>
+                    <li><strong>LLM Applications</strong> - Financial reasoning and LLM-based agent training</li>
+                </ul>
+            </div>
 
-            <!-- Layer 7: Presentation -->
-            <section id="layer7">
-                <div class="layer-card">
-                    <div class="layer-number">7</div>
-                    <h3 class="layer-title">Presentation Layer</h3>
-                    <p class="layer-description">Auto-reporting, multi-channel publishing, and version control for systematic archiving.</p>
-                    
-                    <h4>Presentation Features:</h4>
-                    <ul class="layer-components">
-                        <li>Auto-reporting: LaTeX technical reports and HTML dashboards</li>
-                        <li>Multi-channel Publishing: GitHub, GitHub Pages, and experiment tracking</li>
-                        <li>Version Control: Systematic archiving and knowledge transfer</li>
-                        <li>Visualization: Interactive charts and performance dashboards</li>
-                    </ul>
-                </div>
-            </section>
-        </div>
+            <!-- Presentation Layer -->
+            <div class="content-section">
+                <h2>Presentation Layer</h2>
+                <p>The presentation layer is designed for automated dissemination and documentation of experimental results. It orchestrates the aggregation of evaluation outputs, automatic generation of technical reports, and the creation of interactive web pages for result interpretation and dissemination.</p>
+                
+                <h3>Key Features</h3>
+                <ul>
+                    <li><strong>Automated Reporting</strong> - Automatic generation of technical reports and documentation</li>
+                    <li><strong>Interactive Web Pages</strong> - Creation of interactive result interpretation pages</li>
+                    <li><strong>Platform Integration</strong> - Seamless integration with GitHub, WandB, and other collaborative platforms</li>
+                    <li><strong>Real-time Visualization</strong> - Live visualization and comparison of metrics throughout research lifecycle</li>
+                </ul>
+            </div>
+        </main>
     </div>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>FinWorld</h3>
-                    <p>Empowering Financial AI Research and Applications</p>
-                </div>
-                <div class="footer-section">
-                    <h4>Links</h4>
-                    <ul>
-                        <li><a href="https://github.com/DVampire/FinWorld">GitHub</a></li>
-                        <li><a href="https://arxiv.org/abs/2508.02292">Paper</a></li>
-                        <li><a href="documentation.html">Documentation</a></li>
-                        <li><a href="index.html">Home</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Authors</h4>
-                    <p>Wentao Zhang, Yilei Zhao, Chuqiao Zong, Xinrun Wang, Bo An</p>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 FinWorld Team. Built with ❤️ for the financial AI community.</p>
-            </div>
-        </div>
-    </footer>
+    <!-- Footer Container -->
+    <div id="footer-container"></div>
 
-    <script src="script.js"></script>
+    <!-- Load Components -->
+    <script src="components/load-components.js"></script>
 </body>
 </html>

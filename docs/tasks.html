@@ -1,0 +1,1366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FinWorld Tasks</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="docs.css">
+    <link rel="stylesheet" href="workflow.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- MathJax for mathematical formulas -->
+    <script src="mathjax-config.js"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+    <!-- Navigation Container -->
+    <div id="navigation-container"></div>
+
+    <!-- Sidebar Container -->
+    <div id="sidebar-container"></div>
+
+    <!-- Documentation Container -->
+    <div class="docs-container">
+        <!-- Main Content -->
+        <main class="docs-content">
+            <a href="documentation.html" class="back-to-home">
+                <i class="fas fa-arrow-left"></i> Back to Documentation
+            </a>
+
+            <div class="docs-header">
+                <h1>Financial AI Tasks</h1>
+                <p>Comprehensive overview of the four core financial AI tasks supported by FinWorld</p>
+            </div>
+
+            <!-- Task Overview -->
+            <div class="content-section">
+                <h2>Task Overview</h2>
+                <p>FinWorld supports four core financial AI tasks that cover the entire spectrum of financial AI applications. Each task is designed with specific mathematical formulations and can be approached using multiple AI paradigms including traditional ML, deep learning, reinforcement learning, and large language models.</p>
+                
+                <h3>Notation</h3>
+                <p>Throughout this documentation, we use the following notation:</p>
+                <ul>
+                    <li><strong>Single Asset:</strong> $\mathbf{x}_{1:T} = \{x_1, ..., x_T\} \in \mathbb{R}^{T \times D}$ - Historical endogenous time series</li>
+                    <li><strong>Multi-Asset:</strong> $\mathbf{x}_{1:T} \in \mathbb{R}^{N \times T \times D}$ - Historical price sequences for $N$ assets</li>
+                    <li><strong>Exogenous Variables:</strong> $\mathbf{z}_{1:T_{\mathrm{ex}}} = \{\mathbf{z}_1, ..., \mathbf{z}_{T_{\mathrm{ex}}}\} \in \mathbb{R}^{T_{\mathrm{ex}} \times C}$ - Technical indicators, financial factors, news sentiment</li>
+                </ul>
+            </div>
+
+            <!-- Time Series Forecasting -->
+            <div class="content-section">
+                <h2>Time Series Forecasting</h2>
+                <p>Financial time series forecasting differs from traditional forecasting in two key ways: it predicts returns rather than prices (due to non-stationarity), and it typically involves multiple assets simultaneously to reflect real-world portfolio management requirements.</p>
+                
+                <h3>Mathematical Formulation</h3>
+                <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 20px; margin: 20px 0; font-family: 'Times New Roman', serif;">
+                    <p><strong>Given:</strong> Historical prices of $N$ stocks $\mathbf{x}_{1:T} \in \mathbb{R}^{N \times T \times D}$ and exogenous variables $\mathbf{z}_{1:T_{\mathrm{ex}}}$</p>
+                    <p><strong>Goal:</strong> Predict future $S$-day relative returns for all assets</p>
+                    <div style="text-align: center; margin: 20px 0;">
+                        $$\hat{\mathbf{R}}_{T+1:T+S} = \mathcal{F}_\theta(\mathbf{x}_{1:T}, \mathbf{z}_{1:T_{\mathrm{ex}}})$$
+                    </div>
+                    <p><strong>Where:</strong></p>
+                    <ul>
+                        <li>$\hat{\mathbf{R}}_{T+1:T+S} \in \mathbb{R}^{N \times S}$ are predicted relative returns</li>
+                        <li>$\mathbf{R}_t = \frac{\mathbf{x}_t}{\mathbf{x}_T} - 1$ (relative return calculation)</li>
+                        <li>$\mathcal{F}_\theta$ is the forecasting model parameterized by $\theta$</li>
+                    </ul>
+                </div>
+                
+                <!-- Workflow Diagram -->
+                <div class="workflow-container">
+                    <h3 class="workflow-title">🔮 Multi-Asset Time Series Forecasting Workflow</h3>
+                    
+                    <div class="dashboard-container">
+                        <div class="dashboard-grid">
+                            <!-- Left Column: Input Data -->
+                            <div class="dashboard-column">
+                                <div class="metric-card input-card">
+                                    <div class="card-number">1</div>
+                                    <div class="card-header">
+                                        <div class="metric-icon">📊</div>
+                                        <div class="metric-title">Historical Price Data</div>
+                                        <div class="metric-type">Input: $\mathbf{x}_{1:T} \in \mathbb{R}^{N \times T \times D}$</div>
+                                    </div>
+                                    <div class="metric-content">
+                                        <div class="data-item">
+                                            <span class="asset">📈 AAPL</span>
+                                            <span class="value">30-day history</span>
+                                        </div>
+                                        <div class="data-item">
+                                            <span class="asset">💻 MSFT</span>
+                                            <span class="value">30-day history</span>
+                                        </div>
+                                        <div class="data-item">
+                                            <span class="asset">🔍 GOOGL</span>
+                                            <span class="value">30-day history</span>
+                                        </div>
+                                        <div class="data-item">
+                                            <span class="asset">⚡ TSLA</span>
+                                            <span class="value">30-day history</span>
+                                        </div>
+                                        <div class="data-item">
+                                            <span class="asset">🏦 JPM</span>
+                                            <span class="value">30-day history</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="metric-card input-card">
+                                    <div class="card-number">2</div>
+                                    <div class="card-header">
+                                        <div class="metric-icon">⚙️</div>
+                                        <div class="metric-title">Feature Engineering</div>
+                                        <div class="metric-type">Processing + Exogenous Variables</div>
+                                    </div>
+                                    <div class="metric-content">
+                                        <div class="feature-item">
+                                            <span class="feature">🔧 Price Features</span>
+                                            <span class="method">OHLCV + Returns</span>
+                                        </div>
+                                        <div class="feature-item">
+                                            <span class="feature">📊 Technical Indicators</span>
+                                            <span class="count">15 indicators</span>
+                                        </div>
+                                        <div class="feature-item">
+                                            <span class="feature">🌍 Exogenous Variables</span>
+                                            <span class="method">$\mathbf{z}_{1:T_{\mathrm{ex}}}$</span>
+                                        </div>
+                                        <div class="feature-item">
+                                            <span class="feature">📈 Time Window</span>
+                                            <span class="days">T=30 days</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Center Column: Model -->
+                            <div class="dashboard-column center">
+                                <div class="metric-card model-card">
+                                    <div class="card-number">3</div>
+                                    <div class="card-header">
+                                        <div class="metric-icon">🤖</div>
+                                        <div class="metric-title">Multi-Asset Forecasting Model</div>
+                                        <div class="metric-type">Model: $\hat{\mathbf{R}}_{T+1:T+S}$</div>
+                                    </div>
+                                    <div class="metric-content">
+                                        <div class="model-metric">
+                                            <div class="main-value">S=5</div>
+                                            <div class="main-label">Forecast Horizon (days)</div>
+                                        </div>
+                                        <div class="performance-indicators">
+                                            <div class="indicator">
+                                                <span class="label">Model</span>
+                                                <span class="value">$\mathcal{F}_\theta$</span>
+                                            </div>
+                                            <div class="indicator">
+                                                <span class="label">Architecture</span>
+                                                <span class="value">LSTM</span>
+                                            </div>
+                                            <div class="indicator">
+                                                <span class="label">Output</span>
+                                                <span class="value">$\mathbb{R}^{N \times S}$</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Right Column: Output Results -->
+                            <div class="dashboard-column">
+                                <div class="metric-card output-card">
+                                    <div class="card-number">4</div>
+                                    <div class="card-header">
+                                        <div class="metric-icon">🔮</div>
+                                        <div class="metric-title">Predicted Relative Returns</div>
+                                        <div class="metric-type">Output: $\mathbf{R}_{t} = \frac{\mathbf{x}_t}{\mathbf{x}_T} - 1$</div>
+                                    </div>
+                                    <div class="metric-content">
+                                        <div class="prediction-item positive">
+                                            <span class="asset">📈 AAPL</span>
+                                            <span class="return">+2.3%</span>
+                                        </div>
+                                        <div class="prediction-item positive">
+                                            <span class="asset">💻 MSFT</span>
+                                            <span class="return">+1.8%</span>
+                                        </div>
+                                        <div class="prediction-item positive">
+                                            <span class="asset">🔍 GOOGL</span>
+                                            <span class="return">+1.5%</span>
+                                        </div>
+                                        <div class="prediction-item positive">
+                                            <span class="asset">⚡ TSLA</span>
+                                            <span class="return">+3.2%</span>
+                                        </div>
+                                        <div class="prediction-item positive">
+                                            <span class="asset">🏦 JPM</span>
+                                            <span class="return">+1.9%</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="metric-card task-card">
+                                    <div class="card-number">5</div>
+                                    <div class="card-header">
+                                        <div class="metric-icon">📈</div>
+                                        <div class="metric-title">Portfolio Performance</div>
+                                        <div class="metric-type">Task</div>
+                                    </div>
+                                    <div class="metric-content">
+                                        <div class="task-item">
+                                            <span class="task-label">Expected Return</span>
+                                            <span class="task-value positive">+2.2%</span>
+                                        </div>
+                                        <div class="task-item">
+                                            <span class="task-label">Sharpe Ratio</span>
+                                            <span class="task-value">1.8</span>
+                                        </div>
+                                        <div class="task-item">
+                                            <span class="task-label">Volatility</span>
+                                            <span class="task-value">12-15%</span>
+                                        </div>
+                                        <div class="task-item">
+                                            <span class="task-label">Confidence</span>
+                                            <span class="task-value positive">78%</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                
+                
+                <h3>Key Features</h3>
+                <ul>
+                    <li><strong>Multi-Asset Prediction</strong> - Simultaneous forecasting for multiple assets</li>
+                    <li><strong>Return-Based</strong> - Predicts returns rather than absolute prices</li>
+                    <li><strong>Exogenous Integration</strong> - Incorporates technical indicators and external factors</li>
+                    <li><strong>Flexible Horizons</strong> - Supports various prediction horizons (S days)</li>
+                </ul>
+            </div>
+
+            <!-- Algorithmic Trading -->
+            <div class="content-section">
+                <h2>Algorithmic Trading</h2>
+                <p>Algorithmic trading involves the design, simulation, and evaluation of systematic trading strategies with emphasis on real-time decision making and risk management. FinWorld supports both ML/DL-based and RL-based approaches.</p>
+                
+                <h3>ML/DL-based Approach</h3>
+                <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 20px; margin: 20px 0; font-family: 'Times New Roman', serif;">
+                    <p><strong>Goal:</strong> Predict future price returns or movement directions</p>
+                    <div style="text-align: center; margin: 20px 0;">
+                        $$\hat{y}_{T+1:T+S} = \mathcal{F}_\theta(\mathbf{x}_{1:T}, \mathbf{z}_{1:T_{\mathrm{ex}}})$$
+                    </div>
+                    <p><strong>Trading Actions:</strong></p>
+                    <ul>
+                        <li>Buy if $\hat{y}_t > \tau$</li>
+                        <li>Sell if $\hat{y}_t < -\tau$</li>
+                        <li>Hold otherwise</li>
+                    </ul>
+                    <p><strong>Where:</strong></p>
+                    <ul>
+                        <li>$\hat{y}_t$ represents predicted return, probability, or trading signals</li>
+                        <li>$\tau$ is a threshold parameter</li>
+                        <li>Actions are determined by pre-defined decision rules</li>
+                    </ul>
+                </div>
+                
+                <h3>RL-based Approach</h3>
+                <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 20px; margin: 20px 0; font-family: 'Times New Roman', serif;">
+                    <p><strong>Modeled as Markov Decision Process (MDP):</strong></p>
+                    <p>At each time step $t$:</p>
+                    <ul>
+                        <li>Observe state $s_t$ (constructed from $\mathbf{x}_{1:t}$ and $\mathbf{z}_{1:t}$)</li>
+                        <li>Choose action $a_t \in \mathcal{A}$</li>
+                        <li>Earn reward $r_t$</li>
+                        <li>Transition to next state $s_{t+1}$</li>
+                    </ul>
+                    <p><strong>Objective:</strong> Learn policy $\pi_\theta(a_t \mid s_t)$ that maximizes:</p>
+                    <div style="text-align: center; margin: 20px 0;">
+                        $$\max_\theta~ \mathbb{E}_{\pi_\theta} \left[\sum_{t=T+1}^{T+S} r_t\right]$$
+                    </div>
+                </div>
+                
+                <!-- Trading Workflow Diagram -->
+                <div class="workflow-container">
+                    <h3 class="workflow-title">🤖 Algorithmic Trading Workflow</h3>
+                    
+                    <!-- ML/DL Approach -->
+                    <div class="approach-section">
+                        <h4 class="approach-title">📊 ML/DL-based Approach</h4>
+                        <div class="dashboard-container">
+                            <div class="dashboard-grid">
+                                <!-- Left Column: Input Data -->
+                                <div class="dashboard-column">
+                                    <div class="metric-card input-card">
+                                        <div class="card-number">1</div>
+                                        <div class="card-header">
+                                            <div class="metric-icon">📊</div>
+                                            <div class="metric-title">Market Data</div>
+                                            <div class="metric-type">Input: $\mathbf{x}_{1:T} \in \mathbb{R}^{T \times D}$</div>
+                                        </div>
+                                        <div class="metric-content">
+                                            <div class="data-item">
+                                                <span class="asset">📈 AAPL</span>
+                                                <span class="value">$150.25</span>
+                                            </div>
+                                            <div class="data-item">
+                                                <span class="asset">📊 Volume</span>
+                                                <span class="value">2.1M</span>
+                                            </div>
+                                            <div class="data-item">
+                                                <span class="asset">📰 News</span>
+                                                <span class="value">iPhone sales up</span>
+                                            </div>
+                                            <div class="data-item">
+                                                <span class="asset">⏰ Time</span>
+                                                <span class="value">09:30:15 EST</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="metric-card input-card">
+                                        <div class="card-number">2</div>
+                                        <div class="card-header">
+                                            <div class="metric-icon">⚙️</div>
+                                            <div class="metric-title">Feature Engineering</div>
+                                            <div class="metric-type">Processing + Exogenous Variables</div>
+                                        </div>
+                                        <div class="metric-content">
+                                            <div class="feature-item">
+                                                <span class="feature">📈 Price Features</span>
+                                                <span class="method">OHLCV + Returns</span>
+                                            </div>
+                                            <div class="feature-item">
+                                                <span class="feature">📊 Technical</span>
+                                                <span class="method">RSI, MACD, MA</span>
+                                            </div>
+                                            <div class="feature-item">
+                                                <span class="feature">📰 Sentiment</span>
+                                                <span class="method">News Analysis</span>
+                                            </div>
+                                            <div class="feature-item">
+                                                <span class="feature">⏰ Time</span>
+                                                <span class="days">T=30 days</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Center Column: Model -->
+                                <div class="dashboard-column center">
+                                    <div class="metric-card model-card">
+                                        <div class="card-number">3</div>
+                                        <div class="card-header">
+                                            <div class="metric-icon">🤖</div>
+                                            <div class="metric-title">ML/DL Model</div>
+                                            <div class="metric-type">Predict: $\hat{y}_{T+1:T+S}$</div>
+                                        </div>
+                                        <div class="metric-content">
+                                            <div class="model-metric">
+                                                <div class="main-value">LSTM</div>
+                                                <div class="main-label">Architecture</div>
+                                            </div>
+                                            <div class="performance-indicators">
+                                                <div class="indicator">
+                                                    <span class="label">Input</span>
+                                                    <span class="value">$\mathbf{x}_{1:T}$</span>
+                                                </div>
+                                                <div class="indicator">
+                                                    <span class="label">Output</span>
+                                                    <span class="value">$\hat{y}_t$</span>
+                                                </div>
+                                                <div class="indicator">
+                                                    <span class="label">Confidence</span>
+                                                    <span class="value">78%</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Right Column: Output Results -->
+                                <div class="dashboard-column">
+                                    <div class="metric-card output-card">
+                                        <div class="card-number">4</div>
+                                        <div class="card-header">
+                                            <div class="metric-icon">📈</div>
+                                            <div class="metric-title">Trading Signal</div>
+                                            <div class="metric-type">Decision: Buy/Sell/Hold</div>
+                                        </div>
+                                        <div class="metric-content">
+                                            <div class="prediction-item positive">
+                                                <span class="asset">📈 Signal</span>
+                                                <span class="return">BUY</span>
+                                            </div>
+                                            <div class="prediction-item">
+                                                <span class="asset">🎯 Target</span>
+                                                <span class="return">$155.50</span>
+                                            </div>
+                                            <div class="prediction-item">
+                                                <span class="asset">🛡️ Stop</span>
+                                                <span class="return">$148.00</span>
+                                            </div>
+                                            <div class="prediction-item">
+                                                <span class="asset">📊 Confidence</span>
+                                                <span class="return">85%</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="metric-card task-card">
+                                        <div class="card-number">5</div>
+                                        <div class="card-header">
+                                            <div class="metric-icon">💼</div>
+                                            <div class="metric-title">Trading</div>
+                                            <div class="metric-type">Action</div>
+                                        </div>
+                                        <div class="metric-content">
+                                            <div class="task-item">
+                                                <span class="task-label">Action</span>
+                                                <span class="task-value positive">BUY 100 AAPL</span>
+                                            </div>
+                                            <div class="task-item">
+                                                <span class="task-label">Price</span>
+                                                <span class="task-value">$150.30</span>
+                                            </div>
+                                            <div class="task-item">
+                                                <span class="task-label">Cost</span>
+                                                <span class="task-value">$15,030</span>
+                                            </div>
+                                            <div class="task-item">
+                                                <span class="task-label">Status</span>
+                                                <span class="task-value positive">Filled</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- RL Approach -->
+                    <div class="approach-section">
+                        <h4 class="approach-title">🧠 RL-based Approach</h4>
+                        <div class="dashboard-container">
+                            <div class="dashboard-grid">
+                                <!-- Left Column: State & Action -->
+                                <div class="dashboard-column">
+                                    <div class="metric-card input-card">
+                                        <div class="card-number">1</div>
+                                        <div class="card-header">
+                                            <div class="metric-icon">👁️</div>
+                                            <div class="metric-title">State Observation</div>
+                                            <div class="metric-type">State: $s_t$</div>
+                                        </div>
+                                        <div class="metric-content">
+                                            <div class="data-item">
+                                                <span class="asset">📊 Market</span>
+                                                <span class="value">Price, Volume</span>
+                                            </div>
+                                            <div class="data-item">
+                                                <span class="asset">💼 Portfolio</span>
+                                                <span class="value">Positions, Cash</span>
+                                            </div>
+                                            <div class="data-item">
+                                                <span class="asset">📰 News</span>
+                                                <span class="value">Sentiment</span>
+                                            </div>
+                                            <div class="data-item">
+                                                <span class="asset">⏰ Time</span>
+                                                <span class="value">Market Hours</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="metric-card input-card">
+                                        <div class="card-number">2</div>
+                                        <div class="card-header">
+                                            <div class="metric-icon">🎯</div>
+                                            <div class="metric-title">Action Space</div>
+                                            <div class="metric-type">Actions: $\mathcal{A}$</div>
+                                        </div>
+                                        <div class="metric-content">
+                                            <div class="feature-item">
+                                                <span class="feature">📈 Buy</span>
+                                                <span class="method">Long Position</span>
+                                            </div>
+                                            <div class="feature-item">
+                                                <span class="feature">📉 Sell</span>
+                                                <span class="method">Short Position</span>
+                                            </div>
+                                            <div class="feature-item">
+                                                <span class="feature">⏸️ Hold</span>
+                                                <span class="method">No Action</span>
+                                            </div>
+                                            <div class="feature-item">
+                                                <span class="feature">💰 Size</span>
+                                                <span class="method">Position Size</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Center Column: RL Agent -->
+                                <div class="dashboard-column center">
+                                    <div class="metric-card model-card">
+                                        <div class="card-number">3</div>
+                                        <div class="card-header">
+                                            <div class="metric-icon">🤖</div>
+                                            <div class="metric-title">RL Agent</div>
+                                            <div class="metric-type">Policy: $\pi_\theta(a_t \mid s_t)$</div>
+                                        </div>
+                                        <div class="metric-content">
+                                            <div class="model-metric">
+                                                <div class="main-value">PPO</div>
+                                                <div class="main-label">Algorithm</div>
+                                            </div>
+                                            <div class="performance-indicators">
+                                                <div class="indicator">
+                                                    <span class="label">State</span>
+                                                    <span class="value">$s_t$</span>
+                                                </div>
+                                                <div class="indicator">
+                                                    <span class="label">Action</span>
+                                                    <span class="value">$a_t$</span>
+                                                </div>
+                                                <div class="indicator">
+                                                    <span class="label">Reward</span>
+                                                    <span class="value">$r_t$</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Right Column: Reward & Learning -->
+                                <div class="dashboard-column">
+                                    <div class="metric-card output-card">
+                                        <div class="card-number">4</div>
+                                        <div class="card-header">
+                                            <div class="metric-icon">💰</div>
+                                            <div class="metric-title">Reward Function</div>
+                                            <div class="metric-type">Reward: $r_t$</div>
+                                        </div>
+                                        <div class="metric-content">
+                                            <div class="prediction-item positive">
+                                                <span class="asset">📈 Returns</span>
+                                                <span class="return">+2.3%</span>
+                                            </div>
+                                            <div class="prediction-item">
+                                                <span class="asset">📊 Sharpe</span>
+                                                <span class="return">1.8</span>
+                                            </div>
+                                            <div class="prediction-item">
+                                                <span class="asset">📉 Drawdown</span>
+                                                <span class="return">-5.2%</span>
+                                            </div>
+                                            <div class="prediction-item">
+                                                <span class="asset">🎯 Risk</span>
+                                                <span class="return">15%</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="metric-card task-card">
+                                        <div class="card-number">5</div>
+                                        <div class="card-header">
+                                            <div class="metric-icon">🔄</div>
+                                            <div class="metric-title">Policy Learning</div>
+                                            <div class="metric-type">Optimization</div>
+                                        </div>
+                                        <div class="metric-content">
+                                            <div class="task-item">
+                                                <span class="task-label">Objective</span>
+                                                <span class="task-value">Max $\mathbb{E}[\sum r_t]$</span>
+                                            </div>
+                                            <div class="task-item">
+                                                <span class="task-label">Method</span>
+                                                <span class="task-value">Policy Gradient</span>
+                                            </div>
+                                            <div class="task-item">
+                                                <span class="task-label">Episodes</span>
+                                                <span class="task-value">10,000</span>
+                                            </div>
+                                            <div class="task-item">
+                                                <span class="task-label">Convergence</span>
+                                                <span class="task-value positive">85%</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <h3>Key Features</h3>
+                <ul>
+                    <li><strong>Real-time Decision Making</strong> - Immediate action selection based on market conditions</li>
+                    <li><strong>Risk Management</strong> - Built-in risk controls and position limits</li>
+                    <li><strong>Multiple Paradigms</strong> - Support for both predictive and RL approaches</li>
+                    <li><strong>Transaction Costs</strong> - Realistic simulation of trading costs and slippage</li>
+                </ul>
+            </div>
+
+            <!-- Portfolio Management -->
+            <div class="content-section">
+                <h2>Portfolio Management</h2>
+                <p>Portfolio management focuses on the construction, optimization, and dynamic rebalancing of investment portfolios subject to real-world operational constraints. It supports various objective functions including return maximization, volatility minimization, and Sharpe ratio optimization.</p>
+                
+                <h3>ML/DL-based Approach</h3>
+                <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 20px; margin: 20px 0; font-family: 'Times New Roman', serif;">
+                    <p><strong>Goal:</strong> Predict future asset returns or risk estimates</p>
+                    <div style="text-align: center; margin: 20px 0;">
+                        $$\hat{\mathbf{y}}_{T+1:T+S} = \mathcal{F}_\theta(\mathbf{x}_{1:T}, \mathbf{z}_{1:T_{\mathrm{ex}}})$$
+                    </div>
+                    <p><strong>Portfolio Weights:</strong></p>
+                    <ul>
+                        <li>$\mathbf{w}_{T+1:T+S}$ where $\sum_{i=1}^N w_{t,i} = 1$ and $w_{t,i} \geq 0$</li>
+                        <li>Determined by optimization procedures (mean-variance, risk parity, etc.)</li>
+                    </ul>
+                    <p><strong>Where:</strong></p>
+                    <ul>
+                        <li>$\hat{\mathbf{y}}_t$ may represent predicted returns, risk scores, or signals</li>
+                        <li>Weights are optimized based on predictions</li>
+                    </ul>
+                </div>
+                
+                <h3>RL-based Approach</h3>
+                <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 20px; margin: 20px 0; font-family: 'Times New Roman', serif;">
+                    <p><strong>Sequential Decision Process:</strong></p>
+                    <p>At each time $t$:</p>
+                    <ul>
+                        <li>Observe state $s_t$ (constructed from $\mathbf{x}_{1:t}$ and $\mathbf{z}_{1:t}$)</li>
+                        <li>Select allocation weights $\mathbf{w}_t \in \Delta^{N+1}$</li>
+                        <li>Receive reward $r_t$ (portfolio return or risk-adjusted reward)</li>
+                        <li>Transition to next state $s_{t+1}$</li>
+                    </ul>
+                    <p><strong>Objective:</strong> Learn policy $\pi_\theta(\mathbf{w}_t \mid s_t)$ that maximizes:</p>
+                    <div style="text-align: center; margin: 20px 0;">
+                        $$\max_\theta~ \mathbb{E}_{\pi_\theta} \left[\sum_{t=T+1}^{T+S} U(\mathbf{w}_t, \mathbf{x}_t)\right]$$
+                    </div>
+                    <p><strong>Where:</strong></p>
+                    <ul>
+                        <li>$w_{t,0}$ represents cash position</li>
+                        <li>$U(\cdot)$ represents cumulative portfolio return</li>
+                    </ul>
+                </div>
+                
+                <!-- Portfolio Management Workflow Diagram -->
+                <div class="workflow-container">
+                    <h3 class="workflow-title">💼 Portfolio Management Workflow</h3>
+                    
+                    <!-- ML/DL Approach -->
+                    <div class="approach-section">
+                        <h4 class="approach-title">📊 ML/DL-based Approach</h4>
+                        <div class="dashboard-container">
+                            <div class="dashboard-grid">
+                                <!-- Left Column: Input Data -->
+                                <div class="dashboard-column">
+                                    <div class="metric-card input-card">
+                                        <div class="card-number">1</div>
+                                        <div class="card-header">
+                                            <div class="metric-icon">📊</div>
+                                            <div class="metric-title">Multi-Asset Data</div>
+                                            <div class="metric-type">Input: $\mathbf{x}_{1:T} \in \mathbb{R}^{N \times T \times D}$</div>
+                                        </div>
+                                        <div class="metric-content">
+                                            <div class="data-item">
+                                                <span class="asset">📈 AAPL</span>
+                                                <span class="value">$150.25</span>
+                                            </div>
+                                            <div class="data-item">
+                                                <span class="asset">💻 MSFT</span>
+                                                <span class="value">$380.50</span>
+                                            </div>
+                                            <div class="data-item">
+                                                <span class="asset">🔍 GOOGL</span>
+                                                <span class="value">$2,850</span>
+                                            </div>
+                                            <div class="data-item">
+                                                <span class="asset">📊 VIX</span>
+                                                <span class="value">18.5</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="metric-card input-card">
+                                        <div class="card-number">2</div>
+                                        <div class="card-header">
+                                            <div class="metric-icon">⚙️</div>
+                                            <div class="metric-title">Feature Engineering</div>
+                                            <div class="metric-type">Processing + Exogenous Variables</div>
+                                        </div>
+                                        <div class="metric-content">
+                                            <div class="feature-item">
+                                                <span class="feature">📈 Returns</span>
+                                                <span class="method">Historical Returns</span>
+                                            </div>
+                                            <div class="feature-item">
+                                                <span class="feature">📊 Risk</span>
+                                                <span class="method">Volatility, VaR</span>
+                                            </div>
+                                            <div class="feature-item">
+                                                <span class="feature">🔗 Correlation</span>
+                                                <span class="method">Asset Correlations</span>
+                                            </div>
+                                            <div class="feature-item">
+                                                <span class="feature">⏰ Time</span>
+                                                <span class="days">T=30 days</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Center Column: Model -->
+                                <div class="dashboard-column center">
+                                    <div class="metric-card model-card">
+                                        <div class="card-number">3</div>
+                                        <div class="card-header">
+                                            <div class="metric-icon">🤖</div>
+                                            <div class="metric-title">ML/DL Model</div>
+                                            <div class="metric-type">Predict: $\hat{\mathbf{y}}_{T+1:T+S}$</div>
+                                        </div>
+                                        <div class="metric-content">
+                                            <div class="model-metric">
+                                                <div class="main-value">LSTM</div>
+                                                <div class="main-label">Architecture</div>
+                                            </div>
+                                            <div class="performance-indicators">
+                                                <div class="indicator">
+                                                    <span class="label">Input</span>
+                                                    <span class="value">$\mathbf{x}_{1:T}$</span>
+                                                </div>
+                                                <div class="indicator">
+                                                    <span class="label">Output</span>
+                                                    <span class="value">$\hat{\mathbf{y}}_t$</span>
+                                                </div>
+                                                <div class="indicator">
+                                                    <span class="label">Assets</span>
+                                                    <span class="value">N=4</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Right Column: Output Results -->
+                                <div class="dashboard-column">
+                                    <div class="metric-card output-card">
+                                        <div class="card-number">4</div>
+                                        <div class="card-header">
+                                            <div class="metric-icon">⚖️</div>
+                                            <div class="metric-title">Portfolio Weights</div>
+                                            <div class="metric-type">Weights: $\mathbf{w}_{T+1:T+S}$</div>
+                                        </div>
+                                        <div class="metric-content">
+                                            <div class="prediction-item positive">
+                                                <span class="asset">📈 AAPL</span>
+                                                <span class="return">35%</span>
+                                            </div>
+                                            <div class="prediction-item">
+                                                <span class="asset">💻 MSFT</span>
+                                                <span class="return">30%</span>
+                                            </div>
+                                            <div class="prediction-item">
+                                                <span class="asset">🔍 GOOGL</span>
+                                                <span class="return">25%</span>
+                                            </div>
+                                            <div class="prediction-item">
+                                                <span class="asset">💰 Cash</span>
+                                                <span class="return">10%</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="metric-card task-card">
+                                        <div class="card-number">5</div>
+                                        <div class="card-header">
+                                            <div class="metric-icon">💼</div>
+                                            <div class="metric-title">Portfolio Management</div>
+                                            <div class="metric-type">Action</div>
+                                        </div>
+                                        <div class="metric-content">
+                                            <div class="task-item">
+                                                <span class="task-label">Expected Return</span>
+                                                <span class="task-value positive">8.5%</span>
+                                            </div>
+                                            <div class="task-item">
+                                                <span class="task-label">Risk</span>
+                                                <span class="task-value">12.3%</span>
+                                            </div>
+                                            <div class="task-item">
+                                                <span class="task-label">Sharpe Ratio</span>
+                                                <span class="task-value">1.85</span>
+                                            </div>
+                                            <div class="task-item">
+                                                <span class="task-label">Rebalance</span>
+                                                <span class="task-value positive">Weekly</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- RL Approach -->
+                    <div class="approach-section">
+                        <h4 class="approach-title">🧠 RL-based Approach</h4>
+                        <div class="dashboard-container">
+                            <div class="dashboard-grid">
+                                <!-- Left Column: State & Action -->
+                                <div class="dashboard-column">
+                                    <div class="metric-card input-card">
+                                        <div class="card-number">1</div>
+                                        <div class="card-header">
+                                            <div class="metric-icon">👁️</div>
+                                            <div class="metric-title">State Observation</div>
+                                            <div class="metric-type">State: $s_t$</div>
+                                        </div>
+                                        <div class="metric-content">
+                                            <div class="data-item">
+                                                <span class="asset">📊 Market</span>
+                                                <span class="value">Prices, Volumes</span>
+                                            </div>
+                                            <div class="data-item">
+                                                <span class="asset">💼 Portfolio</span>
+                                                <span class="value">Current Weights</span>
+                                            </div>
+                                            <div class="data-item">
+                                                <span class="asset">📰 News</span>
+                                                <span class="value">Market Sentiment</span>
+                                            </div>
+                                            <div class="data-item">
+                                                <span class="asset">⏰ Time</span>
+                                                <span class="value">Market Hours</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="metric-card input-card">
+                                        <div class="card-number">2</div>
+                                        <div class="card-header">
+                                            <div class="metric-icon">🎯</div>
+                                            <div class="metric-title">Action Space</div>
+                                            <div class="metric-type">Actions: $\mathcal{A}$</div>
+                                        </div>
+                                        <div class="metric-content">
+                                            <div class="feature-item">
+                                                <span class="feature">⚖️ Weights</span>
+                                                <span class="method">$\mathbf{w}_t \in \Delta^{N+1}$</span>
+                                            </div>
+                                            <div class="feature-item">
+                                                <span class="feature">💰 Cash</span>
+                                                <span class="method">$w_{t,0}$</span>
+                                            </div>
+                                            <div class="feature-item">
+                                                <span class="feature">📈 Assets</span>
+                                                <span class="method">$w_{t,1:N}$</span>
+                                            </div>
+                                            <div class="feature-item">
+                                                <span class="feature">🔄 Rebalance</span>
+                                                <span class="method">Frequency</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Center Column: RL Agent -->
+                                <div class="dashboard-column center">
+                                    <div class="metric-card model-card">
+                                        <div class="card-number">3</div>
+                                        <div class="card-header">
+                                            <div class="metric-icon">🤖</div>
+                                            <div class="metric-title">RL Agent</div>
+                                            <div class="metric-type">Policy: $\pi_\theta(\mathbf{w}_t \mid s_t)$</div>
+                                        </div>
+                                        <div class="metric-content">
+                                            <div class="model-metric">
+                                                <div class="main-value">PPO</div>
+                                                <div class="main-label">Algorithm</div>
+                                            </div>
+                                            <div class="performance-indicators">
+                                                <div class="indicator">
+                                                    <span class="label">State</span>
+                                                    <span class="value">$s_t$</span>
+                                                </div>
+                                                <div class="indicator">
+                                                    <span class="label">Action</span>
+                                                    <span class="value">$\mathbf{w}_t$</span>
+                                                </div>
+                                                <div class="indicator">
+                                                    <span class="label">Reward</span>
+                                                    <span class="value">$r_t$</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Right Column: Reward & Learning -->
+                                <div class="dashboard-column">
+                                    <div class="metric-card output-card">
+                                        <div class="card-number">4</div>
+                                        <div class="card-header">
+                                            <div class="metric-icon">💰</div>
+                                            <div class="metric-title">Reward Function</div>
+                                            <div class="metric-type">Reward: $r_t$</div>
+                                        </div>
+                                        <div class="metric-content">
+                                            <div class="prediction-item positive">
+                                                <span class="asset">📈 Returns</span>
+                                                <span class="return">+8.5%</span>
+                                            </div>
+                                            <div class="prediction-item">
+                                                <span class="asset">📊 Sharpe</span>
+                                                <span class="return">1.85</span>
+                                            </div>
+                                            <div class="prediction-item">
+                                                <span class="asset">📉 Drawdown</span>
+                                                <span class="return">-5.2%</span>
+                                            </div>
+                                            <div class="prediction-item">
+                                                <span class="asset">🎯 Risk</span>
+                                                <span class="return">12.3%</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="metric-card task-card">
+                                        <div class="card-number">5</div>
+                                        <div class="card-header">
+                                            <div class="metric-icon">🔄</div>
+                                            <div class="metric-title">Policy Learning</div>
+                                            <div class="metric-type">Optimization</div>
+                                        </div>
+                                        <div class="metric-content">
+                                            <div class="task-item">
+                                                <span class="task-label">Objective</span>
+                                                <span class="task-value">Max $\mathbb{E}[\sum U(\mathbf{w}_t, \mathbf{x}_t)]$</span>
+                                            </div>
+                                            <div class="task-item">
+                                                <span class="task-label">Method</span>
+                                                <span class="task-value">Policy Gradient</span>
+                                            </div>
+                                            <div class="task-item">
+                                                <span class="task-label">Episodes</span>
+                                                <span class="task-value">10,000</span>
+                                            </div>
+                                            <div class="task-item">
+                                                <span class="task-label">Convergence</span>
+                                                <span class="task-value positive">88%</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <h3>Key Features</h3>
+                <ul>
+                    <li><strong>Multi-Asset Allocation</strong> - Simultaneous optimization across multiple assets</li>
+                    <li><strong>Risk Constraints</strong> - Position limits, transaction costs, and regulatory constraints</li>
+                    <li><strong>Dynamic Rebalancing</strong> - Adaptive portfolio adjustments over time</li>
+                    <li><strong>Objective Flexibility</strong> - Support for various risk-return objectives</li>
+                </ul>
+            </div>
+
+            <!-- LLM Applications -->
+            <div class="content-section">
+                <h2>LLM Applications</h2>
+                <p>LLM applications in finance encompass two main categories: general language understanding tasks and sequential decision-making tasks. These applications leverage the power of large language models for financial reasoning, analysis, and decision-making.</p>
+                
+                <h3>Mathematical Formulation</h3>
+                <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 20px; margin: 20px 0; font-family: 'Times New Roman', serif;">
+                    <p><strong>Given:</strong> Multi-modal financial inputs</p>
+                    <ul>
+                        <li>Unstructured text (news, reports)</li>
+                        <li>Structured time series (OHLC prices)</li>
+                        <li>Images (K-line charts)</li>
+                        <li>Audio/Video (financial broadcasts)</li>
+                    </ul>
+                    <p><strong>Goal:</strong> Train and deploy large language models $\mathcal{M}_\phi$</p>
+                    <div style="text-align: center; margin: 20px 0;">
+                        $$\mathbf{y} = \mathcal{M}_\phi(\mathbf{D}_1, \mathbf{D}_2, ..., \mathbf{D}_K)$$
+                    </div>
+                    <p><strong>Where:</strong></p>
+                    <ul>
+                        <li>Each $\mathbf{D}_k$ represents an input modality</li>
+                        <li>$\mathbf{y}$ is the task-specific output</li>
+                        <li>$\mathcal{M}_\phi$ is the LLM parameterized by $\phi$</li>
+                    </ul>
+                </div>
+                
+                <h3>Application Categories</h3>
+                <ul>
+                    <li><strong>General Language Understanding</strong> - Financial text analysis, QA, reasoning</li>
+                    <li><strong>Sequential Decision-Making</strong> - RL training through environment interaction</li>
+                    <li><strong>Multi-Modal Processing</strong> - Integration of text, time series, and visual data</li>
+                    <li><strong>Tool Utilization</strong> - Advanced tool use for financial analysis</li>
+                </ul>
+                
+                <!-- LLM Applications Workflow Diagram -->
+                <div class="workflow-container">
+                    <h3 class="workflow-title">🤖 LLM Applications Workflow</h3>
+                    
+                    <!-- Application Types -->
+                    <div class="approach-section">
+                        <h4 class="approach-title">📱 Application Types</h4>
+                        <div class="dashboard-container">
+                            <div class="dashboard-grid" style="grid-template-columns: 1fr 1fr 1fr;">
+                                <!-- Multi-modal Data -->
+                                <div class="dashboard-column">
+                                    <div class="metric-card input-card">
+                                        <div class="card-number">1</div>
+                                        <div class="card-header">
+                                            <div class="metric-icon">📊</div>
+                                            <div class="metric-title">Multi-Modal <br> Data</div>
+                                            <div class="metric-type">Sources</div>
+                                        </div>
+                                        <div class="metric-content">
+                                            <div class="data-item">
+                                                <span class="asset">📰 Text</span>
+                                                <span class="value">News, Reports</span>
+                                            </div>
+                                            <div class="data-item">
+                                                <span class="asset">📈 Time Series</span>
+                                                <span class="value">OHLC Prices</span>
+                                            </div>
+                                            <div class="data-item">
+                                                <span class="asset">📊 Images</span>
+                                                <span class="value">K-line Charts</span>
+                                            </div>
+                                            <div class="data-item">
+                                                <span class="asset">🎵 Audio/Video</span>
+                                                <span class="value">Financial Broadcasts</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- LLM Processing -->
+                                <div class="dashboard-column">
+                                    <div class="metric-card model-card">
+                                        <div class="card-number">2</div>
+                                        <div class="card-header">
+                                            <div class="metric-icon">🤖</div>
+                                            <div class="metric-title">LLM Processing</div>
+                                            <div class="metric-type">Model: $\mathcal{M}_\phi$</div>
+                                        </div>
+                                        <div class="metric-content">
+                                            <div class="data-item">
+                                                <span class="asset">🧠 Architecture</span>
+                                                <span class="value">Transformer-based</span>
+                                            </div>
+                                            <div class="data-item">
+                                                <span class="asset">📚 Training</span>
+                                                <span class="value">SFT + RL</span>
+                                            </div>
+                                            <div class="data-item">
+                                                <span class="asset">🎯 Capability</span>
+                                                <span class="value">Reasoning</span>
+                                            </div>
+                                            <div class="data-item">
+                                                <span class="asset">⚡ Output</span>
+                                                <span class="value">$\mathbf{y} = \mathcal{M}_\phi(\mathbf{D}_1, ..., \mathbf{D}_K)$</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Different Tasks -->
+                                <div class="dashboard-column">
+                                    <div class="metric-card output-card">
+                                        <div class="card-number">3</div>
+                                        <div class="card-header">
+                                            <div class="metric-icon">🎯</div>
+                                            <div class="metric-title">Different Tasks</div>
+                                            <div class="metric-type">Task Categories</div>
+                                        </div>
+                                        <div class="metric-content">
+                                            <div class="data-item">
+                                                <span class="asset">💬 General QA</span>
+                                                <span class="value">Financial Questions</span>
+                                            </div>
+                                            <div class="data-item">
+                                                <span class="asset">📈 Time Series</span>
+                                                <span class="value">Forecasting</span>
+                                            </div>
+                                            <div class="data-item">
+                                                <span class="asset">💼 Trading</span>
+                                                <span class="value">BUY/SELL/HOLD</span>
+                                            </div>
+                                            <div class="data-item">
+                                                <span class="asset">📊 Portfolio</span>
+                                                <span class="value">Asset Selection</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <h3>GRPO Training</h3>
+                    <p>Group Relative Policy Optimization (GRPO) is used for efficient LLM training in financial contexts:</p>
+                    <ul>
+                        <li><strong>Stage 1:</strong> Financial reasoning abilities using financial reasoning datasets</li>
+                        <li><strong>Stage 2:</strong> Real/simulated market environment interaction for practical skills</li>
+                        <li><strong>Group-level Normalization:</strong> Stable learning signals for fine-tuning</li>
+                        <li><strong>Environment Interaction:</strong> Direct trading environment interaction for skill acquisition</li>
+                    </ul>
+
+                    <!-- Two-Stage GRPO Training -->
+                    <div class="approach-section">
+                        <h4 class="approach-title">🔄 Two-Stage GRPO Training</h4>
+                        <div class="dashboard-container">
+                            <!-- Stage I: Financial Reasoning -->
+                            <div class="stage-section">
+                                <h5 class="stage-title">Stage I: Financial Reasoning Fine-tuning</h5>
+                                <div class="dashboard-grid" style="grid-template-columns: 1fr 1fr 1fr;">
+                                    <div class="dashboard-column">
+                                        <div class="metric-card input-card">
+                                            <div class="card-number">1</div>
+                                            <div class="card-header">
+                                                <div class="metric-icon">📚</div>
+                                                <div class="metric-title">Financial Datasets</div>
+                                                <div class="metric-type">Reasoning Tasks</div>
+                                            </div>
+                                            <div class="metric-content">
+                                                <div class="data-item">
+                                                    <span class="asset">📊 QA</span>
+                                                    <span class="value">Financial Questions</span>
+                                                </div>
+                                                <div class="data-item">
+                                                    <span class="asset">🧮 Math</span>
+                                                    <span class="value">Quantitative Analysis</span>
+                                                </div>
+                                                <div class="data-item">
+                                                    <span class="asset">📈 Analysis</span>
+                                                    <span class="value">Market Scenarios</span>
+                                                </div>
+                                                <div class="data-item">
+                                                    <span class="asset">🎯 Goal</span>
+                                                    <span class="value">Reasoning Skills</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="dashboard-column">
+                                        <div class="metric-card model-card">
+                                            <div class="card-number">2</div>
+                                            <div class="card-header">
+                                                <div class="metric-icon">🤖</div>
+                                                <div class="metric-title">RL <br>Training</div>
+                                                <div class="metric-type">Reasoning</div>
+                                            </div>
+                                            <div class="metric-content">
+                                                <div class="data-item">
+                                                    <span class="asset">📚 SFT</span>
+                                                    <span class="value">Supervised Learning</span>
+                                                </div>
+                                                <div class="data-item">
+                                                    <span class="asset">🔄 RL</span>
+                                                    <span class="value">Reinforcement Learning</span>
+                                                </div>
+                                                <div class="data-item">
+                                                    <span class="asset">🎯 Reward</span>
+                                                    <span class="value">Reasoning Quality</span>
+                                                </div>
+                                                <div class="data-item">
+                                                    <span class="asset">📈 Result</span>
+                                                    <span class="value">Financial Reasoning</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="dashboard-column">
+                                        <div class="metric-card output-card">
+                                            <div class="card-number">3</div>
+                                            <div class="card-header">
+                                                <div class="metric-icon">🧠</div>
+                                                <div class="metric-title">Reasoning Capability</div>
+                                                <div class="metric-type">Foundation Model</div>
+                                            </div>
+                                            <div class="metric-content">
+                                                <div class="data-item">
+                                                    <span class="asset">💭 Understanding</span>
+                                                    <span class="value">Financial Concepts</span>
+                                                </div>
+                                                <div class="data-item">
+                                                    <span class="asset">🧮 Calculation</span>
+                                                    <span class="value">Quantitative Skills</span>
+                                                </div>
+                                                <div class="data-item">
+                                                    <span class="asset">📊 Analysis</span>
+                                                    <span class="value">Market Interpretation</span>
+                                                </div>
+                                                <div class="data-item">
+                                                    <span class="asset">🎯 Limitation</span>
+                                                    <span class="value">No Market Experience</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Stage II: Market Environment Learning -->
+                            <div class="stage-section">
+                                <h5 class="stage-title">Stage II: Market Environment Learning</h5>
+                                <div class="dashboard-grid" style="grid-template-columns: 1fr 1fr 1fr;">
+                                    <div class="dashboard-column">
+                                        <div class="metric-card input-card">
+                                            <div class="card-number">4</div>
+                                            <div class="card-header">
+                                                <div class="metric-icon">📊</div>
+                                                <div class="metric-title">Market Environment</div>
+                                                <div class="metric-type">Real Market Data</div>
+                                            </div>
+                                            <div class="metric-content">
+                                                <div class="data-item">
+                                                    <span class="asset">📈 Prices</span>
+                                                    <span class="value">Historical Data</span>
+                                                </div>
+                                                <div class="data-item">
+                                                    <span class="asset">📰 News</span>
+                                                    <span class="value">Market Events</span>
+                                                </div>
+                                                <div class="data-item">
+                                                    <span class="asset">⚡ Volatility</span>
+                                                    <span class="value">Market Dynamics</span>
+                                                </div>
+                                                <div class="data-item">
+                                                    <span class="asset">🎯 Goal</span>
+                                                    <span class="value">Decision Making</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="dashboard-column">
+                                        <div class="metric-card model-card">
+                                            <div class="card-number">5</div>
+                                            <div class="card-header">
+                                                <div class="metric-icon">🔄</div>
+                                                <div class="metric-title">RL Training</div>
+                                                <div class="metric-type">Environment Interaction</div>
+                                            </div>
+                                            <div class="metric-content">
+                                                <div class="data-item">
+                                                    <span class="asset">🎮 Environment</span>
+                                                    <span class="value">Market Simulation</span>
+                                                </div>
+                                                <div class="data-item">
+                                                    <span class="asset">🎯 Actions</span>
+                                                    <span class="value">Trading Decisions</span>
+                                                </div>
+                                                <div class="data-item">
+                                                    <span class="asset">💰 Rewards</span>
+                                                    <span class="value">Financial Performance</span>
+                                                </div>
+                                                <div class="data-item">
+                                                    <span class="asset">📈 Learning</span>
+                                                    <span class="value">Trial & Error</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="dashboard-column">
+                                        <div class="metric-card task-card">
+                                            <div class="card-number">6</div>
+                                            <div class="card-header">
+                                                <div class="metric-icon">🚀</div>
+                                                <div class="metric-title">Deployment Ready</div>
+                                                <div class="metric-type">Production Model</div>
+                                            </div>
+                                            <div class="metric-content">
+                                                <div class="data-item">
+                                                    <span class="asset">💼 Trading</span>
+                                                    <span class="value">Real Decisions</span>
+                                                </div>
+                                                <div class="data-item">
+                                                    <span class="asset">📊 Analysis</span>
+                                                    <span class="value">Market Adaptation</span>
+                                                </div>
+                                                <div class="data-item">
+                                                    <span class="asset">🎯 Performance</span>
+                                                    <span class="value">Financial Outcomes</span>
+                                                </div>
+                                                <div class="data-item">
+                                                    <span class="asset">🔄 Continuous</span>
+                                                    <span class="value">Learning & Update</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Task Integration -->
+            <div class="content-section">
+                <h2>Task Integration</h2>
+                <p>FinWorld's modular architecture enables seamless integration across all four task types, allowing researchers and practitioners to:</p>
+                
+                <h3>Cross-Task Learning</h3>
+                <ul>
+                    <li><strong>Shared Representations</strong> - Common feature extraction across tasks</li>
+                    <li><strong>Transfer Learning</strong> - Knowledge transfer between related tasks</li>
+                    <li><strong>Multi-Task Training</strong> - Joint optimization of multiple objectives</li>
+                </ul>
+                
+                <h3>Unified Evaluation</h3>
+                <ul>
+                    <li><strong>Standardized Metrics</strong> - Consistent evaluation across all tasks</li>
+                    <li><strong>Comparative Analysis</strong> - Direct comparison of different approaches</li>
+                    <li><strong>Reproducible Results</strong> - Standardized protocols for fair comparison</li>
+                </ul>
+                
+                <h3>Flexible Deployment</h3>
+                <ul>
+                    <li><strong>Pipeline Composition</strong> - Easy combination of different task components</li>
+                    <li><strong>Real-time Processing</strong> - Support for live market applications</li>
+                    <li><strong>Scalable Architecture</strong> - From research prototypes to production systems</li>
+                </ul>
+            </div>
+        </main>
+    </div>
+
+    <!-- Footer Container -->
+    <div id="footer-container"></div>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        if (mobileMenuToggle && mobileMenu) {
+            mobileMenuToggle.addEventListener('click', () => {
+                mobileMenu.classList.toggle('active');
+            });
+
+            // Close mobile menu when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!mobileMenuToggle.contains(e.target) && !mobileMenu.contains(e.target)) {
+                    mobileMenu.classList.remove('active');
+                }
+            });
+        }
+
+    </script>
+
+    <!-- Load Components -->
+    <script src="components/load-components.js"></script>
+</body>
+</html>

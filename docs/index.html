@@ -44,10 +44,10 @@
                         <i class="fab fa-github"></i> View on GitHub
                     </a>
                     <a href="https://arxiv.org/abs/2508.02292" class="btn btn-secondary">
-                        <i class="fas fa-file-alt"></i> Read Paper
+                        <i class="fas fa-file-pdf"></i> Read Paper
                     </a>
                     <a href="documentation.html" class="btn btn-tertiary">
-                        <i class="fas fa-book"></i> Documentation
+                        <i class="fas fa-book-open"></i> Documentation
                     </a>
                 </div>
                 <div class="hero-badges">
@@ -347,33 +347,11 @@ CUDA_VISIBLE_DEVICES=0 python scripts/rl_trading/train.py --config=configs/rl_tr
     </section>
 
     <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>FinWorld</h3>
-                    <p>Empowering Financial AI Research and Applications</p>
-                </div>
-                <div class="footer-section">
-                    <h4>Links</h4>
-                    <ul>
-                        <li><a href="https://github.com/DVampire/FinWorld">GitHub</a></li>
-                        <li><a href="https://arxiv.org/abs/2508.02292">Paper</a></li>
-                        <li><a href="documentation.html">Documentation</a></li>
-                        <li><a href="#home">Home</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Authors</h4>
-                    <p>Wentao Zhang, Yilei Zhao, Chuqiao Zong, Xinrun Wang, Bo An</p>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 FinWorld Team. Built with ❤️ for the financial AI community.</p>
-            </div>
-        </div>
-    </footer>
+    <!-- Footer Container -->
+    <div id="footer-container"></div>
 
+    <!-- Load Components -->
+    <script src="components/load-components.js"></script>
     <script src="script.js"></script>
 </body>
 </html>

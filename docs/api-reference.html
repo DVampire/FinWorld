@@ -5,821 +5,415 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FinWorld API Reference</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="docs.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <style>
-        .docs-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-            display: grid;
-            grid-template-columns: 250px 1fr;
-            gap: 30px;
-        }
-        
-        .docs-sidebar {
-            background: #f8fafc;
-            border-radius: 8px;
-            padding: 20px;
-            height: fit-content;
-            position: sticky;
-            top: 20px;
-        }
-        
-        .docs-content {
-            background: white;
-            border-radius: 8px;
-            padding: 30px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-        }
-        
-        .back-to-home {
-            display: inline-flex;
-            align-items: center;
-            color: #2563eb;
-            text-decoration: none;
-            font-weight: 500;
-            margin-bottom: 20px;
-            transition: color 0.2s;
-        }
-        
-        .back-to-home:hover {
-            color: #1d4ed8;
-        }
-        
-        .back-to-home i {
-            margin-right: 8px;
-        }
-        
-        .docs-header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 40px 0;
-            margin-bottom: 30px;
-            border-radius: 8px;
-        }
-        
-        .docs-header h1 {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-        }
-        
-        .docs-header p {
-            font-size: 1.1rem;
-            opacity: 0.9;
-        }
-        
-        .api-section {
-            background: #f8fafc;
-            border: 2px solid #e2e8f0;
-            border-radius: 12px;
-            padding: 25px;
-            margin: 20px 0;
-        }
-        
-        .api-section h3 {
-            color: #1e293b;
-            margin-top: 0;
-            margin-bottom: 15px;
-        }
-        
-        .api-section p {
-            color: #64748b;
-            margin-bottom: 15px;
-            line-height: 1.6;
-        }
-        
-        .code-block {
-            background: #1e293b;
-            color: #e2e8f0;
-            padding: 20px;
-            border-radius: 8px;
-            overflow-x: auto;
-            margin: 15px 0;
-            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
-        }
-        
-        .code-block pre {
-            margin: 0;
-            white-space: pre-wrap;
-        }
-        
-        .api-method {
-            background: white;
-            border: 1px solid #e2e8f0;
-            border-radius: 8px;
-            padding: 20px;
-            margin: 15px 0;
-        }
-        
-        .api-method h4 {
-            color: #1e293b;
-            margin-top: 0;
-            margin-bottom: 10px;
-            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
-        }
-        
-        .api-method p {
-            color: #64748b;
-            margin-bottom: 15px;
-        }
-        
-        .api-method .parameters {
-            background: #f8fafc;
-            padding: 15px;
-            border-radius: 6px;
-            margin: 10px 0;
-        }
-        
-        .api-method .parameters h5 {
-            color: #1e293b;
-            margin-top: 0;
-            margin-bottom: 10px;
-        }
-        
-        .api-method .parameters ul {
-            margin: 0;
-            padding-left: 20px;
-        }
-        
-        .api-method .parameters li {
-            color: #64748b;
-            margin-bottom: 5px;
-        }
-        
-        .api-method .returns {
-            background: #d1fae5;
-            border-left: 4px solid #10b981;
-            padding: 15px;
-            border-radius: 0 6px 6px 0;
-            margin: 10px 0;
-        }
-        
-        .api-method .returns h5 {
-            color: #059669;
-            margin-top: 0;
-            margin-bottom: 10px;
-        }
-        
-        .info-box {
-            background: #dbeafe;
-            border-left: 4px solid #2563eb;
-            padding: 15px;
-            margin: 15px 0;
-            border-radius: 0 8px 8px 0;
-        }
-        
-        .warning-box {
-            background: #fef3c7;
-            border-left: 4px solid #f59e0b;
-            padding: 15px;
-            margin: 15px 0;
-            border-radius: 0 8px 8px 0;
-        }
-        
-        .success-box {
-            background: #d1fae5;
-            border-left: 4px solid #10b981;
-            padding: 15px;
-            margin: 15px 0;
-            border-radius: 0 8px 8px 0;
-        }
-        
-        @media (max-width: 768px) {
-            .docs-container {
-                grid-template-columns: 1fr;
-                padding: 10px;
-            }
-            
-            .docs-sidebar {
-                position: static;
-                margin-bottom: 20px;
-            }
-        }
-    </style>
+    <!-- MathJax for mathematical formulas -->
+    <script src="mathjax-config.js"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="nav-logo">
-                <h2>FinWorld</h2>
-            </div>
-            <ul class="nav-menu">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="index.html#overview">Overview</a></li>
-                <li><a href="index.html#architecture">Architecture</a></li>
-                <li><a href="index.html#datasets">Datasets</a></li>
-                <li><a href="index.html#results">Results</a></li>
-                <li><a href="index.html#download">Download</a></li>
-                <li><a href="documentation.html">Documentation</a></li>
-            </ul>
-            <div class="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-        </div>
-    </nav>
+    <!-- Navigation Container -->
+    <div id="navigation-container"></div>
 
+    <!-- Sidebar Container -->
+    <div id="sidebar-container"></div>
+
+    <!-- Documentation Container -->
     <div class="docs-container">
-        <!-- Sidebar -->
-        <div class="docs-sidebar">
-            <div class="sidebar-section">
-                <h3>API Reference</h3>
-                <ul>
-                    <li><a href="#overview">Overview</a></li>
-                    <li><a href="#data-api">Data API</a></li>
-                    <li><a href="#model-api">Model API</a></li>
-                    <li><a href="#training-api">Training API</a></li>
-                    <li><a href="#evaluation-api">Evaluation API</a></li>
-                    <li><a href="#agent-api">Agent API</a></li>
-                </ul>
-            </div>
-            
-            <div class="sidebar-section">
-                <h3>Core Modules</h3>
-                <ul>
-                    <li><a href="#downloaders">Downloaders</a></li>
-                    <li><a href="#processors">Processors</a></li>
-                    <li><a href="#datasets">Datasets</a></li>
-                    <li><a href="#environments">Environments</a></li>
-                    <li><a href="#models">Models</a></li>
-                    <li><a href="#trainers">Trainers</a></li>
-                </ul>
-            </div>
-        </div>
-
         <!-- Main Content -->
-        <div class="docs-content">
+        <main class="docs-content">
             <a href="documentation.html" class="back-to-home">
                 <i class="fas fa-arrow-left"></i> Back to Documentation
             </a>
-            
+
             <div class="docs-header">
                 <h1>API Reference</h1>
-                <p>Comprehensive API documentation for all FinWorld modules and functions</p>
+                <p>Comprehensive API documentation for FinWorld's seven-layer architecture and core modules.</p>
             </div>
 
-            <!-- Overview -->
-            <section id="overview">
-                <h2>API Overview</h2>
-                <p>FinWorld provides a comprehensive API for financial AI development. The API is organized into several core modules:</p>
+            <div class="content-section">
+                <h2>Architecture Overview</h2>
+                <p>FinWorld follows a seven-layer architecture design, where each layer has clear responsibilities and functional boundaries. All components are registered in the global registry and can be referenced by their <code>type</code> field in configuration files.</p>
+            </div>
+
+            <!-- Configuration Layer -->
+            <div class="content-section" id="configuration">
+                <h2>1. Configuration Layer</h2>
+                <p>Built on top of <code>mmengine</code>, providing a unified and extensible configuration system based on Python dictionaries.</p>
                 
-                <div class="info-box">
-                    <strong>API Organization:</strong> The API is organized into logical modules that correspond to the seven-layer architecture.
-                </div>
-            </section>
-
-            <!-- Data API -->
-            <section id="data-api">
-                <h2>Data API</h2>
-                <p>The Data API provides interfaces for data acquisition, processing, and management.</p>
+                <h3>Registry System</h3>
+                <p>All components are registered under global registries:</p>
+                <ul>
+                    <li><code>DATASET</code> - Dataset registries</li>
+                    <li><code>ENVIRONMENT</code> - Environment registries</li>
+                    <li><code>MODEL</code> - Model registries</li>
+                    <li><code>AGENT</code> - Agent registries</li>
+                    <li><code>LOSS</code> - Loss function registries</li>
+                    <li><code>METRIC</code> - Metric registries</li>
+                    <li><code>OPTIMIZER</code> - Optimizer registries</li>
+                    <li><code>SCHEDULER</code> - Scheduler registries</li>
+                    <li><code>TRAINER</code> - Trainer registries</li>
+                    <li><code>TASK</code> - Task registries</li>
+                </ul>
+                <p><strong>GitHub:</strong> <a href="../finworld/registry.py" target="_blank">finworld/registry.py</a></p>
                 
-                <div class="api-section">
-                    <h3>Downloaders</h3>
-                    <p>Download financial data from various sources.</p>
-                    
-                    <div class="api-method">
-                        <h4>FMPDownloader</h4>
-                        <p>Download data from Financial Modeling Prep API.</p>
-                        
-                        <div class="parameters">
-                            <h5>Parameters:</h5>
-                            <ul>
-                                <li><code>api_key</code> (str): FMP API key</li>
-                                <li><code>assets_path</code> (str): Path to assets list file</li>
-                                <li><code>data_path</code> (str): Output data path</li>
-                                <li><code>start_date</code> (str): Start date for data download</li>
-                                <li><code>end_date</code> (str): End date for data download</li>
-                                <li><code>level</code> (str): Data frequency (1day, 1min)</li>
-                            </ul>
-                        </div>
-                        
-                        <div class="code-block">
-                            <pre>from finworld.downloader import FMPDownloader
-
-downloader = FMPDownloader(
-    api_key="your_api_key",
-    assets_path="configs/_asset_list_/dj30.json",
-    data_path="workdir/dj30_fmp_price_1day/price",
-    start_date="2020-01-01",
-    end_date="2023-12-31",
-    level="1day"
-)
-
-# Download data
-downloader.download()</pre>
-                        </div>
-                    </div>
-                    
-                    <div class="api-method">
-                        <h4>AlpacaDownloader</h4>
-                        <p>Download data from Alpaca Markets API.</p>
-                        
-                        <div class="parameters">
-                            <h5>Parameters:</h5>
-                            <ul>
-                                <li><code>api_key</code> (str): Alpaca API key</li>
-                                <li><code>secret_key</code> (str): Alpaca secret key</li>
-                                <li><code>base_url</code> (str): Alpaca base URL</li>
-                                <li><code>symbols</code> (list): List of symbols to download</li>
-                            </ul>
-                        </div>
-                        
-                        <div class="code-block">
-                            <pre>from finworld.downloader import AlpacaDownloader
-
-downloader = AlpacaDownloader(
-    api_key="your_api_key",
-    secret_key="your_secret_key",
-    base_url="https://paper-api.alpaca.markets",
-    symbols=["AAPL", "GOOGL", "MSFT"]
-)</pre>
-                        </div>
-                    </div>
-                </div>
+                <h3>Configuration Files</h3>
+                <p>Task-specific configuration files organized by functionality:</p>
+                <ul>
+                    <li><code><a href="../configs/_asset_list_" target="_blank">Asset Lists</a></code> - Predefined asset collections (DJ30, SP500, NASDAQ100, HS300, SSE50)</li>
+                    <li><code><a href="../configs/agent" target="_blank">Agent Configs</a></code> - AI agent configurations for financial decision making</li>
+                    <li><code><a href="../configs/download" target="_blank">Download Configs</a></code> - Data download configurations for multiple sources</li>
+                    <li><code><a href="../configs/finreasoner" target="_blank">FinReasoner Configs</a></code> - Financial reasoning model configurations</li>
+                    <li><code><a href="../configs/ml_portfolio" target="_blank">ML Portfolio Configs</a></code> - Machine learning portfolio management configurations</li>
+                    <li><code><a href="../configs/ml_trading" target="_blank">ML Trading Configs</a></code> - Machine learning trading strategy configurations</li>
+                    <li><code><a href="../configs/process" target="_blank">Process Configs</a></code> - Data processing and feature engineering configurations</li>
+                    <li><code><a href="../configs/rl_portfolio" target="_blank">RL Portfolio Configs</a></code> - Reinforcement learning portfolio optimization configurations</li>
+                    <li><code><a href="../configs/rl_trading" target="_blank">RL Trading Configs</a></code> - Reinforcement learning trading agent configurations</li>
+                    <li><code><a href="../configs/rule_portfolio" target="_blank">Rule Portfolio Configs</a></code> - Rule-based portfolio strategy configurations</li>
+                    <li><code><a href="../configs/rule_trading" target="_blank">Rule Trading Configs</a></code> - Rule-based trading strategy configurations</li>
+                    <li><code><a href="../configs/storm" target="_blank">Storm Configs</a></code> - Storm framework configurations for financial AI</li>
+                    <li><code><a href="../configs/time" target="_blank">Time Series Configs</a></code> - Time series forecasting model configurations</li>
+                    <li><code><a href="../configs/vae" target="_blank">VAE Configs</a></code> - Variational autoencoder configurations</li>
+                </ul>
+                <p><strong>GitHub:</strong> <a href="../configs/" target="_blank">configs/</a></p>
                 
-                <div class="api-section">
-                    <h3>Processors</h3>
-                    <p>Process and transform raw financial data.</p>
-                    
-                    <div class="api-method">
-                        <h4>Processor</h4>
-                        <p>Base processor for data transformation.</p>
-                        
-                        <div class="parameters">
-                            <h5>Parameters:</h5>
-                            <ul>
-                                <li><code>assets_name</code> (str): Name of asset list</li>
-                                <li><code>data_path</code> (str): Path to input data</li>
-                                <li><code>data_type</code> (str): Type of data (price, feature, news)</li>
-                                <li><code>feature_type</code> (str): Type of features (Alpha158, custom)</li>
-                            </ul>
-                        </div>
-                        
-                        <div class="code-block">
-                            <pre>from finworld.processor import Processor
+            </div>
 
-processor = Processor(
-    assets_name="dj30",
-    data_path="workdir/dj30_fmp_price_1day/price",
-    data_type="price",
-    feature_type="Alpha158"
-)
-
-# Process data
-processor.process()</pre>
-                        </div>
-                    </div>
-                </div>
+            <!-- Data Layer -->
+            <div class="content-section" id="data">
+                <h2>2. Data Layer</h2>
+                <p>Comprises multiple functional modules for standardized, extensible, and task-oriented data management.</p>
                 
-                <div class="api-section">
-                    <h3>Datasets</h3>
-                    <p>Dataset classes for different financial tasks.</p>
-                    
-                    <div class="api-method">
-                        <h4>SingleAssetDataset</h4>
-                        <p>Dataset for single asset trading tasks.</p>
-                        
-                        <div class="parameters">
-                            <h5>Parameters:</h5>
-                            <ul>
-                                <li><code>symbol</code> (str): Asset symbol</li>
-                                <li><code>level</code> (str): Data frequency</li>
-                                <li><code>start_timestamp</code> (str): Start timestamp</li>
-                                <li><code>end_timestamp</code> (str): End timestamp</li>
-                                <li><code>num_features</code> (int): Number of features</li>
-                                <li><code>if_norm</code> (bool): Whether to normalize data</li>
-                            </ul>
-                        </div>
-                        
-                        <div class="code-block">
-                            <pre>from finworld.data import SingleAssetDataset
-
-dataset = SingleAssetDataset(
-    symbol="AAPL",
-    level="1day",
-    start_timestamp="2020-01-01",
-    end_timestamp="2023-12-31",
-    num_features=154,
-    if_norm=True
-)
-
-# Get data
-data = dataset.get_data()</pre>
-                        </div>
-                    </div>
-                    
-                    <div class="api-method">
-                        <h4>MultiAssetDataset</h4>
-                        <p>Dataset for multi-asset portfolio tasks.</p>
-                        
-                        <div class="parameters">
-                            <h5>Parameters:</h5>
-                            <ul>
-                                <li><code>symbols</code> (list): List of asset symbols</li>
-                                <li><code>level</code> (str): Data frequency</li>
-                                <li><code>start_timestamp</code> (str): Start timestamp</li>
-                                <li><code>end_timestamp</code> (str): End timestamp</li>
-                                <li><code>num_features</code> (int): Number of features per asset</li>
-                            </ul>
-                        </div>
-                        
-                        <div class="code-block">
-                            <pre>from finworld.data import MultiAssetDataset
-
-dataset = MultiAssetDataset(
-    symbols=["AAPL", "GOOGL", "MSFT", "AMZN"],
-    level="1day",
-    start_timestamp="2020-01-01",
-    end_timestamp="2023-12-31",
-    num_features=154
-)</pre>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Model API -->
-            <section id="model-api">
-                <h2>Model API</h2>
-                <p>The Model API provides interfaces for various AI models and architectures.</p>
+                <h3>Downloader Module</h3>
+                <p>Unified interface for heterogeneous financial data providers:</p>
+                <ul>
+                    <li><code><a href="../finworld/downloader/downloader.py" target="_blank">PriceDownloader</a></code> - Unified market data downloader supporting multiple financial data sources and formats</li>
+                    <li><code><a href="../finworld/downloader/downloader.py" target="_blank">NewsDownloader</a></code> - Financial news data downloader with sentiment analysis and text processing capabilities</li>
+                    <li><code><a href="../finworld/downloader/downloader.py" target="_blank">SymbolInfoDownloader</a></code> - Symbol information downloader for fetching comprehensive asset metadata</li>
+                    <li><code><a href="../finworld/downloader/fmp.py" target="_blank">FMPPriceDownloader</a></code> - Financial Modeling Prep API downloader for comprehensive US market data</li>
+                    <li><code><a href="../finworld/downloader/fmp.py" target="_blank">FMPNewsDownloader</a></code> - FMP news data downloader with financial sentiment analysis</li>
+                    <li><code><a href="../finworld/downloader/fmp.py" target="_blank">FMPSymbolInfoDownloader</a></code> - FMP symbol information downloader for asset metadata</li>
+                    <li><code><a href="../finworld/downloader/alpaca.py" target="_blank">AlpacaPriceDownloader</a></code> - Alpaca API downloader for real-time and historical US market data</li>
+                    <li><code><a href="../finworld/downloader/alpaca.py" target="_blank">AlpacaNewsDownloader</a></code> - Alpaca news data downloader for financial market information</li>
+                    <li><code><a href="../finworld/downloader/akshare.py" target="_blank">AkSharePriceDownloader</a></code> - AkShare downloader for Chinese market data and financial information</li>
+                    <li><code><a href="../finworld/downloader/akshare.py" target="_blank">AkShareNewsDownloader</a></code> - AkShare news downloader for Chinese financial news and analysis</li>
+                    <li><code><a href="../finworld/downloader/tushare.py" target="_blank">TuSharePriceDownloader</a></code> - TuShare downloader for Chinese financial data and research tools</li>
+                    <li><code><a href="../finworld/downloader/tushare.py" target="_blank">TuShareNewsDownloader</a></code> - TuShare news downloader for Chinese financial news and market analysis</li>
+                </ul>
+                <p><strong>GitHub:</strong> <a href="../finworld/downloader/" target="_blank">finworld/downloader/</a></p>
                 
-                <div class="api-section">
-                    <h3>Base Model</h3>
-                    <p>Base class for all models in FinWorld.</p>
-                    
-                    <div class="api-method">
-                        <h4>Model</h4>
-                        <p>Base class for all models in the FinWorld library.</p>
-                        
-                        <div class="code-block">
-                            <pre>from finworld.models.base import Model
-
-class MyCustomModel(Model):
-    def __init__(self, input_dim, hidden_dim, output_dim):
-        super().__init__()
-        self.encoder = nn.Linear(input_dim, hidden_dim)
-        self.decoder = nn.Linear(hidden_dim, output_dim)
-    
-    def forward(self, x):
-        x = self.encoder(x)
-        return self.decoder(x)</pre>
-                        </div>
-                    </div>
-                </div>
+                <h3>Processor Module</h3>
+                <p>Configurable preprocessing pipelines for numerical and textual data:</p>
+                <ul>
+                    <li><code><a href="../finworld/processor/processor.py" target="_blank">Processor</a></code> - Main processor class with unified interface for multiple data sources</li>
+                    <li><code><a href="../finworld/processor/processor.py" target="_blank">AggProcessor</a></code> - Aggregation processor for combining multiple data processing pipelines</li>
+                    <li><code><a href="../finworld/processor/llm_processor.py" target="_blank">LLMProcessor</a></code> - LLM data processor for natural language processing tasks</li>
+                    <li><code><a href="../finworld/processor/fmp.py" target="_blank">FMPPriceProcessor</a></code> - FMP price data processor with financial data preprocessing</li>
+                    <li><code><a href="../finworld/processor/fmp.py" target="_blank">FMPNewsProcessor</a></code> - FMP news data processor with text preprocessing and sentiment analysis</li>
+                    <li><code><a href="../finworld/processor/fmp.py" target="_blank">FMPFeatureProcessor</a></code> - FMP feature engineering processor for technical indicators</li>
+                    <li><code><a href="../finworld/processor/alpaca.py" target="_blank">AlpacaPriceProcessor</a></code> - Alpaca price data processor for US market data</li>
+                    <li><code><a href="../finworld/processor/alpaca.py" target="_blank">AlpacaNewsProcessor</a></code> - Alpaca news data processor for financial news analysis</li>
+                    <li><code><a href="../finworld/processor/alpaca.py" target="_blank">AlpacaFeatureProcessor</a></code> - Alpaca feature engineering processor for market indicators</li>
+                    <li><code><a href="../finworld/processor/akshare.py" target="_blank">AkSharePriceProcessor</a></code> - AkShare price data processor for Chinese market data</li>
+                    <li><code><a href="../finworld/processor/akshare.py" target="_blank">AkShareNewsProcessor</a></code> - AkShare news data processor for Chinese financial news</li>
+                    <li><code><a href="../finworld/processor/akshare.py" target="_blank">AkShareFeatureProcessor</a></code> - AkShare feature engineering processor for Chinese market indicators</li>
+                    <li><code><a href="../finworld/processor/tushare.py" target="_blank">TuSharePriceProcessor</a></code> - TuShare price data processor for Chinese financial data</li>
+                    <li><code><a href="../finworld/processor/tushare.py" target="_blank">TuShareNewsProcessor</a></code> - TuShare news data processor for Chinese financial news</li>
+                    <li><code><a href="../finworld/processor/tushare.py" target="_blank">TuShareFeatureProcessor</a></code> - TuShare feature engineering processor for Chinese market analysis</li>
+                </ul>
+                <p><strong>GitHub:</strong> <a href="../finworld/processor/" target="_blank">finworld/processor/</a></p>
                 
-                <div class="api-section">
-                    <h3>Time Series Models</h3>
-                    <p>Models for time series forecasting tasks.</p>
-                    
-                    <div class="api-method">
-                        <h4>Autoformer</h4>
-                        <p>Autoformer model for time series forecasting.</p>
-                        
-                        <div class="parameters">
-                            <h5>Parameters:</h5>
-                            <ul>
-                                <li><code>input_dim</code> (int): Input dimension</li>
-                                <li><code>output_dim</code> (int): Output dimension</li>
-                                <li><code>seq_len</code> (int): Input sequence length</li>
-                                <li><code>pred_len</code> (int): Prediction length</li>
-                                <li><code>d_model</code> (int): Model dimension</li>
-                                <li><code>n_heads</code> (int): Number of attention heads</li>
-                            </ul>
-                        </div>
-                        
-                        <div class="code-block">
-                            <pre>from finworld.models.time import Autoformer
-
-model = Autoformer(
-    input_dim=154,
-    output_dim=1,
-    seq_len=96,
-    pred_len=24,
-    d_model=512,
-    n_heads=8
-)</pre>
-                        </div>
-                    </div>
-                    
-                    <div class="api-method">
-                        <h4>Crossformer</h4>
-                        <p>Crossformer model for time series forecasting.</p>
-                        
-                        <div class="code-block">
-                            <pre>from finworld.models.time import Crossformer
-
-model = Crossformer(
-    input_dim=154,
-    output_dim=1,
-    seq_len=96,
-    pred_len=24,
-    d_model=512,
-    n_heads=8
-)</pre>
-                        </div>
-                    </div>
-                </div>
+                <h3>Dataset Module</h3>
+                <p>Task-specific datasets for machine learning:</p>
+                <ul>
+                    <li><code><a href="../finworld/data/single_asset_dataset.py" target="_blank">SingleAssetDataset</a></code> - Single asset datasets with price, feature, and news data integration</li>
+                    <li><code><a href="../finworld/data/multi_asset_dataset.py" target="_blank">MultiAssetDataset</a></code> - Multi-asset datasets with cross-asset relationships and portfolio management</li>
+                    <li><code><a href="../finworld/data/dataloader.py" target="_blank">DataLoader</a></code> - Custom data loading utilities with batch processing and collation</li>
+                    <li><code><a href="../finworld/data/collate_fn.py" target="_blank">SingleAssetPriceTextCollateFn</a></code> - Collate function for single asset price and text data batching</li>
+                    <li><code><a href="../finworld/data/collate_fn.py" target="_blank">MultiAssetPriceTextCollateFn</a></code> - Collate function for multi-asset price and text data batching</li>
+                </ul>
+                <p><strong>GitHub:</strong> <a href="../finworld/data/" target="_blank">finworld/data/</a></p>
                 
-                <div class="api-section">
-                    <h3>RL Models</h3>
-                    <p>Models for reinforcement learning tasks.</p>
-                    
-                    <div class="api-method">
-                        <h4>PPO</h4>
-                        <p>Proximal Policy Optimization model.</p>
-                        
-                        <div class="parameters">
-                            <h5>Parameters:</h5>
-                            <ul>
-                                <li><code>actor</code> (dict): Actor network configuration</li>
-                                <li><code>critic</code> (dict): Critic network configuration</li>
-                                <li><code>gamma</code> (float): Discount factor</li>
-                                <li><code>clip_ratio</code> (float): PPO clip ratio</li>
-                            </ul>
-                        </div>
-                        
-                        <div class="code-block">
-                            <pre>from finworld.models.rl import PPO
-
-model = PPO(
-    actor=dict(
-        type="Actor",
-        state_dim=64,
-        action_dim=3,
-        hidden_dim=128
-    ),
-    critic=dict(
-        type="Critic",
-        state_dim=64,
-        hidden_dim=128
-    ),
-    gamma=0.99,
-    clip_ratio=0.2
-)</pre>
-                        </div>
-                    </div>
-                    
-                    <div class="api-method">
-                        <h4>SAC</h4>
-                        <p>Soft Actor-Critic model.</p>
-                        
-                        <div class="code-block">
-                            <pre>from finworld.models.rl import SAC
-
-model = SAC(
-    actor=dict(
-        type="Actor",
-        state_dim=64,
-        action_dim=3,
-        hidden_dim=128
-    ),
-    critic=dict(
-        type="Critic",
-        state_dim=64,
-        action_dim=3,
-        hidden_dim=128
-    ),
-    temperature=0.1
-)</pre>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Training API -->
-            <section id="training-api">
-                <h2>Training API</h2>
-                <p>The Training API provides interfaces for model training and optimization.</p>
+                <h3>Environment Module</h3>
+                <p>Interactive environments for reinforcement learning:</p>
+                <ul>
+                    <li><code><a href="../finworld/environment/environment_general_trading.py" target="_blank">EnvironmentGeneralTrading</a></code> - General-purpose trading environment with realistic market simulation and transaction costs</li>
+                    <li><code><a href="../finworld/environment/environment_general_portfolio.py" target="_blank">EnvironmentGeneralPortfolio</a></code> - Multi-asset portfolio management environment with risk constraints and rebalancing</li>
+                    <li><code><a href="../finworld/environment/environment_llm_trading.py" target="_blank">EnvironmentLLMTrading</a></code> - LLM-powered trading environment with natural language processing and reasoning</li>
+                    <li><code><a href="../finworld/environment/environment_agent_trading.py" target="_blank">EnvironmentAgentTrading</a></code> - Agent-based trading environment with multi-agent collaboration and coordination</li>
+                    <li><code><a href="../finworld/environment/environment_patch_trading.py" target="_blank">EnvironmentPatchTrading</a></code> - Patch-based trading environment for transformer models with attention mechanisms</li>
+                    <li><code><a href="../finworld/environment/environment_sequence_trading.py" target="_blank">EnvironmentSequenceTrading</a></code> - Sequence-based trading environment for recurrent neural network models</li>
+                    <li><code><a href="../finworld/environment/environment_patch_portfolio.py" target="_blank">EnvironmentPatchPortfolio</a></code> - Patch-based portfolio environment for transformer models with multi-asset attention</li>
+                    <li><code><a href="../finworld/environment/wrapper.py" target="_blank">EnvironmentAgentTradingWrapper</a></code> - Wrapper for agent-based trading environment with gym interface</li>
+                    <li><code><a href="../finworld/environment/wrapper.py" target="_blank">EnvironmentSequenceTradingWrapper</a></code> - Wrapper for sequence-based trading environment with gym interface</li>
+                    <li><code><a href="../finworld/environment/wrapper.py" target="_blank">EnvironmentPatchTradingWrapper</a></code> - Wrapper for patch-based trading environment with gym interface</li>
+                    <li><code><a href="../finworld/environment/wrapper.py" target="_blank">EnvironmentPatchPortfolioWrapper</a></code> - Wrapper for patch-based portfolio environment with gym interface</li>
+                </ul>
+                <p><strong>GitHub:</strong> <a href="../finworld/environment/" target="_blank">finworld/environment/</a></p>
                 
-                <div class="api-section">
-                    <h3>Trainers</h3>
-                    <p>Training classes for different tasks.</p>
-                    
-                    <div class="api-method">
-                        <h4>TradingTrainer</h4>
-                        <p>Trainer for trading tasks.</p>
-                        
-                        <div class="parameters">
-                            <h5>Parameters:</h5>
-                            <ul>
-                                <li><code>model</code> (Model): Model to train</li>
-                                <li><code>dataset</code> (Dataset): Training dataset</li>
-                                <li><code>environment</code> (Environment): Training environment</li>
-                                <li><code>optimizer</code> (dict): Optimizer configuration</li>
-                                <li><code>scheduler</code> (dict): Scheduler configuration</li>
-                            </ul>
-                        </div>
-                        
-                        <div class="code-block">
-                            <pre>from finworld.trainer import TradingTrainer
+            </div>
 
-trainer = TradingTrainer(
-    model=model,
-    dataset=dataset,
-    environment=environment,
-    optimizer=dict(
-        type="AdamW",
-        lr=3e-4,
-        weight_decay=0.01
-    ),
-    scheduler=dict(
-        type="CosineAnnealingLR",
-        T_max=1000
-    )
-)
-
-# Train model
-trainer.train()</pre>
-                        </div>
-                    </div>
-                    
-                    <div class="api-method">
-                        <h4>PortfolioTrainer</h4>
-                        <p>Trainer for portfolio management tasks.</p>
-                        
-                        <div class="code-block">
-                            <pre>from finworld.trainer import PortfolioTrainer
-
-trainer = PortfolioTrainer(
-    model=model,
-    dataset=dataset,
-    environment=environment,
-    optimizer=dict(
-        type="AdamW",
-        lr=3e-4
-    )
-)</pre>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Evaluation API -->
-            <section id="evaluation-api">
-                <h2>Evaluation API</h2>
-                <p>The Evaluation API provides interfaces for model evaluation and metrics.</p>
+            <!-- Model Layer -->
+            <div class="content-section" id="model">
+                <h2>3. Model Layer</h2>
+                <p>Specialized modules supporting unified definition and management of heterogeneous modeling paradigms.</p>
                 
-                <div class="api-section">
-                    <h3>Metrics</h3>
-                    <p>Financial-specific metrics for model evaluation.</p>
-                    
-                    <div class="api-method">
-                        <h4>ARR (Annualized Rate of Return)</h4>
-                        <p>Calculate annualized rate of return.</p>
-                        
-                        <div class="code-block">
-                            <pre>from finworld.metric import ARR
-
-metric = ARR(level="1day")
-result = metric.calculate(returns, benchmark_returns)</pre>
-                        </div>
-                    </div>
-                    
-                    <div class="api-method">
-                        <h4>SR (Sharpe Ratio)</h4>
-                        <p>Calculate Sharpe ratio.</p>
-                        
-                        <div class="code-block">
-                            <pre>from finworld.metric import SR
-
-metric = SR(level="1day")
-result = metric.calculate(returns, benchmark_returns)</pre>
-                        </div>
-                    </div>
-                    
-                    <div class="api-method">
-                        <h4>MDD (Maximum Drawdown)</h4>
-                        <p>Calculate maximum drawdown.</p>
-                        
-                        <div class="code-block">
-                            <pre>from finworld.metric import MDD
-
-metric = MDD(level="1day")
-result = metric.calculate(returns)</pre>
-                        </div>
-                    </div>
-                </div>
+                <h3>Embedding Components</h3>
+                <p>Data embedding for financial time series:</p>
+                <ul>
+                    <li><code><a href="../finworld/models/embed/patch.py" target="_blank">PatchEmbed</a></code> - Converts time series data into patch-based embeddings for transformer models</li>
+                    <li><code><a href="../finworld/models/embed/data.py" target="_blank">DataEmbed</a></code> - General-purpose data embedding layer for financial time series processing</li>
+                    <li><code><a href="../finworld/models/embed/tradingdata.py" target="_blank">TradingDataEmbed</a></code> - Specialized embedding for trading data with market-specific features</li>
+                    <li><code><a href="../finworld/models/embed/portfoliodata.py" target="_blank">PortfolioDataEmbed</a></code> - Multi-asset portfolio embedding with cross-asset relationships</li>
+                    <li><code><a href="../finworld/models/embed/position.py" target="_blank">AbsPosition1DEmbed</a></code> - Absolute positional encoding for one-dimensional time series data</li>
+                    <li><code><a href="../finworld/models/embed/position.py" target="_blank">AbsPosition2DEmbed</a></code> - Absolute positional encoding for two-dimensional data structures</li>
+                    <li><code><a href="../finworld/models/embed/position.py" target="_blank">SinCosPosition1DEmbed</a></code> - Sinusoidal positional encoding with sine and cosine functions</li>
+                    <li><code><a href="../finworld/models/embed/position.py" target="_blank">SinCosPosition2DEmbed</a></code> - Two-dimensional sinusoidal positional encoding for complex data structures</li>
+                    <li><code><a href="../finworld/models/embed/dense.py" target="_blank">DenseLinearEmbed</a></code> - Linear embedding for dense input data with dropout support</li>
+                    <li><code><a href="../finworld/models/embed/dense.py" target="_blank">DenseConv1dEmbed</a></code> - 1D convolutional embedding for sequential data processing</li>
+                    <li><code><a href="../finworld/models/embed/sparse.py" target="_blank">SparseEmbed</a></code> - Sparse embedding for categorical and discrete features</li>
+                    <li><code><a href="../finworld/models/embed/time.py" target="_blank">TimeSparseEmbed</a></code> - Time-aware sparse embedding for temporal categorical data</li>
+                    <li><code><a href="../finworld/models/embed/time.py" target="_blank">TimeDenseEmbed</a></code> - Time-aware dense embedding for temporal continuous data</li>
+                    <li><code><a href="../finworld/models/embed/agg.py" target="_blank">AggEmbed</a></code> - Aggregation embedding for multi-scale feature representation</li>
+                    <li><code><a href="../finworld/models/embed/aggdata.py" target="_blank">AggDataEmbed</a></code> - Aggregated data embedding for multi-level feature extraction</li>
+                    <li><code><a href="../finworld/models/embed/timepatch.py" target="_blank">TimePatchEmbed</a></code> - Time-aware patch embedding for temporal patch-based models</li>
+                    <li><code><a href="../finworld/models/embed/tradingpatch.py" target="_blank">TradingPatchEmbed</a></code> - Trading-specific patch embedding for market data patches</li>
+                    <li><code><a href="../finworld/models/embed/portfoliopatch.py" target="_blank">PortfolioPatchEmbed</a></code> - Portfolio-specific patch embedding for multi-asset patches</li>
+                    <li><code><a href="../finworld/models/embed/factor_vae.py" target="_blank">FactorVAEEmbed</a></code> - Factor VAE embedding for disentangled representation learning</li>
+                </ul>
+                <p><strong>GitHub:</strong> <a href="../finworld/models/embed/" target="_blank">finworld/models/embed/</a></p>
                 
-                <div class="api-section">
-                    <h3>Evaluators</h3>
-                    <p>Comprehensive evaluation classes.</p>
-                    
-                    <div class="api-method">
-                        <h4>TradingEvaluator</h4>
-                        <p>Evaluator for trading tasks.</p>
-                        
-                        <div class="code-block">
-                            <pre>from finworld.evaluator import TradingEvaluator
-
-evaluator = TradingEvaluator(
-    metrics=[ARR(), SR(), MDD()],
-    level="1day"
-)
-
-results = evaluator.evaluate(
-    returns=portfolio_returns,
-    benchmark_returns=benchmark_returns
-)</pre>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Agent API -->
-            <section id="agent-api">
-                <h2>Agent API</h2>
-                <p>The Agent API provides interfaces for AI agents and multi-agent systems.</p>
+                <h3>Encoder Components</h3>
+                <p>Encoder architectures for financial data:</p>
+                <ul>
+                    <li><code><a href="../finworld/models/encoder" target="_blank">TransformerEncoder</a></code> - Standard transformer encoder with self-attention mechanisms for financial data</li>
+                    <li><code><a href="../finworld/models/encoder" target="_blank">VAELSTMEncoder</a></code> - Variational autoencoder with LSTM backbone for time series representation learning</li>
+                    <li><code><a href="../finworld/models/encoder" target="_blank">AutoformerEncoder</a></code> - Autoformer encoder with decomposition-based attention for long-term forecasting</li>
+                    <li><code><a href="../finworld/models/encoder" target="_blank">CrossformerEncoder</a></code> - Crossformer encoder with two-stage attention for multivariate time series</li>
+                    <li><code><a href="../finworld/models/encoder" target="_blank">EtsformerEncoder</a></code> - ETSformer encoder with exponential smoothing for trend and seasonal components</li>
+                </ul>
+                <p><strong>GitHub:</strong> <a href="../finworld/models/encoder/" target="_blank">finworld/models/encoder/</a></p>
                 
-                <div class="api-section">
-                    <h3>Agents</h3>
-                    <p>AI agents for financial tasks.</p>
-                    
-                    <div class="api-method">
-                        <h4>FinanceAgent</h4>
-                        <p>Financial reasoning agent.</p>
-                        
-                        <div class="parameters">
-                            <h5>Parameters:</h5>
-                            <ul>
-                                <li><code>model</code> (str): LLM model name</li>
-                                <li><code>name</code> (str): Agent name</li>
-                                <li><code>description</code> (str): Agent description</li>
-                                <li><code>tools</code> (list): List of available tools</li>
-                                <li><code>max_steps</code> (int): Maximum reasoning steps</li>
-                            </ul>
-                        </div>
-                        
-                        <div class="code-block">
-                            <pre>from finworld.agent import FinanceAgent
+                <h3>Decoder Components</h3>
+                <p>Decoder architectures for financial predictions:</p>
+                <ul>
+                    <li><code><a href="../finworld/models/decoder" target="_blank">TransformerDecoder</a></code> - Standard transformer decoder with cross-attention for financial prediction tasks</li>
+                    <li><code><a href="../finworld/models/decoder" target="_blank">VAELSTMDecoder</a></code> - Variational autoencoder decoder with LSTM for time series generation and reconstruction</li>
+                    <li><code><a href="../finworld/models/decoder" target="_blank">AutoformerDecoder</a></code> - Autoformer decoder with decomposition-based attention for long-term financial forecasting</li>
+                    <li><code><a href="../finworld/models/decoder" target="_blank">CrossformerDecoder</a></code> - Crossformer decoder with two-stage attention for multivariate time series prediction</li>
+                    <li><code><a href="../finworld/models/decoder" target="_blank">EtsformerDecoder</a></code> - ETSformer decoder with exponential smoothing for trend and seasonal forecasting</li>
+                </ul>
+                <p><strong>GitHub:</strong> <a href="../finworld/models/decoder/" target="_blank">finworld/models/decoder/</a></p>
+                
+                <h3>Model Components</h3>
+                <p>Complete model implementations:</p>
+                <ul>
+                    <li><code><a href="../finworld/models" target="_blank">Model</a></code> - Base model class with common initialization and weight management for all FinWorld models</li>
+                    <li><code><a href="../finworld/models" target="_blank">TransformerVAE</a></code> - Transformer-based variational autoencoder for financial time series generation and representation</li>
+                    <li><code><a href="../finworld/models" target="_blank">VQVAE</a></code> - Vector Quantized Variational Autoencoder with discrete latent representations for financial data</li>
+                    <li><code><a href="../finworld/models" target="_blank">DiT</a></code> - Diffusion Transformer for financial time series generation with denoising diffusion processes</li>
+                    <li><code><a href="../finworld/models" target="_blank">ClipTextEncoder</a></code> - CLIP-based text encoder for multimodal financial data processing and understanding</li>
+                </ul>
+                <p><strong>GitHub:</strong> <a href="../finworld/models/" target="_blank">finworld/models/</a></p>
+                
+            </div>
 
-agent = FinanceAgent(
-    model="Qwen3-32B",
-    name="finance_agent",
-    description="Finance agent for trading decisions",
-    tools=[],
-    max_steps=20
-)
+            <!-- Training Layer -->
+            <div class="content-section" id="training">
+                <h2>4. Training Layer</h2>
+                <p>Modular scaffold for optimizing all method pipelines for financial applications.</p>
+                
+                <h3>Optimizer</h3>
+                <p>First-order optimization methods:</p>
+                <ul>
+                    <li><code><a href="../finworld/optimizer/optimizer.py" target="_blank">Adam</a></code> - Adam optimizer with adaptive learning rates</li>
+                    <li><code><a href="../finworld/optimizer/optimizer.py" target="_blank">AdamW</a></code> - AdamW optimizer with weight decay regularization</li>
+                    <li><code><a href="../finworld/optimizer/optimizer.py" target="_blank">SGD</a></code> - Stochastic gradient descent with momentum</li>
+                </ul>
+                <p><strong>GitHub:</strong> <a href="../finworld/optimizer/" target="_blank">finworld/optimizer/</a></p>
+                
+                <h3>Loss Functions</h3>
+                <p>Objective functions for financial tasks:</p>
+                <ul>
+                    <li><code><a href="../finworld/loss/mse.py" target="_blank">MSELoss</a></code> - Mean squared error loss for regression tasks</li>
+                    <li><code><a href="../finworld/loss/mae.py" target="_blank">MAELoss</a></code> - Mean absolute error loss for robust regression</li>
+                    <li><code><a href="../finworld/loss/vae.py" target="_blank">VAELoss</a></code> - Variational autoencoder loss for generative modeling</li>
+                    <li><code><a href="../finworld/loss/vqvae.py" target="_blank">VQVAELoss</a></code> - Vector quantized VAE loss for discrete representations</li>
+                    <li><code><a href="../finworld/loss/factor_vae.py" target="_blank">FactorVAELoss</a></code> - Factor VAE loss for disentangled representations</li>
+                    <li><code><a href="../finworld/loss/price.py" target="_blank">PriceLoss</a></code> - Price prediction loss for financial forecasting</li>
+                </ul>
+                <p><strong>GitHub:</strong> <a href="../finworld/loss/" target="_blank">finworld/loss/</a></p>
+                
+                <h3>Scheduler</h3>
+                <p>Learning rate scheduling strategies:</p>
+                <ul>
+                    <li><code><a href="../finworld/scheduler/scheduler.py" target="_blank">CosineWithWarmupScheduler</a></code> - Cosine annealing with warmup for stable training</li>
+                    <li><code><a href="../finworld/scheduler/scheduler.py" target="_blank">LinearWithWarmupScheduler</a></code> - Linear decay with warmup for gradual learning rate reduction</li>
+                    <li><code><a href="../finworld/scheduler/scheduler.py" target="_blank">ConstantWithWarmupScheduler</a></code> - Constant learning rate with warmup for stable training</li>
+                </ul>
+                <p><strong>GitHub:</strong> <a href="../finworld/scheduler/" target="_blank">finworld/scheduler/</a></p>
+                
+                <h3>Trainer</h3>
+                <p>Training orchestration and control:</p>
+                <ul>
+                    <li><code><a href="../finworld/trainer/base.py" target="_blank">BaseTrainer</a></code> - Base trainer class with common training utilities</li>
+                    <li><code><a href="../finworld/trainer/time/forecasting.py" target="_blank">ForecastingTrainer</a></code> - Time series forecasting trainer with specialized metrics</li>
+                    <li><code><a href="../finworld/trainer/vae/vae_trainer.py" target="_blank">VAETrainer</a></code> - Variational autoencoder trainer for generative modeling</li>
+                    <li><code><a href="../finworld/trainer/vae/vqvae_trainer.py" target="_blank">VQVAETrainer</a></code> - Vector quantized VAE trainer for discrete representations</li>
+                    <li><code><a href="../finworld/trainer/vae/dual_vqvae_trainer.py" target="_blank">DualVQVAETrainer</a></code> - Dual VQVAE trainer for multi-modal financial data</li>
+                    <li><code><a href="../finworld/trainer/vae/factorvae_trainer.py" target="_blank">FactorVAETrainer</a></code> - Factor VAE trainer for disentangled representations</li>
+                    <li><code><a href="../finworld/trainer/vae/single_vqvae_trainer.py" target="_blank">SingleVQVAETrainer</a></code> - Single VQVAE trainer for single-asset modeling</li>
+                    <li><code><a href="../finworld/trainer/vae/dynamic_single_vqvae_trainer.py" target="_blank">DynamicSingleVQVAETrainer</a></code> - Dynamic single VQVAE trainer with adaptive learning</li>
+                    <li><code><a href="../finworld/trainer/vae/dynamic_dual_vqvae_trainer.py" target="_blank">DynamicDualVQVAETrainer</a></code> - Dynamic dual VQVAE trainer for complex financial data</li>
+                    <li><code><a href="../finworld/trainer/agent/finance_agent.py" target="_blank">FinanceAgentTrainer</a></code> - Financial agent trainer for LLM-based trading</li>
+                    <li><code><a href="../finworld/trainer/ml/ml_trading.py" target="_blank">MLTradingTrainer</a></code> - Machine learning trading trainer for supervised learning</li>
+                    <li><code><a href="../finworld/trainer/ml/ml_portfolio.py" target="_blank">MLPortfolioTrainer</a></code> - Machine learning portfolio trainer for multi-asset optimization</li>
+                    <li><code><a href="../finworld/trainer/rl/ppo_trading_trainer.py" target="_blank">PPOTradingTrainer</a></code> - PPO reinforcement learning trainer for trading</li>
+                    <li><code><a href="../finworld/trainer/rl/ppo_portfolio_trainer.py" target="_blank">PPOPortfolioTrainer</a></code> - PPO reinforcement learning trainer for portfolio management</li>
+                    <li><code><a href="../finworld/trainer/rl/sac_trading_trainer.py" target="_blank">SACTradingTrainer</a></code> - SAC reinforcement learning trainer for trading</li>
+                    <li><code><a href="../finworld/trainer/rl/sac_portfolio_trainer.py" target="_blank">SACPortfolioTrainer</a></code> - SAC reinforcement learning trainer for portfolio management</li>
+                    <li><code><a href="../finworld/trainer/rule/rule_trading.py" target="_blank">RuleTradingTrainer</a></code> - Rule-based trading trainer for traditional strategies</li>
+                    <li><code><a href="../finworld/trainer/rule/rule_portfolio.py" target="_blank">RulePortfolioTrainer</a></code> - Rule-based portfolio trainer for traditional allocation</li>
+                </ul>
+                <p><strong>GitHub:</strong> <a href="../finworld/trainer/" target="_blank">finworld/trainer/</a></p>
+                
+            </div>
 
-# Run agent
-result = agent.run(task_description, context)</pre>
-                        </div>
-                    </div>
-                    
-                    <div class="api-method">
-                        <h4>GeneralAgent</h4>
-                        <p>General-purpose agent with tool access.</p>
-                        
-                        <div class="code-block">
-                            <pre>from finworld.agent import GeneralAgent
+            <!-- Evaluation Layer -->
+            <div class="content-section" id="evaluation">
+                <h2>5. Evaluation Layer</h2>
+                <p>Unified, extensible, and highly modular evaluation system for financial AI tasks.</p>
+                
+                <h3>Metrics</h3>
+                <p>Financial-specific evaluation metrics:</p>
+                <ul>
+                    <li><code><a href="../finworld/metric/arr.py" target="_blank">ARR</a></code> - Annualized rate of return for financial performance evaluation</li>
+                    <li><code><a href="../finworld/metric/sr.py" target="_blank">SR</a></code> - Sharpe ratio for risk-adjusted return measurement</li>
+                    <li><code><a href="../finworld/metric/accuracy.py" target="_blank">Accuracy</a></code> - Classification accuracy for trading signal evaluation</li>
+                    <li><code><a href="../finworld/metric/f1score.py" target="_blank">F1Score</a></code> - F1 score for balanced precision and recall evaluation</li>
+                    <li><code><a href="../finworld/metric/mse.py" target="_blank">MSE</a></code> - Mean squared error for regression task evaluation</li>
+                    <li><code><a href="../finworld/metric/mae.py" target="_blank">MAE</a></code> - Mean absolute error for robust regression evaluation</li>
+                    <li><code><a href="../finworld/metric/precision.py" target="_blank">Precision</a></code> - Precision metric for classification performance</li>
+                    <li><code><a href="../finworld/metric/recall.py" target="_blank">Recall</a></code> - Recall metric for classification sensitivity</li>
+                    <li><code><a href="../finworld/metric/auc.py" target="_blank">AUC</a></code> - Area under the ROC curve for binary classification</li>
+                    <li><code><a href="../finworld/metric/rankic.py" target="_blank">RANKIC</a></code> - Rank information coefficient for factor analysis</li>
+                    <li><code><a href="../finworld/metric/rankicir.py" target="_blank">RANKICIR</a></code> - Rank information coefficient information ratio</li>
+                    <li><code><a href="../finworld/metric/mdd.py" target="_blank">MDD</a></code> - Maximum drawdown for risk assessment</li>
+                    <li><code><a href="../finworld/metric/cr.py" target="_blank">CR</a></code> - Calmar ratio for risk-adjusted performance</li>
+                    <li><code><a href="../finworld/metric/dd.py" target="_blank">DD</a></code> - Drawdown duration for risk analysis</li>
+                    <li><code><a href="../finworld/metric/sor.py" target="_blank">SOR</a></code> - Sortino ratio for downside risk assessment</li>
+                    <li><code><a href="../finworld/metric/vol.py" target="_blank">VOL</a></code> - Volatility metric for risk measurement</li>
+                    <li><code><a href="../finworld/metric/hr.py" target="_blank">HitRatio</a></code> - Hit ratio for trading signal accuracy</li>
+                </ul>
+                <p><strong>GitHub:</strong> <a href="../finworld/metric/" target="_blank">finworld/metric/</a></p>
+                
+                <h3>Plot</h3>
+                <p>Advanced visualization tools:</p>
+                <ul>
+                    <li><code><a href="../finworld/plot/kline.py" target="_blank">PlotProKline</a></code> - Professional candlestick charts for financial data visualization</li>
+                    <li><code><a href="../finworld/plot/curve.py" target="_blank">PlotCurve</a></code> - Cumulative return curves for performance tracking</li>
+                    <li><code><a href="../finworld/plot/compass.py" target="_blank">PlotCompass</a></code> - Compass plots for multi-dimensional financial metrics</li>
+                    <li><code><a href="../finworld/plot/star.py" target="_blank">PlotStar</a></code> - Star plots for portfolio performance visualization</li>
+                    <li><code><a href="../finworld/plot/sunburst.py" target="_blank">PlotSunBurst</a></code> - Sunburst diagrams for hierarchical financial data</li>
+                    <li><code><a href="../finworld/plot/llm.py" target="_blank">PlotLLMScore</a></code> - LLM score visualization for language model evaluation</li>
+                </ul>
+                <p><strong>GitHub:</strong> <a href="../finworld/plot/" target="_blank">finworld/plot/</a></p>
+                
+            </div>
 
-agent = GeneralAgent(
-    model="gpt-4.1",
-    name="general_agent",
-    description="General agent with tool access",
-    tools=[
-        dict(type="python_interpreter_tool"),
-        dict(type="web_fetcher_tool")
-    ],
-    max_steps=20
-)</pre>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </div>
+            <!-- Task Layer -->
+            <div class="content-section" id="task">
+                <h2>6. Task Layer</h2>
+                <p>Systematic definition, abstraction, and encapsulation of financial AI task types.</p>
+                
+                <h3>Task Classes</h3>
+                <p>Core task execution framework:</p>
+                <ul>
+                    <li><code><a href="../finworld/task/task.py" target="_blank">Task</a></code> - Synchronous task execution with trainer integration</li>
+                    <li><code><a href="../finworld/task/task.py" target="_blank">AsyncTask</a></code> - Asynchronous task execution for concurrent processing</li>
+                    <li><code><a href="../finworld/task/task.py" target="_blank">TaskType</a></code> - Enum defining supported task types (forecasting, trading, portfolio, etc.)</li>
+                </ul>
+                <p><strong>GitHub:</strong> <a href="../finworld/task/" target="_blank">finworld/task/</a></p>
+                
+            </div>
+
+            <!-- Presentation Layer -->
+            <div class="content-section" id="presentation">
+                <h2>7. Presentation Layer</h2>
+                <p>Automated and multi-modal dissemination of experimental results.</p>
+                
+                <h3>Output Formats</h3>
+                <p>Multi-modal result presentation:</p>
+                <ul>
+                    <li><code>HTML</code> - Web page generation</li>
+                    <li><code>LaTeX</code> - Technical report generation</li>
+                    <li><code>PDF</code> - PDF report generation</li>
+                    <li><code>PNG</code> - Figure generation</li>
+                    <li><code>CSV</code> - Table export</li>
+                    <li><code>JSON</code> - Artifact export</li>
+                </ul>
+                <p><strong>GitHub:</strong> <a href="../finworld/" target="_blank">finworld/</a></p>
+            </div>
+
+            <!-- Other Modules -->
+            <div class="content-section" id="other">
+                <h2>Other Modules</h2>
+                <p>Additional supporting modules and utilities.</p>
+                
+                <h3>Tools Module</h3>
+                <p>Utility tools and functions:</p>
+                <ul>
+                    <li><code><a href="../finworld/tools/tools.py" target="_blank">Tool</a></code> - Base tool class for all utility tools</li>
+                    <li><code><a href="../finworld/tools/default_tools.py" target="_blank">DefaultTools</a></code> - Default set of financial analysis tools</li>
+                    <li><code><a href="../finworld/tools/deep_analyzer.py" target="_blank">DeepAnalyzer</a></code> - Deep analysis tool for complex financial data</li>
+                    <li><code><a href="../finworld/tools/deep_researcher.py" target="_blank">DeepResearcher</a></code> - Research tool for financial market investigation</li>
+                    <li><code><a href="../finworld/tools/planning.py" target="_blank">PlanningTool</a></code> - Strategic planning tool for financial decisions</li>
+                    <li><code><a href="../finworld/tools/python_interpreter.py" target="_blank">PythonInterpreter</a></code> - Python code execution tool for financial calculations</li>
+                    <li><code><a href="../finworld/tools/web_fetcher.py" target="_blank">WebFetcher</a></code> - Web data fetching tool for financial information</li>
+                    <li><code><a href="../finworld/tools/web_searcher.py" target="_blank">WebSearcher</a></code> - Web search tool for financial news and data</li>
+                    <li><code><a href="../finworld/tools/file_reader.py" target="_blank">FileReader</a></code> - File reading tool for financial documents</li>
+                    <li><code><a href="../finworld/tools/archive_searcher.py" target="_blank">ArchiveSearcher</a></code> - Archive search tool for historical financial data</li>
+                    <li><code><a href="../finworld/tools/custom_browser.py" target="_blank">CustomBrowser</a></code> - Custom browser tool for web automation</li>
+                    <li><code><a href="../finworld/tools/auto_browser.py" target="_blank">AutoBrowser</a></code> - Automated browser tool for financial data collection</li>
+                    <li><code><a href="../finworld/tools/final_answer.py" target="_blank">FinalAnswer</a></code> - Final answer tool for result presentation</li>
+                    <li><code><a href="../finworld/tools/tool_validation.py" target="_blank">ToolValidation</a></code> - Tool validation for ensuring correct usage</li>
+                    <li><code><a href="../finworld/tools/search/base.py" target="_blank">SearchBase</a></code> - Base search tool for web search functionality</li>
+                    <li><code><a href="../finworld/tools/search/google_search.py" target="_blank">GoogleSearch</a></code> - Google search tool for financial information</li>
+                    <li><code><a href="../finworld/tools/search/bing_search.py" target="_blank">BingSearch</a></code> - Bing search tool for financial data</li>
+                    <li><code><a href="../finworld/tools/search/ddg_search.py" target="_blank">DuckDuckGoSearch</a></code> - DuckDuckGo search tool for privacy-focused searches</li>
+                    <li><code><a href="../finworld/tools/search/baidu_search.py" target="_blank">BaiduSearch</a></code> - Baidu search tool for Chinese financial data</li>
+                    <li><code><a href="../finworld/tools/executor/local_python_executor.py" target="_blank">LocalPythonExecutor</a></code> - Local Python code executor for financial calculations</li>
+                    <li><code><a href="../finworld/tools/executor/remote_executors.py" target="_blank">RemoteExecutors</a></code> - Remote code executor for distributed computing</li>
+                    <li><code><a href="../finworld/tools/markdown/mdconvert.py" target="_blank">MarkdownConverter</a></code> - Markdown conversion tool for document formatting</li>
+                </ul>
+                <p><strong>GitHub:</strong> <a href="../finworld/tools/" target="_blank">finworld/tools/</a></p>
+                
+                <h3>Memory Module</h3>
+                <p>Memory management for agents:</p>
+                <ul>
+                    <li><code><a href="../finworld/memory/memory.py" target="_blank">AgentMemory</a></code> - Main agent memory class for managing conversation history and steps</li>
+                    <li><code><a href="../finworld/memory/memory.py" target="_blank">MemoryStep</a></code> - Base class for all memory step types with message conversion</li>
+                    <li><code><a href="../finworld/memory/memory.py" target="_blank">ActionStep</a></code> - Memory step for agent actions with tool calls and observations</li>
+                    <li><code><a href="../finworld/memory/memory.py" target="_blank">PlanningStep</a></code> - Memory step for agent planning and strategy formulation</li>
+                    <li><code><a href="../finworld/memory/memory.py" target="_blank">TaskStep</a></code> - Memory step for task initialization and user prompts</li>
+                </ul>
+                <p><strong>GitHub:</strong> <a href="../finworld/memory/" target="_blank">finworld/memory/</a></p>
+            </div>
+
+            <!-- Usage Examples -->
+            <div class="content-section">
+                <h2>Getting Started</h2>
+                <p>To get started with FinWorld's API, check out our <a href="documentation.html">documentation</a> and <a href="tasks.html">task examples</a>.</p>
+                
+            </div>
+        </main>
     </div>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>FinWorld</h3>
-                    <p>Empowering Financial AI Research and Applications</p>
-                </div>
-                <div class="footer-section">
-                    <h4>Links</h4>
-                    <ul>
-                        <li><a href="https://github.com/DVampire/FinWorld">GitHub</a></li>
-                        <li><a href="https://arxiv.org/abs/2508.02292">Paper</a></li>
-                        <li><a href="documentation.html">Documentation</a></li>
-                        <li><a href="index.html">Home</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Authors</h4>
-                    <p>Wentao Zhang, Yilei Zhao, Chuqiao Zong, Xinrun Wang, Bo An</p>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 FinWorld Team. Built with ❤️ for the financial AI community.</p>
-            </div>
-        </div>
-    </footer>
+    <!-- Footer Container -->
+    <div id="footer-container"></div>
 
-    <script src="script.js"></script>
+    <!-- Load Components -->
+    <script src="components/load-components.js"></script>
 </body>
 </html>
